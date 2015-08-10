@@ -49,11 +49,11 @@
     
     if( !model.player1 )
     {
-        model.player1 = [[PlayerController alloc] initPlayer:1 withWii:wiimote];
+    //    model.player1 = [[PlayerController alloc] initPlayer:1 withWii:wiimote];
     }
     else
     {
-        model.player2 = [[PlayerController alloc] initPlayer:2 withWii:wiimote];
+    //    model.player2 = [[PlayerController alloc] initPlayer:2 withWii:wiimote];
     }
     
     if( model.player1 && model.player2 )

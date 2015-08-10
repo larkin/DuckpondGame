@@ -10,22 +10,35 @@
 
 @implementation PlayerController
 
--(id)initPlayer:(NSInteger)player withWii:(WiiRemote *)wiimote
+-(id)initPlayer:(NSInteger)player
 {
     self = [super init];
     
     if( self)
     {
         _player = player;
-        _wiimote = wiimote;
-        
-        [_wiimote setDelegate:self];
-        [_wiimote setInitialConfiguration];
-        [_wiimote setIRSensorEnabled:YES];
-        [_wiimote setMotionSensorEnabled:NO];
-        [_wiimote setLEDEnabled1:player==1 enabled2:player==1 enabled3:player==2 enabled4:player==2];
     }
     return self;
+}
+
+-(BOOL)connected
+{
+    return _wiimote != nil;
+}
+
+-(void)setWiimote:(WiiRemote *)wiimote
+{
+    _wiimote = wiimote;
+    [_wiimote setDelegate:self];
+    [_wiimote setInitialConfiguration];
+    [_wiimote setIRSensorEnabled:YES];
+    [_wiimote setMotionSensorEnabled:NO];
+    [_wiimote setLEDEnabled1:_player==1 enabled2:_player==1 enabled3:_player==2 enabled4:_player==2];
+    
+    if( self.delegate)
+    {
+        [self.delegate playerConnect:self];
+    }
 }
 
 #pragma mark - WiiRemote delegate
@@ -35,6 +48,15 @@
 
 - (void) irPointMovedX:(float) px Y:(float) py
 {
+    _location = NSMakePoint(px, py);
+    
+    if( px == -100 && py == -100 )
+    {
+        return;
+    }
+    
+    NSLog(@"%f : %f", px, py);
+    return;
     /*
     if (mouseEventMode != 2)
         return;
@@ -137,6 +159,10 @@
     if( type == WiiRemoteBButton && isPressed )
     {
         NSLog(@"Bang");
+        if( self.delegate )
+        {
+            [self.delegate playerShot:self];
+        }
     }
 }
 - (void) accelerationChanged:(WiiAccelerationSensorType) type accX:(unsigned short) accX accY:(unsigned short) accY accZ:(unsigned short) accZ{}
@@ -146,13 +172,20 @@
               pressureTL:(float) bPressureTL pressureBL:(float) bPressureBL{}
 - (void) batteryLevelChanged:(double) level
 {
-    NSLog(@"Battery %f", level);
+    //NSLog(@"Battery %f", level);
+    _level = level;
+    if( self.delegate )
+    {
+        [self.delegate playerBattery:self];
+    }
 }
 - (void) wiiRemoteDisconnected:(IOBluetoothDevice*) device
 {
     _wiimote = nil;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerDisconnected" object:self];
+    if( self.delegate )
+    {
+        [self.delegate playerDisconnect:self];
+    }
 }
 
 - (void) gotMiiData: (Mii*) mii_data_buf at: (int) slot{}

@@ -7,13 +7,15 @@
 //
 
 #import "PlayerManager.h"
-#import "PlayerController.h"
+//#import "PlayerController.h"
 
 #import <WiiRemote/WiiRemoteDiscovery.h>
 #import "ApplicationModel.h"
 
 @implementation PlayerManager
 {
+    NSTimer *timeout;
+    PlayerController *currentPlayer;
     WiiRemoteDiscovery *discovery;
 }
 
@@ -32,69 +34,43 @@
     {
         discovery = [[WiiRemoteDiscovery alloc] init];
         [discovery setDelegate:self];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDiconnect:) name:@"playerDisconnected" object:nil];
     }
     return self;
 }
 
--(void)findPlayers
+-(void)connectPlayer:(PlayerController*)player
 {
-    NSLog(@"Finding Players");
+    NSLog(@"Finding Player - %ld", (long)player.player);
+    currentPlayer = player;
+    
+    timeout = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(handleTimeout:) userInfo:nil repeats:NO];
     [discovery start];
 }
-
-#pragma mark - Event handling
-
--(void)handleDiconnect:(NSNotification*)notification
+               
+-(void)handleTimeout:(NSTimer*)timer
 {
-    if( [notification.object player] == 1 )
-    {
-        [ApplicationModel sharedModel].player1 = nil;
-    }
-
-    if( [notification.object player] == 2 )
-    {
-        [ApplicationModel sharedModel].player2 = nil;
-    }
-    
-    [discovery start];
+    [discovery stop];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerTimout" object:currentPlayer];
 }
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation
 
 - (void) willStartWiimoteConnections
 {
-    NSLog(@"Starting Player Search");
+    NSLog(@"Starting Search");
 }
 
 - (void) WiiRemoteDiscovered:(WiiRemote*)wiimote
 {
-    ApplicationModel *model = [ApplicationModel sharedModel];
-    
-    if( !model.player1 )
-    {
-        model.player1 = [[PlayerController alloc] initPlayer:1 withWii:wiimote];
-        NSLog(@"Connected player 1");
-    }
-    else
-    {
-        model.player2 = [[PlayerController alloc] initPlayer:2 withWii:wiimote];
-         NSLog(@"Connected player 2");
-    }
-    
-    if( model.player1 && model.player2 )
-    {
-        [discovery stop];
-    }
-    else
-    {
-        [discovery start];
-    }
+    [timeout invalidate];
+    timeout = nil;
+    [discovery stop];
+    currentPlayer.wiimote = wiimote;
 }
 
 - (void) WiiRemoteDiscoveryError:(int)code
 {
-    NSLog(@"Player error - %d", code);
+    NSLog(@"Connect Player Error - %d", code);
 }
 
 @end

@@ -11,13 +11,7 @@
 
 #import "AppDelegate.h"
 #import "ApplicationModel.h"
-#import "BluetoothView.h"
 
-
-
-// output Screen Resolution
-#define kScreenWidth 1280
-#define kScreenHeight 720
 
 @implementation AdminViewController
 {
@@ -28,41 +22,36 @@
     
     CGPoint lastClick;
     NSClickGestureRecognizer *shot;
-    GPUImageAVCamera *videoCamera;
-    GPUImageOutput<GPUImageInput> *filter;
     
     NSMutableArray *points;
+    
+    ApplicationModel *model;
 }
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
-    self.cameraView = [[GPUImageView alloc] init];
-    [self.view addSubview:self.cameraView];
-    CGSize captureSize = CGSizeMake(1920/2.5, 1080/2.5);
-    [ApplicationModel sharedModel].captureSize = captureSize;
     
-    [self.cameraView setFrame:CGRectMake(self.view.frame.size.width - captureSize.width - 20,
-                                         self.view.frame.size.height - captureSize.height - 20,
-                                         captureSize.width,
-                                         captureSize.height)];
+    model = [ApplicationModel sharedModel];
+    model.player1.delegate = self;
+    model.player2.delegate = self;
     
-    shot = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(handleShot:)];
-    shot.numberOfClicksRequired = 1;
-    [self.cameraView addGestureRecognizer:shot];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleConnect:) name:@"playerConnected" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDisconnect:) name:@"playerDisconnected" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimeout:) name:@"playerTimout" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBattery:) name:@"playerBattery" object:nil];
 }
 
 -(void)viewDidAppear
 {
     [super viewDidAppear];
-    [self startCapture];
 }
 
 
 -(void)handleShot:(NSGestureRecognizer*)recognizer
 {
-    NSPoint location = [recognizer locationInView:self.cameraView];
+    NSPoint location;// = [recognizer locationInView:self.cameraView];
     
     if( lastClick.x == location.x && lastClick.y == location.y )
     {
@@ -103,7 +92,6 @@
     NSView *tmpView = [[NSView alloc] initWithFrame:NSMakeRect(location.x-2.5, location.y-2.5, 5, 5)];
     [tmpView setWantsLayer:YES];
     tmpView.layer.backgroundColor = [NSColor greenColor].CGColor;
-    [self.cameraView addSubview:tmpView];
     
     if(points.count < 4)
     {
@@ -146,8 +134,6 @@
 - (IBAction)handleCalibrate:(id)sender
 {
     points = [[NSMutableArray alloc] initWithCapacity:4];
-    [self.cameraView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
     
     //v1 = CGVectorMake(<#CGFloat dx#>, <#CGFloat dy#>)([-1.190,.317,2.367]);//in METERS
     //var left = new Vector([-1.550,.710,4.000]);
@@ -164,10 +150,80 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showArena" object:nil];
 }
 
-- (IBAction)handleDicover:(id)sender
+- (IBAction)handleP1Search:(id)sender
 {
-    [[PlayerManager sharedManager] findPlayers];
+    self.p1Connect.enabled = NO;
+    self.p2Connect.enabled = NO;
+    
+    [self.p1Progress startAnimation:self];
+    [[PlayerManager sharedManager] connectPlayer:model.player1];
 }
+
+- (IBAction)handleP2Search:(id)sender
+{
+    self.p1Connect.enabled = NO;
+    self.p2Connect.enabled = NO;
+    
+    [self.p2Progress startAnimation:self];
+    [[PlayerManager sharedManager] connectPlayer:model.player2];
+}
+
+-(void)playerConnect:(PlayerController*)player
+{
+    if( player == model.player1 )
+    {
+        self.p1Connect.title = @"Connected";
+        self.p2Connect.enabled = !model.player2.connected;;
+        
+        [self.p1Progress stopAnimation:self];
+    }
+    else
+    {
+        self.p1Connect.enabled = !model.player1.connected;
+        self.p2Connect.title = @"Connected";
+        
+        [self.p2Progress stopAnimation:self];
+    }
+}
+
+-(void)playerDisconnect:(PlayerController*)player
+{
+    if( player == model.player1 )
+    {
+        self.p1Connect.title = @"Connect";
+        self.p1Connect.enabled = YES;
+        [self.p1Battery setDoubleValue:0.0];
+    }
+    else
+    {
+        self.p2Connect.title = @"Connect";
+        self.p2Connect.enabled = YES;
+        [self.p2Battery setDoubleValue:0.0];
+    }
+}
+
+-(void)handleTimeout:(NSNotification*)notification
+{
+    self.p1Connect.enabled = !model.player1.connected;
+    self.p2Connect.enabled = !model.player2.connected;
+    
+    [self.p1Progress stopAnimation:self];
+    [self.p2Progress stopAnimation:self];
+}
+
+-(void)playerBattery:(PlayerController*)player
+{
+    if( player == model.player1 )
+    {
+        [self.p1Battery setDoubleValue:model.player1.level * 100.0];
+    }
+    
+    else
+    {
+        [self.p2Battery setDoubleValue:model.player2.level * 100.0];
+    }
+}
+
 
 /*
 -(NSPoint)getCalibratedPoint:(NSPoint)point
@@ -192,56 +248,6 @@
     return point;
 }
  */
-
-
--(void)startCapture
-{
-    [self stopCapture];
-    
-    AVCaptureDevice *cameraToUse = nil;
-    for (AVCaptureDevice *connectedDevice in [GPUImageAVCamera connectedCameraDevices])
-    {
-        NSLog(@"Device: %@, UUID: %@", connectedDevice, [connectedDevice uniqueID]);
-        NSLog(@"Device: %@, name: %@", connectedDevice, [connectedDevice localizedName]);
-        
-        if ([connectedDevice.localizedName isEqualToString:@"HD Pro Webcam C920"])
-        {
-            NSLog(@"Device found");
-            cameraToUse = connectedDevice;
-        }
-    }
-    
-    if( !cameraToUse )
-    {
-        NSLog(@"Camera Not Found");
-        return;
-    }
-    
-    videoCamera = [[GPUImageAVCamera alloc] initWithSessionPreset:AVCaptureSessionPreset1280x720 cameraDevice:cameraToUse];
-    
-    // Create filter and add it to target
-    filter = [[GPUImageBrightnessFilter alloc] init];
-    [videoCamera addTarget:filter];
-    [filter addTarget:self.cameraView];
-    
-    [videoCamera startCameraCapture];
-}
-
--(void)stopCapture
-{
-    if(videoCamera)
-    {
-        [videoCamera removeAllTargets];
-        [videoCamera stopCameraCapture];
-        videoCamera = nil;
-    }
-    
-    if(filter)
-    {
-        [filter removeAllTargets];
-        filter = nil;
-    }
-}
 
 /*
 int main(int argc, const char * argv[])
@@ -339,8 +345,8 @@ int main(int argc, const char * argv[])
     // v is what you'd normally call y, normalized between 0 and 1. See: http://en.wikipedia.org/wiki/UV_mapping
     double v = (px - p1x) / (p2x - p1x);
     
-    int screenX = (int) round(u * kScreenWidth);
-    int screenY = (int) round((1-v) * kScreenHeight);
+    int screenX = 0;//(int) round(u * kScreenWidth);
+    int screenY = 0;//(int) round((1-v) * kScreenHeight);
     
     NSLog(@"Output %d : %d", screenX, screenY);
     return CGPointMake(screenX, screenY);

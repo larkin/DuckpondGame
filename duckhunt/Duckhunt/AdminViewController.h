@@ -7,10 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <GPUImage/GPUImage.h>
+#import "PlayerController.h"
 
-
-@interface AdminViewController : NSViewController
+@interface AdminViewController : NSViewController<PlayerControllerDelegate>
 
 
 @property (weak) IBOutlet NSButton *addButton;
@@ -23,6 +22,13 @@
 @property (weak) IBOutlet NSButton *calibrateButton;
 @property (weak) IBOutlet NSButton *goButton;
 
-@property (strong)  GPUImageView *cameraView;
+
+@property (weak) IBOutlet NSButton *p1Connect;
+@property (weak) IBOutlet NSProgressIndicator *p1Progress;
+@property (weak) IBOutlet NSLevelIndicator *p1Battery;
+
+@property (weak) IBOutlet NSButton *p2Connect;
+@property (weak) IBOutlet NSProgressIndicator *p2Progress;
+@property (weak) IBOutlet NSLevelIndicator *p2Battery;
 
 @end

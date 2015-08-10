@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <WiiRemote/WiiRemote.h>
+#import "PlayerController.h"
 
 @interface PlayerManager : NSObject
 
 + (instancetype)sharedManager;
 
--(void)findPlayers;
+-(void)connectPlayer:(PlayerController*)player;
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation
 

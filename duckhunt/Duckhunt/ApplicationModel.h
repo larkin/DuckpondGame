@@ -18,8 +18,6 @@ typedef NS_ENUM(NSInteger, AppState) {
     CalibrationState
 };
 
-
-
 @property (nonatomic) AppState appState;
 @property (nonatomic) CGSize captureSize;
 @property (nonatomic) NSArray *duckTextures;

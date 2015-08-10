@@ -27,10 +27,11 @@
     if (self = [super init])
     {
         [self loadTextures];
+        self.player1 = [[PlayerController alloc] initPlayer:1];
+        self.player2 = [[PlayerController alloc] initPlayer:2];
     }
     return self;
 }
-
 
 -(void)loadTextures
 {

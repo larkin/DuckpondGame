@@ -9,12 +9,28 @@
 #import <Foundation/Foundation.h>
 #import <WiiRemote/WiiRemote.h>
 
+#pragma mark - Player Controller Delegate
+
+@class PlayerController;
+
+@protocol PlayerControllerDelegate <NSObject>
+@optional
+- (void) playerBattery:(PlayerController*)player;
+- (void) playerConnect:(PlayerController*)player;
+- (void) playerDisconnect:(PlayerController*)player;
+- (void) playerShot:(PlayerController*)player;
+@end
+
 @interface PlayerController : NSObject
 
+@property (readonly) double level;
 @property (readonly) NSInteger player;
-@property (strong, readonly) WiiRemote *wiimote;
+@property (readonly) BOOL connected;
+@property (readonly) CGPoint location;
+@property (strong, nonatomic) WiiRemote *wiimote;
+@property (nonatomic, weak) id<PlayerControllerDelegate> delegate;
 
--(id)initPlayer:(NSInteger)player withWii:(WiiRemote *)wiimote;
+-(id)initPlayer:(NSInteger)player;
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation
 
