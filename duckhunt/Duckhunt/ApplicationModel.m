@@ -84,5 +84,9 @@
     return [self.duckTextures[duckIndex] valueForKey:actionName];
 }
 
+-(PlayerController*)playerWith:(NSInteger)playerNumber
+{
+    return playerNumber == 1 ? self.player1 : self.player2;
+}
 
 @end

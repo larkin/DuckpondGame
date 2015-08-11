@@ -18,6 +18,9 @@ typedef NS_ENUM(NSInteger, AppState) {
     CalibrationState
 };
 
+@property (nonatomic) NSInteger screenOffset;
+@property (nonatomic) NSInteger screenSize;
+
 @property (nonatomic) AppState appState;
 @property (nonatomic) CGSize captureSize;
 @property (nonatomic) NSArray *duckTextures;
@@ -30,5 +33,7 @@ typedef NS_ENUM(NSInteger, AppState) {
 
 -(SKTexture*)texture:(NSInteger)duckIndex action:(NSString*)actionName;
 -(NSArray*)textures:(NSInteger)duckIndex action:(NSString*)actionName;
+
+-(PlayerController*)playerWith:(NSInteger)playerNumber;
 
 @end

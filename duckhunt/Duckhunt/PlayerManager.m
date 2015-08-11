@@ -40,7 +40,7 @@
 
 -(void)connectPlayer:(PlayerController*)player
 {
-    NSLog(@"Finding Player - %ld", (long)player.player);
+    NSLog(@"Finding Player - %ld", (long)player.index);
     currentPlayer = player;
     
     timeout = [NSTimer scheduledTimerWithTimeInterval:20 target:self selector:@selector(handleTimeout:) userInfo:nil repeats:NO];

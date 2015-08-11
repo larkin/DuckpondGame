@@ -82,7 +82,7 @@ typedef enum {
 		
 #ifdef DEBUG
 		/* Allow full protocol logging */
-		_dump = TRUE;
+		//_dump = TRUE;
 #endif
 		accX = 0x10;
 		accY = 0x10;
@@ -1590,7 +1590,7 @@ typedef enum {
 
 	unsigned char * dp = (unsigned char *) dataPointer;
 
-#ifdef DEBUG	
+#ifdef DEBUG
 	if (_dump) {
 		int i;
 		printf ("channel:%i - ack%3u:", [l2capChannel PSM], (unsigned int)dataLength);

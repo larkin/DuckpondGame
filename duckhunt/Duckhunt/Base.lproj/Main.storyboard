@@ -772,39 +772,12 @@
                                     <action selector="handleKill:" target="ePe-Ov-yCE" id="RXb-zM-0mF"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hA5-Ud-WuP">
-                                <rect key="frame" x="742" y="205" width="100" height="32"/>
-                                <buttonCell key="cell" type="push" title="Bluetooth" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UeM-kr-4fe">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="handleBluetooth:" target="ePe-Ov-yCE" id="Sux-m0-8Ol"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cro-8L-2Ej">
-                                <rect key="frame" x="14" y="643" width="108" height="32"/>
-                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEx-rN-83Y">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="handleP1Search:" target="ePe-Ov-yCE" id="wpa-ip-2zd"/>
-                                </connections>
-                            </button>
-                            <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zyF-b9-en9">
-                                <rect key="frame" x="20" y="689" width="96" height="18"/>
-                                <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="100" warningValue="10" criticalValue="5" id="5IJ-Sr-27j"/>
-                            </levelIndicator>
-                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="jTm-rZ-lBK">
-                                <rect key="frame" x="124" y="650" width="16" height="16"/>
-                            </progressIndicator>
                             <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gK6-eZ-oGw">
-                                <rect key="frame" x="243" y="689" width="96" height="18"/>
-                                <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="100" warningValue="10" criticalValue="5" numberOfMajorTickMarks="10" id="4Si-EO-x0E"/>
+                                <rect key="frame" x="912" y="730" width="96" height="18"/>
+                                <levelIndicatorCell key="cell" editable="YES" alignment="left" doubleValue="2" maxValue="100" warningValue="10" criticalValue="5" numberOfMajorTickMarks="10" id="4Si-EO-x0E"/>
                             </levelIndicator>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G2U-e6-Si8">
-                                <rect key="frame" x="237" y="643" width="108" height="32"/>
+                                <rect key="frame" x="906" y="684" width="108" height="32"/>
                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TUP-Ar-cyf">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -814,7 +787,24 @@
                                 </connections>
                             </button>
                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="aba-uJ-qcw">
-                                <rect key="frame" x="347" y="652" width="16" height="16"/>
+                                <rect key="frame" x="888" y="691" width="16" height="16"/>
+                            </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cro-8L-2Ej">
+                                <rect key="frame" x="14" y="684" width="108" height="32"/>
+                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEx-rN-83Y">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleP1Search:" target="ePe-Ov-yCE" id="wpa-ip-2zd"/>
+                                </connections>
+                            </button>
+                            <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zyF-b9-en9">
+                                <rect key="frame" x="20" y="730" width="96" height="18"/>
+                                <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="100" warningValue="10" criticalValue="5" id="5IJ-Sr-27j"/>
+                            </levelIndicator>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="jTm-rZ-lBK">
+                                <rect key="frame" x="124" y="691" width="16" height="16"/>
                             </progressIndicator>
                         </subviews>
                     </view>

@@ -20,6 +20,9 @@
     Duck *duckNode;
     DuckLat newLat;
     DuckLng newLng;
+    
+    SKSpriteNode *cross1;
+    SKSpriteNode *cross2;
 }
 
 +(float)numberBetween:(float)lowerBound and:(float)upperBound
@@ -45,6 +48,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(missDuck) name:@"missDuck" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killDuck) name:@"killDuck" object:nil];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserMove:) name:@"userMove" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleArenaShot:) name:@"handleArenaShot" object:nil];
     }
     return self;
@@ -64,15 +68,40 @@
     self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
+    cross1 = [self crosshair1];
+    cross1.position = CGPointMake(300,300);
+    [self addChild:cross1];
+
+    cross2 = [self crosshair2];
+    cross2.position = CGPointMake(300,300);
+    [self addChild:cross2];
+
     //[self spawnDuck];
     //[self addChild: [self newHelloNode]];
+}
+
+-(void)handleUserMove:(NSNotification*)notification
+{
+    PlayerController *player = [notification.object objectForKey:@"player"];
+    
+    if( player.index == 1 )
+    {
+        cross1.position = player.location;
+    }
+    else
+    {
+        cross2.position = player.location;
+    }
 }
 
 -(void)handleArenaShot:(NSNotification*)notification
 {
     NSLog(@"Shot");
     //[self miss:[[notification.userInfo objectForKey:@"point"] pointValue]];
-    NSPoint point = [[notification.userInfo objectForKey:@"point"] pointValue];
+    //NSPoint point = [[notification.userInfo objectForKey:@"point"] pointValue];
+    
+    PlayerController *player = [notification.object objectForKey:@"player"];
+    NSPoint point = player.location;
     
     [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
         Duck *duck = (Duck*)node;
@@ -217,5 +246,32 @@
     if( duck.lat != newLat || duck.lng != newLng )
         [duck setLat:newLat lng:newLng];
 }
+
+- (SKSpriteNode *)crosshair1
+{
+    SKSpriteNode *crosshair = [[SKSpriteNode alloc] initWithColor:[SKColor purpleColor] size:CGSizeMake(20,20)];
+    
+    SKAction *blink = [SKAction sequence:@[
+                                           [SKAction fadeOutWithDuration:0.2],
+                                           [SKAction fadeInWithDuration:0.2]]];
+    SKAction *blinkForever = [SKAction repeatActionForever:blink];
+    [crosshair runAction: blinkForever];
+    
+    return crosshair;
+}
+
+- (SKSpriteNode *)crosshair2
+{
+    SKSpriteNode *crosshair = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(20,20)];
+    
+    SKAction *blink = [SKAction sequence:@[
+                                           [SKAction fadeOutWithDuration:0.2],
+                                           [SKAction fadeInWithDuration:0.2]]];
+    SKAction *blinkForever = [SKAction repeatActionForever:blink];
+    [crosshair runAction: blinkForever];
+    
+    return crosshair;
+}
+
 
 @end

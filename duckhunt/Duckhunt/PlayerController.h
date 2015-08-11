@@ -24,13 +24,13 @@
 @interface PlayerController : NSObject
 
 @property (readonly) double level;
-@property (readonly) NSInteger player;
+@property (readonly) NSInteger index;
 @property (readonly) BOOL connected;
 @property (readonly) CGPoint location;
 @property (strong, nonatomic) WiiRemote *wiimote;
 @property (nonatomic, weak) id<PlayerControllerDelegate> delegate;
 
--(id)initPlayer:(NSInteger)player;
+-(id)initPlayer:(NSInteger)index;
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation
 

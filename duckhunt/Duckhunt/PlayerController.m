@@ -7,6 +7,7 @@
 //
 
 #import "PlayerController.h"
+#import "ApplicationModel.h"
 
 @implementation PlayerController
 
@@ -16,7 +17,7 @@
     
     if( self)
     {
-        _player = player;
+        _index = player;
     }
     return self;
 }
@@ -33,7 +34,7 @@
     [_wiimote setInitialConfiguration];
     [_wiimote setIRSensorEnabled:YES];
     [_wiimote setMotionSensorEnabled:NO];
-    [_wiimote setLEDEnabled1:_player==1 enabled2:_player==1 enabled3:_player==2 enabled4:_player==2];
+    [_wiimote setLEDEnabled1:_index==1 enabled2:_index==1 enabled3:_index==2 enabled4:_index==2];
     
     if( self.delegate)
     {
@@ -48,14 +49,18 @@
 
 - (void) irPointMovedX:(float) px Y:(float) py
 {
-    _location = NSMakePoint(px, py);
+    float screenSize = [ApplicationModel sharedModel].screenSize;
+    _location = NSMakePoint(px*screenSize, py*screenSize);
     
     if( px == -100 && py == -100 )
     {
         return;
     }
     
-    NSLog(@"%f : %f", px, py);
+    //NSPoint point = NSMakePoint(px, py);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userMove" object:@{@"player":self}];
+    NSLog(@"%f : %f", _location.x, _location.y);
     return;
     /*
     if (mouseEventMode != 2)
@@ -70,8 +75,8 @@
         [graphView setIRPointX:px Y:py];
     }
     */
-    int dispWidth = CGDisplayPixelsWide(kCGDirectMainDisplay);
-    int dispHeight = CGDisplayPixelsHigh(kCGDirectMainDisplay);
+    int dispWidth = 0;//CGDisplayPixelsWide();
+    int dispHeight = 0;//CGDisplayPixelsHigh(kCGDirectMainDisplay);
     
     //id config = [mappingController selection];
     float sens2 = 1.0;//[[config valueForKey:@"sensitivity2"] floatValue] * [[config valueForKey:@"sensitivity2"] floatValue];
@@ -159,9 +164,11 @@
     if( type == WiiRemoteBButton && isPressed )
     {
         NSLog(@"Bang");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"handleArenaShot" object:@{@"player":self}];
         if( self.delegate )
         {
-            [self.delegate playerShot:self];
+            //[self.delegate playerShot:self];
+            //[[NSNotificationCenter defaultCenter] postNotificationName:@"handleArenaShot" object:nil];
         }
     }
 }

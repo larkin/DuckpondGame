@@ -40,7 +40,7 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDisconnect:) name:@"playerDisconnected" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimeout:) name:@"playerTimout" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBattery:) name:@"playerBattery" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBattery:) name:@"playerBattery" object:nil];
 }
 
 -(void)viewDidAppear
@@ -213,14 +213,17 @@
 
 -(void)playerBattery:(PlayerController*)player
 {
-    if( player == model.player1 )
+    [self.p1Battery setIntValue:50];
+    [self.p2Battery setIntValue:25];
+    
+     if( player == model.player1 )
     {
-        [self.p1Battery setDoubleValue:model.player1.level * 100.0];
+    //    [self.p1Battery setIntValue:model.player1.level * 1000];
     }
     
     else
     {
-        [self.p2Battery setDoubleValue:model.player2.level * 100.0];
+    //    [self.p1Battery setIntValue:model.player1.level * 1000];
     }
 }
 
