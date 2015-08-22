@@ -16,7 +16,11 @@
 		202EF0B61B20246E00B543D0 /* WiiRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202EF0B51B20246E00B543D0 /* WiiRemote.framework */; };
 		202EF0B91B2035EE00B543D0 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0B81B2035EE00B543D0 /* PlayerController.m */; };
 		202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0BC1B203B4F00B543D0 /* PlayerManager.m */; };
-		204F66811AE8B2E7008B323C /* Spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204F667F1AE8B2E7008B323C /* Spark.sks */; };
+		204739C11B87C63400949A5E /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 204739C01B87C63400949A5E /* Properties.m */; };
+		204739C71B87FF5000949A5E /* hit1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739C61B87FF5000949A5E /* hit1.sks */; };
+		204739C91B8801A500949A5E /* hit2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739C81B8801A500949A5E /* hit2.sks */; };
+		204739CB1B8801BB00949A5E /* hit3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739CA1B8801BB00949A5E /* hit3.sks */; };
+		204739CD1B88023600949A5E /* hit4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739CC1B88023600949A5E /* hit4.sks */; };
 		204F66821AE8B2E7008B323C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 204F66801AE8B2E7008B323C /* spark.png */; };
 		204F66861AE8B69E008B323C /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204F66851AE8B69E008B323C /* Trail.sks */; };
 		204F66881AE8B6B6008B323C /* Miss.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204F66871AE8B6B6008B323C /* Miss.sks */; };
@@ -26,8 +30,6 @@
 		206B369D1AE5CE1F009ACB9F /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B369C1AE5CE1F009ACB9F /* Dog.m */; };
 		206B369F1AE5CFBA009ACB9F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */; };
 		206B36A31AE5D2B3009ACB9F /* ArenaScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36A21AE5D2B3009ACB9F /* ArenaScene.m */; };
-		206B36A91AE5F292009ACB9F /* TestSceneTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36A81AE5F292009ACB9F /* TestSceneTwo.m */; };
-		206B36AC1AE5F700009ACB9F /* CalibrationScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36AB1AE5F700009ACB9F /* CalibrationScene.m */; };
 		206B36AF1AE5F70E009ACB9F /* LobbyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36AE1AE5F70E009ACB9F /* LobbyScene.m */; };
 		2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2088F01B1AFB35AE00A4AFC5 /* ImageMask.m */; };
 		20D7037F1AE767A000DDD7F1 /* Duck1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D7037E1AE767A000DDD7F1 /* Duck1.atlas */; };
@@ -66,7 +68,12 @@
 		202EF0B81B2035EE00B543D0 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
 		202EF0BB1B203B4F00B543D0 /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
 		202EF0BC1B203B4F00B543D0 /* PlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManager.m; sourceTree = "<group>"; };
-		204F667F1AE8B2E7008B323C /* Spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Spark.sks; sourceTree = "<group>"; };
+		204739BF1B87C63400949A5E /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
+		204739C01B87C63400949A5E /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
+		204739C61B87FF5000949A5E /* hit1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit1.sks; sourceTree = "<group>"; };
+		204739C81B8801A500949A5E /* hit2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit2.sks; sourceTree = "<group>"; };
+		204739CA1B8801BB00949A5E /* hit3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit3.sks; sourceTree = "<group>"; };
+		204739CC1B88023600949A5E /* hit4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit4.sks; sourceTree = "<group>"; };
 		204F66801AE8B2E7008B323C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		204F66851AE8B69E008B323C /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		204F66871AE8B6B6008B323C /* Miss.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Miss.sks; sourceTree = "<group>"; };
@@ -81,10 +88,6 @@
 		206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		206B36A11AE5D2B3009ACB9F /* ArenaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArenaScene.h; sourceTree = "<group>"; };
 		206B36A21AE5D2B3009ACB9F /* ArenaScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArenaScene.m; sourceTree = "<group>"; };
-		206B36A71AE5F292009ACB9F /* TestSceneTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestSceneTwo.h; sourceTree = "<group>"; };
-		206B36A81AE5F292009ACB9F /* TestSceneTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSceneTwo.m; sourceTree = "<group>"; };
-		206B36AA1AE5F700009ACB9F /* CalibrationScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationScene.h; sourceTree = "<group>"; };
-		206B36AB1AE5F700009ACB9F /* CalibrationScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrationScene.m; sourceTree = "<group>"; };
 		206B36AD1AE5F70E009ACB9F /* LobbyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyScene.h; sourceTree = "<group>"; };
 		206B36AE1AE5F70E009ACB9F /* LobbyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyScene.m; sourceTree = "<group>"; };
 		2088F01A1AFB35AE00A4AFC5 /* ImageMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMask.h; sourceTree = "<group>"; };
@@ -210,10 +213,13 @@
 		204F667E1AE8B2D1008B323C /* Particles */ = {
 			isa = PBXGroup;
 			children = (
-				204F667F1AE8B2E7008B323C /* Spark.sks */,
+				204739C61B87FF5000949A5E /* hit1.sks */,
+				204739C81B8801A500949A5E /* hit2.sks */,
+				204739CA1B8801BB00949A5E /* hit3.sks */,
+				204739CC1B88023600949A5E /* hit4.sks */,
+				204F66871AE8B6B6008B323C /* Miss.sks */,
 				204F66801AE8B2E7008B323C /* spark.png */,
 				204F66851AE8B69E008B323C /* Trail.sks */,
-				204F66871AE8B6B6008B323C /* Miss.sks */,
 			);
 			name = Particles;
 			sourceTree = "<group>";
@@ -236,6 +242,8 @@
 			children = (
 				206B36951AE5CDB9009ACB9F /* ApplicationModel.h */,
 				206B36961AE5CDB9009ACB9F /* ApplicationModel.m */,
+				204739BF1B87C63400949A5E /* Properties.h */,
+				204739C01B87C63400949A5E /* Properties.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -256,10 +264,6 @@
 			children = (
 				206B36A11AE5D2B3009ACB9F /* ArenaScene.h */,
 				206B36A21AE5D2B3009ACB9F /* ArenaScene.m */,
-				206B36A71AE5F292009ACB9F /* TestSceneTwo.h */,
-				206B36A81AE5F292009ACB9F /* TestSceneTwo.m */,
-				206B36AA1AE5F700009ACB9F /* CalibrationScene.h */,
-				206B36AB1AE5F700009ACB9F /* CalibrationScene.m */,
 				206B36AD1AE5F70E009ACB9F /* LobbyScene.h */,
 				206B36AE1AE5F70E009ACB9F /* LobbyScene.m */,
 			);
@@ -383,6 +387,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204739CD1B88023600949A5E /* hit4.sks in Resources */,
 				20FE65911AEF3ED400094E4C /* Images.xcassets in Resources */,
 				204F66881AE8B6B6008B323C /* Miss.sks in Resources */,
 				20D7037F1AE767A000DDD7F1 /* Duck1.atlas in Resources */,
@@ -390,8 +395,10 @@
 				204F66821AE8B2E7008B323C /* spark.png in Resources */,
 				204F66861AE8B69E008B323C /* Trail.sks in Resources */,
 				200C837D1AE5B1750069A828 /* Main.storyboard in Resources */,
+				204739C71B87FF5000949A5E /* hit1.sks in Resources */,
 				20D703821AE76B0800DDD7F1 /* Duck2.atlas in Resources */,
-				204F66811AE8B2E7008B323C /* Spark.sks in Resources */,
+				204739C91B8801A500949A5E /* hit2.sks in Resources */,
+				204739CB1B8801BB00949A5E /* hit3.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,8 +453,8 @@
 				206B36911AE5BF8D009ACB9F /* AdminViewController.m in Sources */,
 				202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */,
 				2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */,
+				204739C11B87C63400949A5E /* Properties.m in Sources */,
 				206B36971AE5CDB9009ACB9F /* ApplicationModel.m in Sources */,
-				206B36AC1AE5F700009ACB9F /* CalibrationScene.m in Sources */,
 				206B36AF1AE5F70E009ACB9F /* LobbyScene.m in Sources */,
 				202EF0AE1B20083100B543D0 /* DiscoverControllerCommand.m in Sources */,
 				200C83781AE5B1750069A828 /* GameViewController.m in Sources */,
@@ -456,7 +463,6 @@
 				200C83751AE5B1750069A828 /* main.m in Sources */,
 				200C83731AE5B1750069A828 /* AppDelegate.m in Sources */,
 				202EF0B91B2035EE00B543D0 /* PlayerController.m in Sources */,
-				206B36A91AE5F292009ACB9F /* TestSceneTwo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

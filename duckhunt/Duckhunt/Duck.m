@@ -8,9 +8,7 @@
 
 #import "Duck.h"
 #import "ApplicationModel.h"
-
-#define kMDistance 50
-#define kMDSpeed 0.4
+#import "Properties.h"
 
 @implementation Duck
 {
@@ -20,6 +18,8 @@
     NSTimer *timer;
     SKEmitterNode *explosion;
     SKEmitterNode *trail;
+    
+    Properties *props;
 }
 
 +(BOOL)yesOrNo
@@ -39,29 +39,31 @@
 
 -(id)initWithType:(DuckType)duckType
 {
-    self = [super initWithColor:[NSColor clearColor] size:CGSizeMake(86.0, 75.0)];
+    ApplicationModel *model = [ApplicationModel sharedModel];
+    self = [super initWithColor:[NSColor clearColor] size:CGSizeMake(86.0 * model.props.duckScale, 75.0 * model.props.duckScale)];
     
     if( self )
     {
         [self setName:@"duck"];
         [self setDuckType:duckType];
+        props = model.props;
         
         switch( duckType )
         {
             case DuckTypeEasy :
-                self.speed=0.75;
-                minDistance=1.5;
-                maxDistance=2.5;
+                self.speed = props.duck1Speed;
+                minDistance = props.duck1Min;
+                maxDistance = props.duck1Max;
                 break;
             case DuckTypeNormal :
-                self.speed=1.5;
-                minDistance=1.0;
-                maxDistance=2.0;
+                self.speed = props.duck2Speed;
+                minDistance = props.duck2Min;
+                maxDistance = props.duck2Max;
                 break;
             case DuckTypeHard :
-                self.speed=2.0;
-                minDistance=1.5;
-                maxDistance=2.5;
+                self.speed = props.duck3Speed;
+                minDistance = props.duck3Min;
+                maxDistance = props.duck3Max;
                 break;
         }
     }
@@ -119,7 +121,7 @@
 -(void)flyN
 {
     SKAction *flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"climb"] timePerFrame:0.1];
-    SKAction *move = [SKAction moveBy:CGVectorMake(kMDistance * self.xScale, kMDistance) duration:kMDSpeed];
+    SKAction *move = [SKAction moveBy:CGVectorMake(props.duckDistance * self.xScale, props.duckDistance) duration:props.duckSpeed];
     
     SKAction *group = [SKAction group:@[
                                         [SKAction repeatActionForever:flap],
@@ -131,7 +133,7 @@
 -(void)flyE
 {
     SKAction *flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.1];
-    SKAction *move = [SKAction moveBy:CGVectorMake(kMDistance * self.xScale, 0) duration:kMDSpeed];
+    SKAction *move = [SKAction moveBy:CGVectorMake(props.duckDistance * self.xScale, 0) duration:props.duckSpeed];
     
     SKAction *group = [SKAction group:@[
                                         [SKAction repeatActionForever:flap],
@@ -144,7 +146,7 @@
 -(void)flyS
 {
     SKAction *flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.1];
-    SKAction *move = [SKAction moveBy:CGVectorMake(kMDistance * self.xScale, -kMDistance) duration:kMDSpeed];
+    SKAction *move = [SKAction moveBy:CGVectorMake(props.duckDistance * self.xScale, -props.duckDistance) duration:props.duckSpeed];
     
     SKAction *group = [SKAction group:@[
                                         [SKAction repeatActionForever:flap],

@@ -8,7 +8,6 @@
 
 #import "GameViewController.h"
 #import "ArenaScene.h"
-#import "CalibrationScene.h"
 #import "LobbyScene.h"
 #import "ApplicationModel.h"
 
@@ -16,7 +15,6 @@
 {
     SKView *spriteView;
     ArenaScene *arenaScene;
-    CalibrationScene *calibScene;
     LobbyScene *lobbyScene;
 }
 
@@ -25,18 +23,23 @@
     [super viewDidLoad];
 
     spriteView = (SKView *)self.view;
-    spriteView.showsDrawCount = YES;
-    spriteView.showsNodeCount = YES;
-    spriteView.showsFPS = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showArea) name:@"showArena" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showCalibration) name:@"showCalibration" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLobby) name:@"showLobby" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleInfo) name:@"toggleInfo" object:nil];
 }
 
 -(void)viewWillAppear
 {
     [self showLobby];
+}
+
+-(void)toggleInfo
+{
+    spriteView.showsDrawCount = !spriteView.showsFPS;
+    spriteView.showsNodeCount = !spriteView.showsFPS;
+    spriteView.showsFPS = !spriteView.showsFPS;
 }
 
 -(void)showArea
@@ -46,15 +49,6 @@
     arenaScene.scaleMode = SKSceneScaleModeAspectFill;
     SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
     [spriteView presentScene:arenaScene transition:transition];
-}
-
--(void)showCalibration
-{
-    [ApplicationModel sharedModel].appState = CalibrationState;
-    calibScene = [[CalibrationScene alloc] initWithSize:self.view.frame.size];
-    calibScene.scaleMode = SKSceneScaleModeAspectFill;
-    SKTransition *transition = [SKTransition fadeWithDuration:0.5];
-    [spriteView presentScene:calibScene transition:transition];
 }
 
 -(void)showLobby

@@ -26,6 +26,7 @@
 {
     if (self = [super init])
     {
+        self.props = [[Properties alloc] init];
         [self loadTextures];
         self.player1 = [[PlayerController alloc] initPlayer:1];
         self.player2 = [[PlayerController alloc] initPlayer:2];

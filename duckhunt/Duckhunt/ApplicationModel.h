@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import <Foundation/Foundation.h>
 #import "PlayerController.h"
+#import "Properties.h"
 
 @interface ApplicationModel : NSObject
 
@@ -25,6 +26,8 @@ typedef NS_ENUM(NSInteger, AppState) {
 @property (nonatomic) CGSize captureSize;
 @property (nonatomic) NSArray *duckTextures;
 @property (nonatomic) NSArray *calibrationPoints;
+
+@property (nonatomic) Properties *props;
 
 @property (nonatomic) PlayerController* player1;
 @property (nonatomic) PlayerController* player2;

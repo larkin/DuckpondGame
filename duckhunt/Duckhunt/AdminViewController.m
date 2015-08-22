@@ -39,13 +39,13 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleConnect:) name:@"playerConnected" object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDisconnect:) name:@"playerDisconnected" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimeout:) name:@"playerTimout" object:nil];
-    
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBattery:) name:@"playerBattery" object:nil];
 }
 
 -(void)viewDidAppear
 {
     [super viewDidAppear];
+    [self.p1Battery setNeedsDisplay];
 }
 
 
@@ -114,21 +114,18 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"spawnDuck" object:nil];
 }
 
+     /*
 - (IBAction)handleBluetooth:(id)sender
 {
     NSViewController *viewController = [[NSStoryboard storyboardWithName:@"Main" bundle:nil] instantiateControllerWithIdentifier:@"BluetoothController"];
     [self addChildViewController:viewController];
     [self.view addSubview:viewController.view];
 }
+      */
 
 - (IBAction)handleMiss:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"missDuck" object:nil];
-}
-
-- (IBAction)handleKill:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"killDuck" object:nil];
 }
 
 - (IBAction)handleCalibrate:(id)sender
@@ -213,17 +210,14 @@
 
 -(void)playerBattery:(PlayerController*)player
 {
-    [self.p1Battery setIntValue:50];
-    [self.p2Battery setIntValue:25];
-    
-     if( player == model.player1 )
+    if( player == model.player1 )
     {
-    //    [self.p1Battery setIntValue:model.player1.level * 1000];
+        [self.p1Battery setIntValue:model.player1.level * 10];
     }
     
     else
     {
-    //    [self.p1Battery setIntValue:model.player1.level * 1000];
+        [self.p1Battery setIntValue:model.player1.level * 10];
     }
 }
 

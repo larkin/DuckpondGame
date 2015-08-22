@@ -46,7 +46,7 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spawnDuck) name:@"spawnDuck" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(missDuck) name:@"missDuck" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killDuck) name:@"killDuck" object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killDuck) name:@"killDuck" object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserMove:) name:@"userMove" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleArenaShot:) name:@"handleArenaShot" object:nil];
@@ -110,7 +110,7 @@
         {
             if( [duck containsPoint:[duck convertPoint:point toNode:duck]] )
             {
-                [self hit:duck];
+                [self player:player hit:duck];
                 *stop = YES;
                 return;
             }
@@ -178,9 +178,10 @@
     }];
 }
 
--(void)hit:(Duck*)duck
+-(void)player:(PlayerController*)player hit:(Duck*)duck
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Spark" ofType:@"sks"];
+    NSString *spritePath = player.index == 1 ? @"hit1" : @"hit4";
+    NSString *path = [[NSBundle mainBundle] pathForResource:spritePath ofType:@"sks"];
     SKEmitterNode *node = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     [node setPosition:duck.position];
     [self addChild:node];
@@ -195,6 +196,7 @@
 
 }
 
+/*
 -(void)killDuck
 {
     [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -207,6 +209,7 @@
         }
     }];
 }
+ */  
 
 -(void)didSimulatePhysics
 {
