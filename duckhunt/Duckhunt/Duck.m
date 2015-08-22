@@ -10,6 +10,9 @@
 #import "ApplicationModel.h"
 #import "Properties.h"
 
+#define kDuckWidth  86.0
+#define kDuckHeight 75.0
+
 @implementation Duck
 {
     NSArray *animTex;
@@ -39,8 +42,9 @@
 
 -(id)initWithType:(DuckType)duckType
 {
+    duckType = DuckTypeNormal;
     ApplicationModel *model = [ApplicationModel sharedModel];
-    self = [super initWithColor:[NSColor clearColor] size:CGSizeMake(86.0 * model.props.duckScale, 75.0 * model.props.duckScale)];
+    self = [super initWithColor:[NSColor clearColor] size:CGSizeMake(kDuckWidth, kDuckHeight)];
     
     if( self )
     {
@@ -66,6 +70,9 @@
                 maxDistance = props.duck3Max;
                 break;
         }
+        
+        // Property change handlers
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleScale:) name:@"duckScaleChanged" object:nil];
     }
     return self;
 }
@@ -73,6 +80,11 @@
 -(BOOL)isFlying
 {
     return timer != nil;
+}
+
+-(void)handleScale:(NSNotification*)notification
+{
+    [self setScale:props.duckScale];
 }
 
 -(void)reroute
@@ -127,6 +139,7 @@
                                         [SKAction repeatActionForever:flap],
                                         [SKAction repeatActionForever:move]]];
    
+    [self setScale:props.duckScale];
     [self runAction:[SKAction repeatActionForever:group]];
 }
 
@@ -139,6 +152,7 @@
                                         [SKAction repeatActionForever:flap],
                                         [SKAction repeatActionForever:move]]];
     
+    [self setScale:props.duckScale];
     [self runAction:[SKAction repeatActionForever:group]];
 
 }
@@ -152,6 +166,7 @@
                                         [SKAction repeatActionForever:flap],
                                         [SKAction repeatActionForever:move]]];
     
+    [self setScale:props.duckScale];
     [self runAction:[SKAction repeatActionForever:group]];
 }
 

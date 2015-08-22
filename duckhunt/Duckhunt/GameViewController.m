@@ -27,7 +27,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showArea) name:@"showArena" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLobby) name:@"showLobby" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleInfo) name:@"toggleInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFPS) name:@"toggleFPS" object:nil];
 }
 
 -(void)viewWillAppear
@@ -35,7 +35,7 @@
     [self showLobby];
 }
 
--(void)toggleInfo
+-(void)toggleFPS
 {
     spriteView.showsDrawCount = !spriteView.showsFPS;
     spriteView.showsNodeCount = !spriteView.showsFPS;

@@ -123,103 +123,6 @@
 }
       */
 
-- (IBAction)handleMiss:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"missDuck" object:nil];
-}
-
-- (IBAction)handleCalibrate:(id)sender
-{
-    points = [[NSMutableArray alloc] initWithCapacity:4];
-    
-    //v1 = CGVectorMake(<#CGFloat dx#>, <#CGFloat dy#>)([-1.190,.317,2.367]);//in METERS
-    //var left = new Vector([-1.550,.710,4.000]);
-    //var right = new Vector([1.230,.550,2.360]);
-    
-    //var cPos = [42,	26];
-    //var lPos = [22,	1.5];
-    //var rPos = [80.5,0];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showCalibration" object:nil];
-}
-
-- (IBAction)handleGo:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showArena" object:nil];
-}
-
-- (IBAction)handleP1Search:(id)sender
-{
-    self.p1Connect.enabled = NO;
-    self.p2Connect.enabled = NO;
-    
-    [self.p1Progress startAnimation:self];
-    [[PlayerManager sharedManager] connectPlayer:model.player1];
-}
-
-- (IBAction)handleP2Search:(id)sender
-{
-    self.p1Connect.enabled = NO;
-    self.p2Connect.enabled = NO;
-    
-    [self.p2Progress startAnimation:self];
-    [[PlayerManager sharedManager] connectPlayer:model.player2];
-}
-
--(void)playerConnect:(PlayerController*)player
-{
-    if( player == model.player1 )
-    {
-        self.p1Connect.title = @"Connected";
-        self.p2Connect.enabled = !model.player2.connected;;
-        
-        [self.p1Progress stopAnimation:self];
-    }
-    else
-    {
-        self.p1Connect.enabled = !model.player1.connected;
-        self.p2Connect.title = @"Connected";
-        
-        [self.p2Progress stopAnimation:self];
-    }
-}
-
--(void)playerDisconnect:(PlayerController*)player
-{
-    if( player == model.player1 )
-    {
-        self.p1Connect.title = @"Connect";
-        self.p1Connect.enabled = YES;
-        [self.p1Battery setDoubleValue:0.0];
-    }
-    else
-    {
-        self.p2Connect.title = @"Connect";
-        self.p2Connect.enabled = YES;
-        [self.p2Battery setDoubleValue:0.0];
-    }
-}
-
--(void)handleTimeout:(NSNotification*)notification
-{
-    self.p1Connect.enabled = !model.player1.connected;
-    self.p2Connect.enabled = !model.player2.connected;
-    
-    [self.p1Progress stopAnimation:self];
-    [self.p2Progress stopAnimation:self];
-}
-
--(void)playerBattery:(PlayerController*)player
-{
-    if( player == model.player1 )
-    {
-        [self.p1Battery setIntValue:model.player1.level * 10];
-    }
-    
-    else
-    {
-        [self.p1Battery setIntValue:model.player1.level * 10];
-    }
-}
 
 
 /*
@@ -348,5 +251,145 @@ int main(int argc, const char * argv[])
     NSLog(@"Output %d : %d", screenX, screenY);
     return CGPointMake(screenX, screenY);
 }
+
+
+
+
+
+
+#pragma mark - Gameplay Options
+
+- (IBAction)handleFPS:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"toggleFPS" object:nil];
+}
+
+- (IBAction)handleDuckScale:(id)sender
+{
+    [[ApplicationModel sharedModel].props setDuckScale:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuckSpeed:(id)sender
+{
+}
+
+- (IBAction)handleDuckTime:(id)sender
+{
+}
+
+- (IBAction)handleDifficulty:(id)sender
+{
+}
+
+- (IBAction)handleRounds:(id)sender
+{
+}
+
+- (IBAction)handleAmmo:(id)sender
+{
+}
+
+- (IBAction)handleStop:(id)sender
+{
+}
+
+- (IBAction)handleGo:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showArena" object:nil];
+}
+
+#pragma mark - PLayer Options
+
+- (IBAction)resetOptions:(id)sender
+{
+    [model.props resetDefaults];
+}
+
+- (IBAction)handleP1Calibrate:(id)sender
+{
+    
+}
+
+- (IBAction)handleP2Calibrate:(id)sender
+{
+    
+}
+
+- (IBAction)handleP1Search:(id)sender
+{
+    self.p1Connect.enabled = NO;
+    self.p2Connect.enabled = NO;
+    
+    [self.p1Progress startAnimation:self];
+    [[PlayerManager sharedManager] connectPlayer:model.player1];
+}
+
+- (IBAction)handleP2Search:(id)sender
+{
+    self.p1Connect.enabled = NO;
+    self.p2Connect.enabled = NO;
+    
+    [self.p2Progress startAnimation:self];
+    [[PlayerManager sharedManager] connectPlayer:model.player2];
+}
+
+#pragma mark - wiimote connection
+
+-(void)playerConnect:(PlayerController*)player
+{
+    if( player == model.player1 )
+    {
+        self.p1Connect.title = @"Connected";
+        self.p2Connect.enabled = !model.player2.connected;;
+        
+        [self.p1Progress stopAnimation:self];
+    }
+    else
+    {
+        self.p1Connect.enabled = !model.player1.connected;
+        self.p2Connect.title = @"Connected";
+        
+        [self.p2Progress stopAnimation:self];
+    }
+}
+
+-(void)playerDisconnect:(PlayerController*)player
+{
+    if( player == model.player1 )
+    {
+        self.p1Connect.title = @"Connect";
+        self.p1Connect.enabled = YES;
+        [self.p1Battery setDoubleValue:0.0];
+    }
+    else
+    {
+        self.p2Connect.title = @"Connect";
+        self.p2Connect.enabled = YES;
+        [self.p2Battery setDoubleValue:0.0];
+    }
+}
+
+-(void)handleTimeout:(NSNotification*)notification
+{
+    self.p1Connect.enabled = !model.player1.connected;
+    self.p2Connect.enabled = !model.player2.connected;
+    
+    [self.p1Progress stopAnimation:self];
+    [self.p2Progress stopAnimation:self];
+}
+
+-(void)playerBattery:(PlayerController*)player
+{
+    if( player == model.player1 )
+    {
+        [self.p1Battery setIntValue:model.player1.level * 10];
+    }
+    
+    else
+    {
+        [self.p1Battery setIntValue:model.player1.level * 10];
+    }
+}
+
 
 @end

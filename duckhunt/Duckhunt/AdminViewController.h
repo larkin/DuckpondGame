@@ -15,16 +15,22 @@
 @property (weak) IBOutlet NSButton *addButton;
 
 
-@property (weak) IBOutlet NSButton *calibrateButton;
 @property (weak) IBOutlet NSButton *goButton;
+@property (weak) IBOutlet NSButton *stopButton;
 
 
 @property (weak) IBOutlet NSButton *p1Connect;
+@property (weak) IBOutlet NSButton *p1Calibrate;
 @property (weak) IBOutlet NSProgressIndicator *p1Progress;
 @property (strong) IBOutlet NSLevelIndicator *p1Battery;
+@property (weak) IBOutlet NSSlider *p1SliderX;
+@property (weak) IBOutlet NSSlider *p1SliderY;
 
 @property (weak) IBOutlet NSButton *p2Connect;
+@property (weak) IBOutlet NSButton *p2Calibrate;
 @property (weak) IBOutlet NSProgressIndicator *p2Progress;
 @property (weak) IBOutlet NSLevelIndicator *p2Battery;
+@property (weak) IBOutlet NSSlider *p2SliderX;
+@property (weak) IBOutlet NSSlider *P2SliderY;
 
 @end

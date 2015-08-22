@@ -123,6 +123,7 @@
 -(void)spawnDuck
 {
     Duck *duck = [[Duck alloc] initWithType:arc4random()%3];
+    duck.anchorPoint = CGPointMake(0.5,0.5);
     
     CGFloat horiz = [ArenaScene numberBetween:kBorderPad and:self.size.width-kBorderPad];
     CGFloat vert = [ArenaScene numberBetween:kBorderPad and:self.size.height-kBorderPad];

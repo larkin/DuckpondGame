@@ -29,6 +29,7 @@
 @property (nonatomic) NSPoint playerOffset1;
 @property (nonatomic) NSPoint playerOffset2;
 
+-(void)resetDefaults;
 -(void)saveDefaults;
 
 @end
