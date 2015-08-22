@@ -22,7 +22,12 @@
     SKEmitterNode *explosion;
     SKEmitterNode *trail;
     
+    NSInteger direction;
     Properties *props;
+    
+    SKAction *flap;
+    SKAction *move;
+    SKAction *group;
 }
 
 +(BOOL)yesOrNo
@@ -42,7 +47,6 @@
 
 -(id)initWithType:(DuckType)duckType
 {
-    duckType = DuckTypeNormal;
     ApplicationModel *model = [ApplicationModel sharedModel];
     self = [super initWithColor:[NSColor clearColor] size:CGSizeMake(kDuckWidth, kDuckHeight)];
     
@@ -72,7 +76,10 @@
         }
         
         // Property change handlers
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleScale:) name:@"duckScaleChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleScale:) name:@"gameScaleChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSpeed:) name:@"duckSpeedChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMin:) name:@"duckMinChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMax:) name:@"duckMaxChanged" object:nil];
     }
     return self;
 }
@@ -84,8 +91,73 @@
 
 -(void)handleScale:(NSNotification*)notification
 {
-    [self setScale:props.duckScale];
+    [self setScale:props.gameScale];
 }
+
+-(void)handleSpeed:(NSNotification*)notification
+{
+    NSInteger value = [notification.object integerValue];
+    
+    if( self.duckType == DuckTypeEasy && value == 1)
+    {
+        self.speed = props.duck1Speed;
+    }
+    
+    if( self.duckType == DuckTypeNormal && value == 2)
+    {
+        self.speed = props.duck2Speed;
+    }
+    
+    if( self.duckType == DuckTypeHard && value == 3)
+    {
+        self.speed = props.duck3Speed;
+    }
+}
+
+
+-(void)handleMax:(NSNotification*)notification
+{
+    NSInteger value = [notification.object integerValue];
+    
+    if( self.duckType == DuckTypeEasy && value == 1)
+    {
+        maxDistance = props.duck1Max;
+    }
+    
+    if( self.duckType == DuckTypeNormal && value == 2)
+    {
+        maxDistance = props.duck2Max;
+    }
+    
+    if( self.duckType == DuckTypeHard && value == 3)
+    {
+        maxDistance = props.duck3Max;
+    }
+}
+
+
+
+-(void)handleMin:(NSNotification*)notification
+{
+    NSInteger value = [notification.object integerValue];
+    
+    if( self.duckType == DuckTypeEasy && value == 1)
+    {
+        minDistance = props.duck1Min;
+    }
+    
+    if( self.duckType == DuckTypeNormal && value == 2)
+    {
+        minDistance = props.duck2Min;
+    }
+    
+    if( self.duckType == DuckTypeHard && value == 3)
+    {
+        minDistance = props.duck3Min;
+    }
+}
+
+
 
 -(void)reroute
 {
@@ -117,7 +189,7 @@
     [self removeAllActions];
     _lat = latDir;
     _lng = lngDir;
-    self.xScale = lngDir == DuckLngEast ? 1.0 : -1.0;
+    direction = lngDir == DuckLngEast ? 1.0 : -1.0;
     
     switch( latDir )
     {
@@ -132,41 +204,50 @@
 
 -(void)flyN
 {
-    SKAction *flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"climb"] timePerFrame:0.1];
-    SKAction *move = [SKAction moveBy:CGVectorMake(props.duckDistance * self.xScale, props.duckDistance) duration:props.duckSpeed];
+    flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"climb"] timePerFrame:0.2];
+    move = [SKAction moveBy:CGVectorMake(props.gameGlitch * direction, props.gameGlitch) duration:props.gameSpeed];
+    move.timingMode = SKActionTimingLinear;
     
-    SKAction *group = [SKAction group:@[
-                                        [SKAction repeatActionForever:flap],
-                                        [SKAction repeatActionForever:move]]];
+    group = [SKAction group:@[
+                              [SKAction repeatActionForever:flap],
+                              [SKAction repeatActionForever:move]]];
    
-    [self setScale:props.duckScale];
+    group.timingMode = SKActionTimingLinear;
+    self.xScale = props.gameScale * direction;
+    self.yScale = props.gameScale;
     [self runAction:[SKAction repeatActionForever:group]];
 }
 
 -(void)flyE
 {
-    SKAction *flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.1];
-    SKAction *move = [SKAction moveBy:CGVectorMake(props.duckDistance * self.xScale, 0) duration:props.duckSpeed];
+    flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.2];
+    move = [SKAction moveBy:CGVectorMake(props.gameGlitch * direction, 0) duration:props.gameSpeed];
+    move.timingMode = SKActionTimingLinear;
     
-    SKAction *group = [SKAction group:@[
-                                        [SKAction repeatActionForever:flap],
-                                        [SKAction repeatActionForever:move]]];
+    group = [SKAction group:@[
+                              [SKAction repeatActionForever:flap],
+                              [SKAction repeatActionForever:move]]];
     
-    [self setScale:props.duckScale];
+    group.timingMode = SKActionTimingLinear;
+    self.xScale = props.gameScale * direction;
+    self.yScale = props.gameScale;
     [self runAction:[SKAction repeatActionForever:group]];
 
 }
 
 -(void)flyS
 {
-    SKAction *flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.1];
-    SKAction *move = [SKAction moveBy:CGVectorMake(props.duckDistance * self.xScale, -props.duckDistance) duration:props.duckSpeed];
+    flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.2];
+    move = [SKAction moveBy:CGVectorMake(props.gameGlitch * direction, -props.gameGlitch) duration:props.gameSpeed];
+    move.timingMode = SKActionTimingLinear;
     
-    SKAction *group = [SKAction group:@[
-                                        [SKAction repeatActionForever:flap],
-                                        [SKAction repeatActionForever:move]]];
+    group = [SKAction group:@[
+                              [SKAction repeatActionForever:flap],
+                              [SKAction repeatActionForever:move]]];
     
-    [self setScale:props.duckScale];
+    group.timingMode = SKActionTimingLinear;
+    self.xScale = props.gameScale * direction;
+    self.yScale = props.gameScale;
     [self runAction:[SKAction repeatActionForever:group]];
 }
 
@@ -186,7 +267,7 @@
     SKAction *delay = [SKAction waitForDuration:0.6];
     SKAction *spin = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fall"] timePerFrame:0.1 ];
     SKAction *fall = [SKAction repeatActionForever:spin];
-    SKAction *move = [SKAction moveToY:-25.0 duration:self.position.y/720];
+    move = [SKAction moveToY:-25.0 duration:self.position.y/720];
     move.timingMode = SKActionTimingEaseIn;
 
     [self runAction:delay completion:^{

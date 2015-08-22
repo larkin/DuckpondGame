@@ -10,9 +10,9 @@
 
 @interface Properties : NSObject
 
-@property (nonatomic) CGFloat duckDistance;
-@property (nonatomic) CGFloat duckScale;
-@property (nonatomic) CGFloat duckSpeed;
+@property (nonatomic) CGFloat gameGlitch;
+@property (nonatomic) CGFloat gameScale;
+@property (nonatomic) CGFloat gameSpeed;
 
 @property (nonatomic) CGFloat duck1Speed;
 @property (nonatomic) CGFloat duck1Min;

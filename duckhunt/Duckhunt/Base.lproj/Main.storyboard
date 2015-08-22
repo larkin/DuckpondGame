@@ -705,7 +705,7 @@
                         <subviews>
                             <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIj-8z-rWM">
                                 <rect key="frame" x="20" y="647" width="175" height="18"/>
-                                <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="10" warningValue="3" criticalValue="2" id="QAV-nZ-3fy"/>
+                                <levelIndicatorCell key="cell" alignment="left" maxValue="10" warningValue="3" criticalValue="2" id="QAV-nZ-3fy"/>
                             </levelIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lv7-MJ-16m">
                                 <rect key="frame" x="20" y="673" width="98" height="17"/>
@@ -725,7 +725,7 @@
                             </textField>
                             <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saH-M0-CdG">
                                 <rect key="frame" x="829" y="647" width="175" height="18"/>
-                                <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="10" warningValue="3" criticalValue="2" id="xrm-cO-LaZ"/>
+                                <levelIndicatorCell key="cell" alignment="left" maxValue="10" warningValue="3" criticalValue="2" id="xrm-cO-LaZ"/>
                             </levelIndicator>
                             <tabView fixedFrame="YES" initialItem="6uK-C8-OvV" translatesAutoresizingMaskIntoConstraints="NO" id="3Bg-7B-egj">
                                 <rect key="frame" x="13" y="152" width="998" height="495"/>
@@ -748,7 +748,7 @@
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5W-Rg-Omj">
                                                     <rect key="frame" x="769" y="17" width="91" height="91"/>
-                                                    <buttonCell key="cell" type="square" title="Stop" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wIk-8t-1sp">
+                                                    <buttonCell key="cell" type="square" title="Stop" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wIk-8t-1sp">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system" size="30"/>
                                                     </buttonCell>
@@ -756,7 +756,7 @@
                                                         <action selector="handleStop:" target="ePe-Ov-yCE" id="btk-Le-b4o"/>
                                                     </connections>
                                                 </button>
-                                                <box autoresizesSubviews="NO" fixedFrame="YES" title="Ducks" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Dg5-YF-HCw">
+                                                <box autoresizesSubviews="NO" fixedFrame="YES" title="Global" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Dg5-YF-HCw">
                                                     <rect key="frame" x="675" y="337" width="297" height="107"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="295" height="91"/>
@@ -772,31 +772,31 @@
                                                             </textField>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SOT-y5-gTt">
                                                                 <rect key="frame" x="16" y="14" width="38" height="17"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time" id="5ed-U0-stW">
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Glitch" id="5ed-U0-stW">
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
-                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4B-bp-qxU">
-                                                                <rect key="frame" x="64" y="62" width="215" height="21"/>
+                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s4B-bp-qxU">
+                                                                <rect key="frame" x="64" y="63" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="3" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="deg-KG-vAF"/>
                                                                 <connections>
-                                                                    <action selector="handleDuckScale:" target="ePe-Ov-yCE" id="13A-Su-hM3"/>
+                                                                    <action selector="handleGameScale:" target="ePe-Ov-yCE" id="5Uo-9L-Erq"/>
                                                                 </connections>
                                                             </slider>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ND2-fp-qry">
                                                                 <rect key="frame" x="64" y="37" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="0.40000000000000002" tickMarkPosition="above" sliderType="linear" id="rzQ-cJ-fzd"/>
                                                                 <connections>
-                                                                    <action selector="handleDuckSpeed:" target="ePe-Ov-yCE" id="dcv-Tw-nOH"/>
+                                                                    <action selector="handleGameSpeed:" target="ePe-Ov-yCE" id="fkn-6b-Hhq"/>
                                                                 </connections>
                                                             </slider>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oEN-z6-aiI">
                                                                 <rect key="frame" x="64" y="12" width="215" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="10" maxValue="200" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="2t3-FR-5ZH"/>
+                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="5" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="2t3-FR-5ZH"/>
                                                                 <connections>
-                                                                    <action selector="handleDuckTime:" target="ePe-Ov-yCE" id="1FH-yG-iDg"/>
+                                                                    <action selector="handleGameGlitch:" target="ePe-Ov-yCE" id="jel-Dp-Ku5"/>
                                                                 </connections>
                                                             </slider>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b2P-DA-zgF">
@@ -948,6 +948,27 @@
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
+                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRc-QN-8K2">
+                                                                <rect key="frame" x="64" y="62" width="215" height="21"/>
+                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="4" doubleValue="0.75" tickMarkPosition="above" sliderType="linear" id="UQw-BP-Ifh"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck1Speed:" target="ePe-Ov-yCE" id="pb7-Sj-vz8"/>
+                                                                </connections>
+                                                            </slider>
+                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tmZ-ga-At5">
+                                                                <rect key="frame" x="64" y="37" width="215" height="21"/>
+                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="5" doubleValue="1.5" tickMarkPosition="above" sliderType="linear" id="JAn-Nj-hpG"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck1Min:" target="ePe-Ov-yCE" id="uYD-1F-keb"/>
+                                                                </connections>
+                                                            </slider>
+                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUH-6U-JSP">
+                                                                <rect key="frame" x="64" y="12" width="215" height="21"/>
+                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="2.5" tickMarkPosition="above" sliderType="linear" id="Yq1-kl-Ua5"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck1Max:" target="ePe-Ov-yCE" id="gar-He-GRo"/>
+                                                                </connections>
+                                                            </slider>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f2s-uh-bIK">
                                                                 <rect key="frame" x="16" y="14" width="38" height="17"/>
                                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Max" id="ea8-29-eUV">
@@ -956,18 +977,6 @@
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
-                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRc-QN-8K2">
-                                                                <rect key="frame" x="64" y="62" width="215" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="4" doubleValue="0.75" tickMarkPosition="above" sliderType="linear" id="UQw-BP-Ifh"/>
-                                                            </slider>
-                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tmZ-ga-At5">
-                                                                <rect key="frame" x="64" y="37" width="215" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="5" doubleValue="1.5" tickMarkPosition="above" sliderType="linear" id="JAn-Nj-hpG"/>
-                                                            </slider>
-                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUH-6U-JSP">
-                                                                <rect key="frame" x="64" y="12" width="215" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="2.5" tickMarkPosition="above" sliderType="linear" id="Yq1-kl-Ua5"/>
-                                                            </slider>
                                                         </subviews>
                                                     </view>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -1006,14 +1015,23 @@
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-u4-ZMG">
                                                                 <rect key="frame" x="64" y="62" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="4" doubleValue="1.5" tickMarkPosition="above" sliderType="linear" id="Ufs-UQ-msT"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck2Speed:" target="ePe-Ov-yCE" id="CLE-TE-qhi"/>
+                                                                </connections>
                                                             </slider>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDQ-8A-136">
                                                                 <rect key="frame" x="64" y="37" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="5" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="jVb-Om-FeD"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck2Min:" target="ePe-Ov-yCE" id="gtO-Zz-dA6"/>
+                                                                </connections>
                                                             </slider>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjB-u8-YkI">
                                                                 <rect key="frame" x="64" y="12" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="2" tickMarkPosition="above" sliderType="linear" id="UTZ-Em-Lb7"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck2Max:" target="ePe-Ov-yCE" id="cuV-fV-GKr"/>
+                                                                </connections>
                                                             </slider>
                                                         </subviews>
                                                     </view>
@@ -1038,7 +1056,7 @@
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZk-AV-FbV">
                                                                 <rect key="frame" x="128" y="196" width="108" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="Calibrate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iTr-lP-QRJ">
+                                                                <buttonCell key="cell" type="push" title="Calibrate" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iTr-lP-QRJ">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -1048,11 +1066,11 @@
                                                             </button>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WqJ-RL-29F">
                                                                 <rect key="frame" x="43" y="117" width="188" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="nmQ-mv-Hm2"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="nmQ-mv-Hm2"/>
                                                             </slider>
                                                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-3g-CPx">
                                                                 <rect key="frame" x="16" y="27" width="21" height="199"/>
-                                                                <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="T62-9a-aME"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="T62-9a-aME"/>
                                                             </slider>
                                                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="jTm-rZ-lBK">
                                                                 <rect key="frame" x="116" y="29" width="16" height="16"/>
@@ -1062,14 +1080,25 @@
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
-                                                <box autoresizesSubviews="NO" fixedFrame="YES" title="Player 1" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="VsK-Nr-jpE">
+                                                <box autoresizesSubviews="NO" fixedFrame="YES" title="Player 2" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="VsK-Nr-jpE">
                                                     <rect key="frame" x="272" y="185" width="250" height="250"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="248" height="234"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
+                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UDo-EQ-QhS">
+                                                                <rect key="frame" x="44" y="116" width="188" height="21"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="2p7-y5-pSt"/>
+                                                            </slider>
+                                                            <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a81-td-P2B">
+                                                                <rect key="frame" x="16" y="27" width="21" height="199"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Fr3-g4-f1P"/>
+                                                            </slider>
+                                                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="P7D-D0-Iwe">
+                                                                <rect key="frame" x="116" y="29" width="16" height="16"/>
+                                                            </progressIndicator>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TG5-nT-Lq7">
-                                                                <rect key="frame" x="128" y="20" width="108" height="32"/>
+                                                                <rect key="frame" x="129" y="20" width="108" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gi8-RN-Wrm">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -1080,7 +1109,7 @@
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dz-wE-hS5">
                                                                 <rect key="frame" x="128" y="196" width="108" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="Calibrate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P8b-hw-hyt">
+                                                                <buttonCell key="cell" type="push" title="Calibrate" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P8b-hw-hyt">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -1088,17 +1117,6 @@
                                                                     <action selector="handleP2Calibrate:" target="ePe-Ov-yCE" id="UjH-X8-txP"/>
                                                                 </connections>
                                                             </button>
-                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UDo-EQ-QhS">
-                                                                <rect key="frame" x="44" y="116" width="188" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="2p7-y5-pSt"/>
-                                                            </slider>
-                                                            <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a81-td-P2B">
-                                                                <rect key="frame" x="16" y="27" width="21" height="199"/>
-                                                                <sliderCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Fr3-g4-f1P"/>
-                                                            </slider>
-                                                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="P7D-D0-Iwe">
-                                                                <rect key="frame" x="116" y="29" width="16" height="16"/>
-                                                            </progressIndicator>
                                                         </subviews>
                                                     </view>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -1137,14 +1155,23 @@
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6h-yn-nca">
                                                                 <rect key="frame" x="64" y="59" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="4" doubleValue="2" tickMarkPosition="above" sliderType="linear" id="oSV-tj-Yp0"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck3Speed:" target="ePe-Ov-yCE" id="ace-lT-Mpm"/>
+                                                                </connections>
                                                             </slider>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8Y-7F-Uzj">
                                                                 <rect key="frame" x="64" y="37" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.25" maxValue="5" doubleValue="1.5" tickMarkPosition="above" sliderType="linear" id="a3n-jR-b7j"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck3Min:" target="ePe-Ov-yCE" id="Rkm-bH-7PC"/>
+                                                                </connections>
                                                             </slider>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sTx-yL-ZJU">
                                                                 <rect key="frame" x="64" y="12" width="215" height="21"/>
                                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="2.5" tickMarkPosition="above" sliderType="linear" id="bdJ-iY-pue"/>
+                                                                <connections>
+                                                                    <action selector="handleDuck3Max:" target="ePe-Ov-yCE" id="3rE-rc-WGe"/>
+                                                                </connections>
                                                             </slider>
                                                         </subviews>
                                                     </view>
@@ -1165,12 +1192,29 @@
                                         </view>
                                     </tabViewItem>
                                 </tabViewItems>
+                                <connections>
+                                    <outlet property="delegate" destination="ePe-Ov-yCE" id="rtg-Q3-aHL"/>
+                                </connections>
                             </tabView>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="P2SliderY" destination="a81-td-P2B" id="HtC-k5-CRn"/>
                         <outlet property="addButton" destination="pPE-72-2hV" id="LVC-UY-Uax"/>
+                        <outlet property="duck1Max" destination="CUH-6U-JSP" id="Wvw-Rd-y5t"/>
+                        <outlet property="duck1Min" destination="tmZ-ga-At5" id="AT2-BL-wcl"/>
+                        <outlet property="duck1Speed" destination="bRc-QN-8K2" id="6zQ-kH-hB9"/>
+                        <outlet property="duck2Max" destination="mjB-u8-YkI" id="1Y2-xS-vop"/>
+                        <outlet property="duck2Min" destination="LDQ-8A-136" id="HTF-ke-YCu"/>
+                        <outlet property="duck2Speed" destination="lDg-u4-ZMG" id="9f5-R3-Mka"/>
+                        <outlet property="duck3Max" destination="sTx-yL-ZJU" id="GVX-nD-jaS"/>
+                        <outlet property="duck3Min" destination="q8Y-7F-Uzj" id="4e8-Xm-fbv"/>
+                        <outlet property="duck3Speed" destination="x6h-yn-nca" id="E0c-35-61u"/>
+                        <outlet property="gameAmmo" destination="bcs-UC-uAN" id="ExO-QD-1D1"/>
+                        <outlet property="gameGlitch" destination="oEN-z6-aiI" id="4ea-bZ-bOe"/>
+                        <outlet property="gameRounds" destination="p15-ks-PdA" id="grZ-oV-Rna"/>
+                        <outlet property="gameScale" destination="s4B-bp-qxU" id="ItD-3D-HEW"/>
+                        <outlet property="gameSkill" destination="eRW-eB-Q7e" id="0bt-zR-5BC"/>
+                        <outlet property="gameSpeed" destination="ND2-fp-qry" id="7I1-ND-T4Q"/>
                         <outlet property="goButton" destination="UUw-dZ-GyX" id="fmx-1B-LBb"/>
                         <outlet property="p1Battery" destination="WIj-8z-rWM" id="kXJ-ca-rNW"/>
                         <outlet property="p1Calibrate" destination="NZk-AV-FbV" id="DNw-g5-ozu"/>
@@ -1183,8 +1227,11 @@
                         <outlet property="p2Connect" destination="TG5-nT-Lq7" id="is7-LZ-6Kw"/>
                         <outlet property="p2Progress" destination="P7D-D0-Iwe" id="s0o-lX-ChV"/>
                         <outlet property="p2SliderX" destination="UDo-EQ-QhS" id="TU3-Ux-M5u"/>
+                        <outlet property="p2SliderY" destination="a81-td-P2B" id="mIk-QP-DcK"/>
                         <outlet property="piCalibrate" destination="NZk-AV-FbV" id="UW8-WA-6DK"/>
+                        <outlet property="player2Box" destination="VsK-Nr-jpE" id="sIe-rs-M5O"/>
                         <outlet property="stopButton" destination="Y5W-Rg-Omj" id="JNy-hB-Zci"/>
+                        <outlet property="tabControl" destination="3Bg-7B-egj" id="X1E-Xc-IY5"/>
                     </connections>
                 </viewController>
                 <customObject id="8ZE-JR-9IA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -39,13 +39,14 @@
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleConnect:) name:@"playerConnected" object:nil];
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDisconnect:) name:@"playerDisconnected" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimeout:) name:@"playerTimout" object:nil];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleBattery:) name:@"playerBattery" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDefaults:) name:@"defaultsLoaded" object:nil];
 }
 
 -(void)viewDidAppear
 {
     [super viewDidAppear];
-    [self.p1Battery setNeedsDisplay];
+
+    [self handleDefaults:nil];
 }
 
 
@@ -258,23 +259,34 @@ int main(int argc, const char * argv[])
 
 
 #pragma mark - Gameplay Options
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+    if( [tabViewItem.identifier isEqualToString:@"1"] )
+    {
+        [model.props saveDefaults];
+    }
+}
 
 - (IBAction)handleFPS:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"toggleFPS" object:nil];
 }
 
-- (IBAction)handleDuckScale:(id)sender
+- (IBAction)handleGameScale:(id)sender
 {
-    [[ApplicationModel sharedModel].props setDuckScale:[(NSSlider*)sender floatValue]];
+    [model.props setGameScale:[(NSSlider*)sender floatValue]];
 }
 
-- (IBAction)handleDuckSpeed:(id)sender
+- (IBAction)handleGameSpeed:(id)sender
 {
+    CGFloat value = 1.1 - [(NSSlider*)sender floatValue];
+    NSLog(@"Value %f", value);
+    [model.props setGameSpeed:value];
 }
 
-- (IBAction)handleDuckTime:(id)sender
+- (IBAction)handleGameGlitch:(id)sender
 {
+    [model.props setGameGlitch:[(NSSlider*)sender floatValue]];
 }
 
 - (IBAction)handleDifficulty:(id)sender
@@ -291,14 +303,19 @@ int main(int argc, const char * argv[])
 
 - (IBAction)handleStop:(id)sender
 {
+    self.goButton.enabled = YES;
+    self.stopButton.enabled = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showLobby" object:nil];
 }
 
 - (IBAction)handleGo:(id)sender
 {
+    self.goButton.enabled = NO;
+    self.stopButton.enabled = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showArena" object:nil];
 }
 
-#pragma mark - PLayer Options
+#pragma mark - Player Options
 
 - (IBAction)resetOptions:(id)sender
 {
@@ -333,6 +350,87 @@ int main(int argc, const char * argv[])
     [[PlayerManager sharedManager] connectPlayer:model.player2];
 }
 
+#pragma mark - Duck Options
+
+- (IBAction)handleDuck1Speed:(id)sender
+{
+    [model.props setDuck1Speed:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuck1Min:(id)sender
+{
+    [model.props setDuck1Min:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuck1Max:(id)sender
+{
+    [model.props setDuck1Max:[(NSSlider*)sender floatValue]];
+}
+
+
+- (IBAction)handleDuck2Speed:(id)sender
+{
+    [model.props setDuck2Speed:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuck2Min:(id)sender
+{
+    [model.props setDuck2Min:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuck2Max:(id)sender
+{
+    [model.props setDuck2Max:[(NSSlider*)sender floatValue]];
+}
+
+
+- (IBAction)handleDuck3Speed:(id)sender
+{
+    [model.props setDuck3Speed:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuck3Min:(id)sender
+{
+    [model.props setDuck3Min:[(NSSlider*)sender floatValue]];
+}
+
+- (IBAction)handleDuck3Max:(id)sender
+{
+    [model.props setDuck3Max:[(NSSlider*)sender floatValue]];
+}
+
+
+#pragma mark - Update ui to reflect defaults
+
+-(void)handleDefaults:(NSNotification*)notification
+{
+    // Player 1
+    [self.p1SliderX setFloatValue:model.props.playerOffset1.x];
+    [self.p1SliderY setFloatValue:model.props.playerOffset1.y];
+
+    // Player 2
+    [self.p2SliderX setFloatValue:model.props.playerOffset2.x];
+    [self.p2SliderY setFloatValue:model.props.playerOffset2.y];
+
+    // Gmeplay
+    [self.gameScale setFloatValue:model.props.gameScale];
+    [self.gameSpeed setFloatValue:model.props.gameSpeed];
+    [self.gameGlitch setFloatValue:model.props.gameGlitch];
+    
+    // Ducks
+    [self.duck1Speed setFloatValue:model.props.duck1Speed];
+    [self.duck1Min setFloatValue:model.props.duck1Min];
+    [self.duck1Max setFloatValue:model.props.duck1Max];
+    
+    [self.duck2Speed setFloatValue:model.props.duck2Speed];
+    [self.duck2Min setFloatValue:model.props.duck2Min];
+    [self.duck2Max setFloatValue:model.props.duck2Max];
+    
+    [self.duck3Speed setFloatValue:model.props.duck3Speed];
+    [self.duck3Min setFloatValue:model.props.duck3Min];
+    [self.duck3Max setFloatValue:model.props.duck3Max];
+}
+
 #pragma mark - wiimote connection
 
 -(void)playerConnect:(PlayerController*)player
@@ -342,6 +440,9 @@ int main(int argc, const char * argv[])
         self.p1Connect.title = @"Connected";
         self.p2Connect.enabled = !model.player2.connected;;
         
+        self.p1Calibrate.enabled = YES;
+        self.p1SliderX.enabled = YES;
+        self.p1SliderY.enabled = YES;
         [self.p1Progress stopAnimation:self];
     }
     else
@@ -349,6 +450,9 @@ int main(int argc, const char * argv[])
         self.p1Connect.enabled = !model.player1.connected;
         self.p2Connect.title = @"Connected";
         
+        self.p2Calibrate.enabled = YES;
+        self.p2SliderX.enabled = YES;
+        self.p2SliderY.enabled = YES;
         [self.p2Progress stopAnimation:self];
     }
 }
@@ -359,12 +463,18 @@ int main(int argc, const char * argv[])
     {
         self.p1Connect.title = @"Connect";
         self.p1Connect.enabled = YES;
+        self.p1Calibrate.enabled = NO;
+        self.p1SliderX.enabled = NO;
+        self.p1SliderY.enabled = NO;
         [self.p1Battery setDoubleValue:0.0];
     }
     else
     {
         self.p2Connect.title = @"Connect";
         self.p2Connect.enabled = YES;
+        self.p2Calibrate.enabled = NO;
+        self.p2SliderX.enabled = NO;
+        self.p2SliderY.enabled = NO;
         [self.p2Battery setDoubleValue:0.0];
     }
 }
@@ -387,7 +497,7 @@ int main(int argc, const char * argv[])
     
     else
     {
-        [self.p1Battery setIntValue:model.player1.level * 10];
+        [self.p2Battery setIntValue:model.player1.level * 10];
     }
 }
 

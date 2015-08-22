@@ -36,6 +36,8 @@
     [_wiimote setMotionSensorEnabled:NO];
     [_wiimote setLEDEnabled1:_index==1 enabled2:_index==1 enabled3:_index==2 enabled4:_index==2];
     
+    
+    
     if( self.delegate)
     {
         [self.delegate playerConnect:self];
@@ -179,7 +181,6 @@
               pressureTL:(float) bPressureTL pressureBL:(float) bPressureBL{}
 - (void) batteryLevelChanged:(double) level
 {
-    //NSLog(@"Battery %f", level);
     _level = level;
     if( self.delegate )
     {

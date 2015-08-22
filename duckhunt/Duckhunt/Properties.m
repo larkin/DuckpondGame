@@ -28,9 +28,9 @@
 
 -(void)resetDefaults
 {
-    self.duckDistance = 50;
-    self.duckScale = 1.0;
-    self.duckSpeed = 0.4;
+    self.gameGlitch = 50;
+    self.gameScale = 1.0;
+    self.gameSpeed = 0.4;
     
     self.duck1Speed = 0.75;
     self.duck1Min   = 1.50;
@@ -44,10 +44,16 @@
     self.duck3Min   = 1.50;
     self.duck3Max   = 2.50;
     
-    self.playerOffset1 = NSMakePoint(0.0, 0.0);
-    self.playerOffset2 = NSMakePoint(0.0, 0.0);
+    // Do not reset the calibration
+    NSDictionary *appDefaults  = [[NSUserDefaults standardUserDefaults] dictionaryForKey:propsKey];
+    if( !appDefaults )
+    {
+        self.playerOffset1 = NSMakePoint(0.0, 0.0);
+        self.playerOffset2 = NSMakePoint(0.0, 0.0);
+    }
     
     [self saveDefaults];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"defaultsLoaded" object:nil];
 }
 
 -(void)loadDefaults
@@ -60,9 +66,9 @@
         appDefaults  = [[NSUserDefaults standardUserDefaults] dictionaryForKey:propsKey];
     }
     
-    self.duckDistance = [[appDefaults valueForKey:@"duckDistance"] floatValue];
-    self.duckScale = [[appDefaults valueForKey:@"duckScale"] floatValue];
-    self.duckSpeed = [[appDefaults valueForKey:@"duckSpeed"] floatValue];
+    self.gameGlitch = [[appDefaults valueForKey:@"gameGlitch"] floatValue];
+    self.gameScale = [[appDefaults valueForKey:@"gameScale"] floatValue];
+    self.gameSpeed = [[appDefaults valueForKey:@"gameSpeed"] floatValue];
     
     self.duck1Speed = [[appDefaults valueForKey:@"duck1Speed"] floatValue];
     self.duck1Min   = [[appDefaults valueForKey:@"duck1Min"] floatValue];
@@ -84,15 +90,17 @@
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"defaultsLoaded" object:nil];
 }
 
 -(void)saveDefaults
 {
     NSMutableDictionary *appDefaults = [[NSMutableDictionary alloc] init];
     
-    [appDefaults setValue:[NSNumber numberWithFloat:self.duckDistance] forKey:@"duckDistance"];
-    [appDefaults setValue:[NSNumber numberWithFloat:self.duckScale] forKey:@"duckScale"];
-    [appDefaults setValue:[NSNumber numberWithFloat:self.duckSpeed] forKey:@"duckSpeed"];
+    [appDefaults setValue:[NSNumber numberWithFloat:self.gameGlitch] forKey:@"gameGlitch"];
+    [appDefaults setValue:[NSNumber numberWithFloat:self.gameScale] forKey:@"gameScale"];
+    [appDefaults setValue:[NSNumber numberWithFloat:self.gameSpeed] forKey:@"gameSpeed"];
     
     [appDefaults setValue:[NSNumber numberWithFloat:self.duck1Speed] forKey:@"duck1Speed"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.duck1Min] forKey:@"duck1Min"];
@@ -119,79 +127,79 @@
 
 -(void)duckDistance:(CGFloat)distance
 {
-    _duckDistance = distance;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duckDistanceChanged" object:nil];
+    _gameGlitch = distance;
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"gameGlitchChanged" object:nil];
 }
 
--(void)setDuckScale:(CGFloat)duckScale
+-(void)setGameScale:(CGFloat)duckScale
 {
-    _duckScale = duckScale;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckScaleChanged" object:nil];
+    _gameScale = duckScale;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameScaleChanged" object:nil];
 }
 
 
 -(void)duckSpeed:(CGFloat)speed
 {
-    _duckSpeed = speed;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckSpeedChanged" object:nil];
+    _gameSpeed = speed;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSpeedChanged" object:nil];
 }
 
 -(void)setDuck1Max:(CGFloat)max
 {
     _duck1Max = max;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck1MaxChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckMaxChanged" object:[NSNumber numberWithInt:1]];
 }
 
 
 -(void)setDuck1Min:(CGFloat)min
 {
     _duck1Min = min;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck1MinChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckMinChanged" object:[NSNumber numberWithInt:1]];
 }
 
 -(void)setDuck1Speed:(CGFloat)speed
 {
     _duck1Speed = speed;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck1SpeedChanged" object:nil];
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"duckSpeedChanged" object:[NSNumber numberWithInt:1]];
 }
 
 
 -(void)setDuck2Max:(CGFloat)max
 {
     _duck2Max = max;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck2MaxChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckMaxChanged" object:[NSNumber numberWithInt:3]];
 }
 
 -(void)setDuck2Min:(CGFloat)min
 {
     _duck2Min = min;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck2MinChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckMinChanged" object:[NSNumber numberWithInt:2]];
 }
 
 -(void)setDuck2Speed:(CGFloat)speed
 {
-    _duckSpeed = speed;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck2SpeedChanged" object:nil];
+    _duck2Speed = speed;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckSpeedChanged" object:[NSNumber numberWithInt:2]];
 }
 
 
 -(void)setDuck3Max:(CGFloat)max
 {
     _duck3Max = max;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck3MaxChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckMaxChanged" object:[NSNumber numberWithInt:3]];
 }
 
 -(void)setDuck3Min:(CGFloat)min
 {
     _duck3Min = min;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck3MinChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckMinChanged" object:[NSNumber numberWithInt:3]];
 }
 
 
 -(void)setDuck3Speed:(CGFloat)speed
 {
     _duck3Speed = speed;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"duck3SpeedChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"duckSpeedChanged" object:[NSNumber numberWithInt:3]];
 }
 
 -(void)playerOffset1:(NSPoint)point

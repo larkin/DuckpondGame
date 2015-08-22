@@ -40,4 +40,5 @@ typedef NS_ENUM(NSInteger, DuckType) {
 -(void)setLat:(DuckLat)latDir lng:(DuckLng)lngDir;
 -(void)shoot;
 -(BOOL)isFlying;
+
 @end
