@@ -733,11 +733,11 @@
                                 <tabViewItems>
                                     <tabViewItem label="Game" identifier="1" id="6uK-C8-OvV">
                                         <view key="view" id="eNv-7I-BC3">
-                                            <rect key="frame" x="10" y="33" width="978" height="449"/>
+                                            <rect key="frame" x="10" y="33" width="133" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUw-dZ-GyX">
-                                                    <rect key="frame" x="870" y="17" width="91" height="91"/>
+                                                    <rect key="frame" x="870" y="-432" width="91" height="91"/>
                                                     <buttonCell key="cell" type="square" title="GO" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qpt-hS-WKx">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system" size="30"/>
@@ -747,7 +747,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5W-Rg-Omj">
-                                                    <rect key="frame" x="769" y="17" width="91" height="91"/>
+                                                    <rect key="frame" x="769" y="-432" width="91" height="91"/>
                                                     <buttonCell key="cell" type="square" title="Stop" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wIk-8t-1sp">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system" size="30"/>
@@ -757,7 +757,7 @@
                                                     </connections>
                                                 </button>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Global" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Dg5-YF-HCw">
-                                                    <rect key="frame" x="675" y="337" width="297" height="107"/>
+                                                    <rect key="frame" x="675" y="-112" width="297" height="107"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="295" height="91"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -813,7 +813,7 @@
                                                     <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Gameplay" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="309-ol-SLb">
-                                                    <rect key="frame" x="675" y="186" width="300" height="128"/>
+                                                    <rect key="frame" x="675" y="-263" width="300" height="128"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="298" height="112"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -850,7 +850,7 @@
                                                                 </connections>
                                                             </segmentedControl>
                                                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p15-ks-PdA">
-                                                                <rect key="frame" x="88" y="47" width="182" height="23"/>
+                                                                <rect key="frame" x="88" y="47" width="145" height="23"/>
                                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="capsule" trackingMode="selectOne" id="L1C-BM-DrW">
                                                                     <font key="font" metaFont="system"/>
                                                                     <segments>
@@ -858,7 +858,6 @@
                                                                         <segment label="10" selected="YES" tag="1"/>
                                                                         <segment label="15"/>
                                                                         <segment label="20"/>
-                                                                        <segment label="25"/>
                                                                     </segments>
                                                                 </segmentedCell>
                                                                 <connections>
@@ -895,7 +894,7 @@
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pPE-72-2hV">
-                                                    <rect key="frame" x="672" y="10" width="66" height="32"/>
+                                                    <rect key="frame" x="672" y="-439" width="66" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="s18-GA-c4X">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -905,11 +904,11 @@
                                                     </connections>
                                                 </button>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rEN-p5-p9w">
-                                                    <rect key="frame" x="17" y="17" width="377" height="427"/>
+                                                    <rect key="frame" x="17" y="-432" width="377" height="427"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="PoorDuck" id="qTX-od-e1V"/>
                                                 </imageView>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8LZ-6w-hxb">
-                                                    <rect key="frame" x="606" y="10" width="66" height="32"/>
+                                                    <rect key="frame" x="606" y="-439" width="66" height="32"/>
                                                     <buttonCell key="cell" type="push" title="FPS" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0al-DB-IWc">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1065,15 +1064,15 @@
                                                                 </connections>
                                                             </button>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WqJ-RL-29F">
-                                                                <rect key="frame" x="44" y="160" width="268" height="27"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="above" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="nmQ-mv-Hm2"/>
+                                                                <rect key="frame" x="44" y="160" width="268" height="26"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" tickMarkPosition="above" numberOfTickMarks="21" sliderType="linear" id="nmQ-mv-Hm2"/>
                                                                 <connections>
                                                                     <action selector="handleP1OffestX:" target="ePe-Ov-yCE" id="1d6-YO-KPs"/>
                                                                 </connections>
                                                             </slider>
                                                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-3g-CPx">
-                                                                <rect key="frame" x="18" y="11" width="27" height="325"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="left" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="T62-9a-aME"/>
+                                                                <rect key="frame" x="18" y="11" width="26" height="325"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="-1000" maxValue="1000" tickMarkPosition="left" numberOfTickMarks="21" sliderType="linear" id="T62-9a-aME"/>
                                                                 <connections>
                                                                     <action selector="handleP1OffestY:" target="ePe-Ov-yCE" id="TVM-Ga-R0k"/>
                                                                 </connections>
@@ -1166,15 +1165,15 @@
                                                                 </connections>
                                                             </segmentedControl>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DZc-HR-iI8">
-                                                                <rect key="frame" x="48" y="160" width="264" height="27"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="above" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Nbf-zK-hAH"/>
+                                                                <rect key="frame" x="48" y="160" width="264" height="26"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" tickMarkPosition="above" numberOfTickMarks="21" sliderType="linear" id="Nbf-zK-hAH"/>
                                                                 <connections>
                                                                     <action selector="handleP2OffestX:" target="ePe-Ov-yCE" id="PDr-F9-fGb"/>
                                                                 </connections>
                                                             </slider>
                                                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gOA-cl-0xY">
-                                                                <rect key="frame" x="18" y="11" width="27" height="325"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="left" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="7pf-Z1-Jre"/>
+                                                                <rect key="frame" x="18" y="11" width="26" height="325"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="-1000" maxValue="1000" tickMarkPosition="left" numberOfTickMarks="21" sliderType="linear" id="7pf-Z1-Jre"/>
                                                                 <connections>
                                                                     <action selector="handleP2OffestY:" target="ePe-Ov-yCE" id="cWU-w0-waF"/>
                                                                 </connections>
@@ -1323,18 +1322,18 @@
             </objects>
             <point key="canvasLocation" x="-836" y="-2192"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="uBj-Qt-b2P">
+        <!--Gameplay View Controller-->
+        <scene sceneID="Bbl-Xx-bGL">
             <objects>
-                <viewController id="5pR-u5-5S7" sceneMemberID="viewController">
-                    <view key="view" id="nXj-7T-Zd6">
+                <viewController storyboardIdentifier="GameplayController" id="uex-xe-trI" customClass="GameplayViewController" sceneMemberID="viewController">
+                    <view key="view" id="SGU-dm-DJH">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
-                <customObject id="eCw-js-xcC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="eAi-aS-OGd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="59" y="-2247"/>
+            <point key="canvasLocation" x="-771" y="-1538"/>
         </scene>
     </scenes>
     <resources>

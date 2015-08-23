@@ -76,101 +76,7 @@
     _location = NSMakePoint(_location.x + offset.x, _location.y + offset.y);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userMove" object:@{@"player":self}];
-    NSLog(@"%f : %f", _location.x, _location.y);
-    return;
-    /*
-    if (mouseEventMode != 2)
-        return;
-    
-    BOOL haveMouse = (px > -2)?YES:NO;
-    
-    if (!haveMouse) {
-        [graphView setIRPointX:-2 Y:-2];
-        return;
-    } else {
-        [graphView setIRPointX:px Y:py];
-    }
-    */
-    int dispWidth = 0;//CGDisplayPixelsWide();
-    int dispHeight = 0;//CGDisplayPixelsHigh(kCGDirectMainDisplay);
-    
-    //id config = [mappingController selection];
-    float sens2 = 1.0;//[[config valueForKey:@"sensitivity2"] floatValue] * [[config valueForKey:@"sensitivity2"] floatValue];
-    // TODO : Set up sensativity
-    
-    float newx = (px*1*sens2)*dispWidth + dispWidth/2;
-    float newy = -(py*1*sens2)*dispWidth + dispHeight/2;
-    //float scaledX = ((irData[0].x / 1024.0) * 2.0) - 1.0;
-    
-    if (newx < 0) newx = 0;
-    if (newy < 0) newy = 0;
-    if (newx >= dispWidth) newx = dispWidth-1;
-    if (newy >= dispHeight) newy = dispHeight-1;
-    /*
-    float dx = newx - point.x;
-    float dy = newy - point.y;
-    
-    float d = sqrt(dx*dx+dy*dy);
-    
-    
-    
-    // mouse filtering
-    if (d < 20) {
-        point.x = point.x * 0.9 + newx*0.1;
-        point.y = point.y * 0.9 + newy*0.1;
-    } else if (d < 50) {
-        point.x = point.x * 0.7 + newx*0.3;
-        point.y = point.y * 0.7 + newy*0.3;
-    } else {
-        point.x = newx;
-        point.y = newy;
-    }
-    
-    if (point.x > dispWidth)
-        point.x = dispWidth - 1;
-    
-    if (point.y > dispHeight)
-        point.y = dispHeight - 1;
-    
-    if (point.x < 0)
-        point.x = 0;
-    if (point.y < 0)
-        point.y = 0;
-    */
-    
-    /*
-    if (!isLeftButtonDown && !isRightButtonDown){
-        CFRelease(CGEventCreate(NULL));
-        // this is Tiger's bug.
-        // see also: http://www.cocoabuilder.com/archive/message/cocoa/2006/10/4/172206
-        
-        
-        CGEventRef event = CGEventCreateMouseEvent(NULL, kCGEventMouseMoved, point, kCGMouseButtonLeft);
-        
-        CGEventSetType(event, kCGEventMouseMoved);
-        // this is Tiger's bug.
-        // see also: http://lists.apple.com/archives/Quartz-dev/2005/Oct/msg00048.html
-        
-        
-        CGEventPost(kCGHIDEventTap, event);
-        CFRelease(event);
-    }else{
-        
-        CFRelease(CGEventCreate(NULL));
-        // this is Tiger's bug.
-        //see also: http://www.cocoabuilder.com/archive/message/cocoa/2006/10/4/172206
-        
-        
-        CGEventRef event = CGEventCreateMouseEvent(NULL, kCGEventLeftMouseDragged, point, kCGMouseButtonLeft);
-        
-        CGEventSetType(event, kCGEventLeftMouseDragged);
-        // this is Tiger's bug.
-        // see also: http://lists.apple.com/archives/Quartz-dev/2005/Oct/msg00048.html
-        
-        CGEventPost(kCGHIDEventTap, event);
-        CFRelease(event);	
-    }
-    */
+    //NSLog(@"%f : %f", _location.x, _location.y);
 }
 
 - (void) rawIRData: (IRData[4]) irData{}
@@ -179,12 +85,15 @@
 {
     if( type == WiiRemoteBButton && isPressed )
     {
-        NSLog(@"Bang");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"handleArenaShot" object:@{@"player":self}];
-        if( self.delegate )
+        if( self.ammo > 0 )
         {
-            //[self.delegate playerShot:self];
-            //[[NSNotificationCenter defaultCenter] postNotificationName:@"handleArenaShot" object:nil];
+            self.ammo--;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"handleShot" object:@{@"player":self}];
+            if( self.delegate )
+            {
+                //[self.delegate playerShot:self];
+                //[[NSNotificationCenter defaultCenter] postNotificationName:@"handleArenaShot" object:nil];
+            }
         }
     }
 }
@@ -213,6 +122,5 @@
 - (void) gotMiiData: (Mii*) mii_data_buf at: (int) slot{}
 - (void) rawPressureChanged:(WiiBalanceBoardGrid) bbData{}
 - (void) allPressureChanged:(WiiPressureSensorType) type bbData:(WiiBalanceBoardGrid) bbData bbDataInKg:(WiiBalanceBoardGrid) bbDataInKg{}
-
 
 @end

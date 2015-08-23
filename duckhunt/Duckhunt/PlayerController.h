@@ -31,6 +31,11 @@
 @property (strong, nonatomic) WiiRemote *wiimote;
 @property (nonatomic, weak) id<PlayerControllerDelegate> delegate;
 
+#pragma mark - Gameplay 
+
+@property (nonatomic) NSInteger ammo;
+@property (nonatomic) NSInteger kills;
+
 -(id)initPlayer:(NSInteger)index;
 
 -(NSString*)spriteBang;

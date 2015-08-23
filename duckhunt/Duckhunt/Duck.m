@@ -33,7 +33,7 @@
 +(BOOL)yesOrNo
 {
     int tmp = (arc4random() % 30)+1;
-    if(tmp % 5 == 0)
+    if(tmp % 2 == 0)
         return YES;
     return NO;
 }
@@ -84,10 +84,8 @@
     return self;
 }
 
--(BOOL)isFlying
-{
-    return timer != nil;
-}
+
+#pragma mark - Event handlers
 
 -(void)handleScale:(NSNotification*)notification
 {
@@ -114,7 +112,6 @@
     }
 }
 
-
 -(void)handleMax:(NSNotification*)notification
 {
     NSInteger value = [notification.object integerValue];
@@ -134,8 +131,6 @@
         maxDistance = props.duck3Max;
     }
 }
-
-
 
 -(void)handleMin:(NSNotification*)notification
 {
@@ -158,6 +153,23 @@
 }
 
 
+-(BOOL)isFlying
+{
+    return timer != nil;
+}
+
+-(void)flyAway
+{
+    if( self.lat == DuckLatSouth )
+    {
+        [self setLat:DuckLatEven lng:self.lng];
+    }
+    
+    [timer invalidate];
+    timer = nil;
+    self.isShot = YES;
+    [self performSelector:@selector(removeFromParent) withObject:nil afterDelay:4.0];
+}
 
 -(void)reroute
 {
@@ -172,6 +184,7 @@
     {
         _lat = arc4random()%3;
     }
+    
     if([Duck yesOrNo])
     {
         _lng = arc4random()%2;

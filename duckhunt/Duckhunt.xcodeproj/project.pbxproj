@@ -35,6 +35,9 @@
 		20D7037F1AE767A000DDD7F1 /* Duck1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D7037E1AE767A000DDD7F1 /* Duck1.atlas */; };
 		20D703821AE76B0800DDD7F1 /* Duck2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D703801AE76B0800DDD7F1 /* Duck2.atlas */; };
 		20D703831AE76B0800DDD7F1 /* Duck3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D703811AE76B0800DDD7F1 /* Duck3.atlas */; };
+		20DAC1741B898D950052AB22 /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20DAC1731B898D950052AB22 /* Clouds.atlas */; };
+		20DAC1771B8991940052AB22 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAC1761B8991940052AB22 /* GameManager.m */; };
+		20DAC17A1B89B0370052AB22 /* GameplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAC1791B89B0370052AB22 /* GameplayViewController.m */; };
 		20FE65911AEF3ED400094E4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FE65901AEF3ED400094E4C /* Images.xcassets */; };
 		CB46D0601FDD2D288D40FC42 /* libPods-Duckhunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */; };
 /* End PBXBuildFile section */
@@ -95,6 +98,11 @@
 		20D7037E1AE767A000DDD7F1 /* Duck1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck1.atlas; sourceTree = "<group>"; };
 		20D703801AE76B0800DDD7F1 /* Duck2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck2.atlas; sourceTree = "<group>"; };
 		20D703811AE76B0800DDD7F1 /* Duck3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck3.atlas; sourceTree = "<group>"; };
+		20DAC1731B898D950052AB22 /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
+		20DAC1751B8991940052AB22 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		20DAC1761B8991940052AB22 /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
+		20DAC1781B89B0370052AB22 /* GameplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayViewController.h; sourceTree = "<group>"; };
+		20DAC1791B89B0370052AB22 /* GameplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayViewController.m; sourceTree = "<group>"; };
 		20FE65901AEF3ED400094E4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3D1E8D7A4A9361F0C5377F3D /* Pods-Duckhunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Duckhunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Duckhunt/Pods-Duckhunt.release.xcconfig"; sourceTree = "<group>"; };
 		8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Duckhunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +157,7 @@
 				200C83721AE5B1750069A828 /* AppDelegate.m */,
 				202EF0AB1B20080500B543D0 /* Commands */,
 				206B36921AE5BF92009ACB9F /* Controllers */,
+				20DAC1731B898D950052AB22 /* Clouds.atlas */,
 				20D7037E1AE767A000DDD7F1 /* Duck1.atlas */,
 				20D703801AE76B0800DDD7F1 /* Duck2.atlas */,
 				20D703811AE76B0800DDD7F1 /* Duck3.atlas */,
@@ -206,6 +215,8 @@
 			children = (
 				202EF0BB1B203B4F00B543D0 /* PlayerManager.h */,
 				202EF0BC1B203B4F00B543D0 /* PlayerManager.m */,
+				20DAC1751B8991940052AB22 /* GameManager.h */,
+				20DAC1761B8991940052AB22 /* GameManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -233,6 +244,8 @@
 				206B36901AE5BF8D009ACB9F /* AdminViewController.m */,
 				202EF0B71B2035EE00B543D0 /* PlayerController.h */,
 				202EF0B81B2035EE00B543D0 /* PlayerController.m */,
+				20DAC1781B89B0370052AB22 /* GameplayViewController.h */,
+				20DAC1791B89B0370052AB22 /* GameplayViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -395,6 +408,7 @@
 				204F66821AE8B2E7008B323C /* spark.png in Resources */,
 				204F66861AE8B69E008B323C /* Trail.sks in Resources */,
 				200C837D1AE5B1750069A828 /* Main.storyboard in Resources */,
+				20DAC1741B898D950052AB22 /* Clouds.atlas in Resources */,
 				204739C71B87FF5000949A5E /* hit1.sks in Resources */,
 				20D703821AE76B0800DDD7F1 /* Duck2.atlas in Resources */,
 				204739C91B8801A500949A5E /* hit2.sks in Resources */,
@@ -451,11 +465,13 @@
 			files = (
 				206B369A1AE5CE11009ACB9F /* Duck.m in Sources */,
 				206B36911AE5BF8D009ACB9F /* AdminViewController.m in Sources */,
+				20DAC17A1B89B0370052AB22 /* GameplayViewController.m in Sources */,
 				202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */,
 				2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */,
 				204739C11B87C63400949A5E /* Properties.m in Sources */,
 				206B36971AE5CDB9009ACB9F /* ApplicationModel.m in Sources */,
 				206B36AF1AE5F70E009ACB9F /* LobbyScene.m in Sources */,
+				20DAC1771B8991940052AB22 /* GameManager.m in Sources */,
 				202EF0AE1B20083100B543D0 /* DiscoverControllerCommand.m in Sources */,
 				200C83781AE5B1750069A828 /* GameViewController.m in Sources */,
 				206B36A31AE5D2B3009ACB9F /* ArenaScene.m in Sources */,

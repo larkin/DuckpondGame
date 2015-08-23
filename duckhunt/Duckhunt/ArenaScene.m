@@ -10,7 +10,7 @@
 #import "ApplicationModel.h"
 #import "Duck.h"
 
-#define kBorderPad 25
+#define kBorderPad 20
 #define kGroundPad 150
 
 @implementation ArenaScene
@@ -36,21 +36,11 @@
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
-        //SKSpriteNode *bgImage = [SKSpriteNode spriteNodeWithImageNamed:@"Background"];
-        //bgImage.position = CGPointMake(self.size.width/2, self.size.height/2);
-        //[self addChild:bgImage];
-
-        //Duck *walkAnimation = [SKAction animateWithTextures:[ApplicationModel sharedModel].duckTextures timePerFrame:0.1 ];
-        //[spaceship runAction:walkAnimation completion:^{
-        //    [spaceship runAction:walkAnimation]
-        //}];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spawnDuck) name:@"spawnDuck" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(missDuck) name:@"missDuck" object:nil];
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(killDuck) name:@"killDuck" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spawnDuck:) name:@"spawnDuck" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(roundTimeout) name:@"roundTimeout" object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserMove:) name:@"userMove" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleArenaShot:) name:@"handleArenaShot" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShot:) name:@"handleShot" object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHideCalibration:) name:@"hideCalibrationTarget" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowCalibration:) name:@"showCalibrationTarget" object:nil];
@@ -68,6 +58,18 @@
     }
 }
 
+-(void)willMoveFromView:(SKView *)view
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"spawnDuck" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"roundTimeout" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"userMove" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"handleShot" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"hideCalibrationTarget" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showCalibrationTarget" object:nil];
+}
+
 -(void)createSceneContents
 {
     self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
@@ -81,10 +83,8 @@
     cross2 = [self makeCrosshair:[ApplicationModel sharedModel].player2];
     cross2.position = CGPointMake(500, 500);
     [self addChild:cross2];
-    //[self insertChild:cross2 atIndex:75];
 
-    //[self spawnDuck];
-    //[self addChild: [self newHelloNode]];
+    // TODO : ADD HUD
 }
 
 
@@ -108,7 +108,6 @@
     calib.zPosition = 49;
     
     [self addChild:calib];
-    //[self insertChild:calib atIndex:1];
 }
 
 -(void)handleUserMove:(NSNotification*)notification
@@ -125,9 +124,8 @@
     }
 }
 
--(void)handleArenaShot:(NSNotification*)notification
+-(void)handleShot:(NSNotification*)notification
 {
-    NSLog(@"Shot");
     //[self miss:[[notification.userInfo objectForKey:@"point"] pointValue]];
     //NSPoint point = [[notification.userInfo objectForKey:@"point"] pointValue];
     
@@ -147,13 +145,27 @@
             }
         }
     }];
+    
     [self miss:point];
-
 }
 
--(void)spawnDuck
+-(void)roundTimeout
 {
-    Duck *duck = [[Duck alloc] initWithType:arc4random()%3];
+    [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
+        Duck *duck = (Duck*)node;
+        
+        if( !duck.isShot )
+        {
+            [duck flyAway];
+        }
+    }];
+}
+
+
+-(void)spawnDuck:(NSNotification*)notification
+{
+    NSInteger duckType = [notification.object integerValue];
+    Duck *duck = [[Duck alloc] initWithType:duckType];
     duck.anchorPoint = CGPointMake(0.5,0.5);
     
     CGFloat horiz = [ArenaScene numberBetween:kBorderPad and:self.size.width-kBorderPad];
@@ -183,7 +195,6 @@
     
     duck.zPosition = 10;
     [self addChild:duck];
-    //[self insertChild:duck atIndex:10];
     
     [self updateFlight:duck];
     
@@ -191,12 +202,6 @@
     {
         [duck setLat:duck.lat lng:duck.lng];
     }
-}
-
--(void)missDuck
-{
-    lastMiss = !lastMiss;
-    [self miss:CGPointMake((arc4random()%(int)self.view.bounds.size.width-50)+25, (arc4random()%(int)self.view.bounds.size.height-50)+25)];
 }
 
 -(void)miss:(CGPoint)position
@@ -207,7 +212,6 @@
     
     node.zPosition = 25;
     [self addChild:node];
-    //[self insertChild:node atIndex:25];
     
     SKAction *fade = [SKAction fadeAlphaTo:0.0 duration:0.3];
     
@@ -223,7 +227,6 @@
     [node setPosition:duck.position];
     node.zPosition = 25;
     [self addChild:node];
-    //[self insertChild:node atIndex:25];
     
     SKAction *wait = [SKAction waitForDuration:0.2];
     SKAction *fade = [SKAction fadeAlphaTo:0.0 duration:0.1];
@@ -233,21 +236,6 @@
         [node removeFromParent];
     }];
 }
-
-/*
--(void)killDuck
-{
-    [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
-        Duck *duck = (Duck*)node;
-        if( !duck.isShot )
-        {
-            [self hit:duck];
-            *stop = YES;
-            return;
-        }
-    }];
-}
- */  
 
 -(void)didSimulatePhysics
 {

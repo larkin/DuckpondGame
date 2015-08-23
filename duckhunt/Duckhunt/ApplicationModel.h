@@ -32,6 +32,9 @@ typedef NS_ENUM(NSInteger, AppState) {
 @property (nonatomic) PlayerController* player1;
 @property (nonatomic) PlayerController* player2;
 
+
+@property (nonatomic) NSInteger currentRound;
+
 + (instancetype)sharedModel;
 
 -(SKTexture*)texture:(NSInteger)duckIndex action:(NSString*)actionName;
