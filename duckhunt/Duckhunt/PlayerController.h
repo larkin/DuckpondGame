@@ -25,12 +25,16 @@
 
 @property (readonly) double level;
 @property (readonly) NSInteger index;
+
 @property (readonly) BOOL connected;
 @property (readonly) CGPoint location;
 @property (strong, nonatomic) WiiRemote *wiimote;
 @property (nonatomic, weak) id<PlayerControllerDelegate> delegate;
 
 -(id)initPlayer:(NSInteger)index;
+
+-(NSString*)spriteBang;
+-(NSString*)spriteCross;
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation
 

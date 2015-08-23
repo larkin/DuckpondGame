@@ -48,7 +48,10 @@
     NSDictionary *appDefaults  = [[NSUserDefaults standardUserDefaults] dictionaryForKey:propsKey];
     if( !appDefaults )
     {
+        self.playerSensitivity1 = 3;
         self.playerOffset1 = NSMakePoint(0.0, 0.0);
+        
+        self.playerSensitivity2 = 3;
         self.playerOffset2 = NSMakePoint(0.0, 0.0);
     }
     
@@ -82,9 +85,11 @@
     self.duck3Min   = [[appDefaults valueForKey:@"duck3Min"] floatValue];
     self.duck3Max   = [[appDefaults valueForKey:@"duck3Max"] floatValue];
     
+    self.playerSensitivity1 = [[appDefaults valueForKey:@"playerSensitivity1"] floatValue];
     self.playerOffset1 = NSMakePoint([[appDefaults valueForKey:@"playerOffset1x"] floatValue],
                                      [[appDefaults valueForKey:@"playerOffset1y"] floatValue]);
     
+    self.playerSensitivity2 = [[appDefaults valueForKey:@"playerSensitivity2"] floatValue];
     self.playerOffset2 = NSMakePoint([[appDefaults valueForKey:@"playerOffset2x"] floatValue],
                                      [[appDefaults valueForKey:@"playerOffset2y"] floatValue]);
     
@@ -114,9 +119,11 @@
     [appDefaults setValue:[NSNumber numberWithFloat:self.duck3Min] forKey:@"duck3Min"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.duck3Max] forKey:@"duck3Max"];
     
+    [appDefaults setValue:[NSNumber numberWithFloat:self.playerSensitivity1]  forKey:@"playerSensitivity1"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.playerOffset1.x] forKey:@"playerOffset1x"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.playerOffset1.y] forKey:@"playerOffset1y"];
 
+    [appDefaults setValue:[NSNumber numberWithFloat:self.playerSensitivity2] forKey:@"playerSensitivity2"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.playerOffset2.x] forKey:@"playerOffset2x"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.playerOffset2.y] forKey:@"playerOffset2y"];
 
@@ -202,11 +209,20 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"duckSpeedChanged" object:[NSNumber numberWithInt:3]];
 }
 
+-(void)playerSensitivity1:(CGFloat)value
+{
+    _playerSensitivity1 = value;
+}
+
 -(void)playerOffset1:(NSPoint)point
 {
     _playerOffset1 = point;
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"playerOffset1Changed" object:nil];
+}
 
+-(void)playerSensitivity2:(CGFloat)value
+{
+    _playerSensitivity2 = value;
 }
 
 -(void)playerOffset2:(NSPoint)point

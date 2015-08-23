@@ -35,14 +35,24 @@
     [_wiimote setIRSensorEnabled:YES];
     [_wiimote setMotionSensorEnabled:NO];
     [_wiimote setLEDEnabled1:_index==1 enabled2:_index==1 enabled3:_index==2 enabled4:_index==2];
-    
-    
-    
+
     if( self.delegate)
     {
         [self.delegate playerConnect:self];
     }
 }
+
+#pragma mark - Sprite Handling
+-(NSString*)spriteBang
+{
+    return self.index == 1 ? @"hit1" : @"hit4";
+}
+
+-(NSString*)spriteCross
+{
+    return self.index == 1 ? @"cross1" : @"cross4";
+}
+
 
 #pragma mark - WiiRemote delegate
 
@@ -51,15 +61,19 @@
 
 - (void) irPointMovedX:(float) px Y:(float) py
 {
-    float screenSize = [ApplicationModel sharedModel].screenSize;
-    _location = NSMakePoint(px*screenSize, py*screenSize);
+    ApplicationModel *model = [ApplicationModel sharedModel];
+    
+    CGFloat sensitivity = self.index == 1 ? model.props.playerSensitivity1 : model.props.playerSensitivity2;
+    sensitivity = (sensitivity+1) / 5;
+    _location = NSMakePoint(((px+1)*sensitivity*model.screenSize), ((py+1)*sensitivity*model.screenSize));
     
     if( px == -100 && py == -100 )
     {
         return;
     }
     
-    //NSPoint point = NSMakePoint(px, py);
+    NSPoint offset = self.index == 1 ? model.props.playerOffset1 : model.props.playerOffset2;
+    _location = NSMakePoint(_location.x + offset.x, _location.y + offset.y);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userMove" object:@{@"player":self}];
     NSLog(@"%f : %f", _location.x, _location.y);

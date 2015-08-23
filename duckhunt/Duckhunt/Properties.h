@@ -26,7 +26,10 @@
 @property (nonatomic) CGFloat duck3Min;
 @property (nonatomic) CGFloat duck3Max;
 
+@property (nonatomic) CGFloat playerSensitivity1;
 @property (nonatomic) NSPoint playerOffset1;
+
+@property (nonatomic) CGFloat playerSensitivity2;
 @property (nonatomic) NSPoint playerOffset2;
 
 -(void)resetDefaults;

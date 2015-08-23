@@ -983,7 +983,7 @@
                                                     <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Duck Med" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="r4R-67-Fwh">
-                                                    <rect key="frame" x="675" y="198" width="297" height="107"/>
+                                                    <rect key="frame" x="675" y="202" width="297" height="107"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="295" height="91"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1039,13 +1039,13 @@
                                                     <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Player 1" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="wzT-ME-eaj">
-                                                    <rect key="frame" x="6" y="185" width="250" height="250"/>
+                                                    <rect key="frame" x="6" y="75" width="330" height="360"/>
                                                     <view key="contentView">
-                                                        <rect key="frame" x="1" y="1" width="248" height="234"/>
+                                                        <rect key="frame" x="1" y="1" width="328" height="344"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cro-8L-2Ej">
-                                                                <rect key="frame" x="128" y="20" width="108" height="32"/>
+                                                                <rect key="frame" x="208" y="7" width="108" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEx-rN-83Y">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -1055,7 +1055,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZk-AV-FbV">
-                                                                <rect key="frame" x="128" y="196" width="108" height="32"/>
+                                                                <rect key="frame" x="208" y="40" width="108" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="Calibrate" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iTr-lP-QRJ">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -1065,40 +1065,72 @@
                                                                 </connections>
                                                             </button>
                                                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WqJ-RL-29F">
-                                                                <rect key="frame" x="43" y="117" width="188" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="nmQ-mv-Hm2"/>
+                                                                <rect key="frame" x="44" y="160" width="268" height="27"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="above" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="nmQ-mv-Hm2"/>
+                                                                <connections>
+                                                                    <action selector="handleP1OffestX:" target="ePe-Ov-yCE" id="1d6-YO-KPs"/>
+                                                                </connections>
                                                             </slider>
                                                             <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-3g-CPx">
-                                                                <rect key="frame" x="16" y="27" width="21" height="199"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="T62-9a-aME"/>
+                                                                <rect key="frame" x="18" y="11" width="27" height="325"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="left" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="T62-9a-aME"/>
+                                                                <connections>
+                                                                    <action selector="handleP1OffestY:" target="ePe-Ov-yCE" id="TVM-Ga-R0k"/>
+                                                                </connections>
                                                             </slider>
                                                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="jTm-rZ-lBK">
-                                                                <rect key="frame" x="116" y="29" width="16" height="16"/>
+                                                                <rect key="frame" x="196" y="16" width="16" height="16"/>
                                                             </progressIndicator>
+                                                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WJT-vc-Jt1">
+                                                                <rect key="frame" x="154" y="311" width="158" height="24"/>
+                                                                <segmentedCell key="cell" enabled="NO" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="1Up-x2-R2X">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <segments>
+                                                                        <segment label="1"/>
+                                                                        <segment label="2" width="32" selected="YES" tag="1"/>
+                                                                        <segment label="3" width="32"/>
+                                                                        <segment label="4"/>
+                                                                        <segment label="5"/>
+                                                                    </segments>
+                                                                </segmentedCell>
+                                                                <connections>
+                                                                    <action selector="handleP1Sensitivity:" target="ePe-Ov-yCE" id="B3J-Xe-BHe"/>
+                                                                </connections>
+                                                            </segmentedControl>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlV-87-fWx">
+                                                                <rect key="frame" x="208" y="73" width="108" height="32"/>
+                                                                <buttonCell key="cell" type="push" title="Zero Wii" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZIW-Ex-x8u">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="resetP1Offset:" target="ePe-Ov-yCE" id="i93-lv-VEk"/>
+                                                                </connections>
+                                                            </button>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2tk-uK-HPG">
+                                                                <rect key="frame" x="83" y="317" width="67" height="17"/>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sensitivity" id="ryE-XO-xYz">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
                                                         </subviews>
                                                     </view>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Player 2" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="VsK-Nr-jpE">
-                                                    <rect key="frame" x="272" y="185" width="250" height="250"/>
+                                                    <rect key="frame" x="343" y="75" width="330" height="360"/>
                                                     <view key="contentView">
-                                                        <rect key="frame" x="1" y="1" width="248" height="234"/>
+                                                        <rect key="frame" x="1" y="1" width="328" height="344"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UDo-EQ-QhS">
-                                                                <rect key="frame" x="44" y="116" width="188" height="21"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="2p7-y5-pSt"/>
-                                                            </slider>
-                                                            <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a81-td-P2B">
-                                                                <rect key="frame" x="16" y="27" width="21" height="199"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="right" sliderType="linear" id="Fr3-g4-f1P"/>
-                                                            </slider>
                                                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="P7D-D0-Iwe">
-                                                                <rect key="frame" x="116" y="29" width="16" height="16"/>
+                                                                <rect key="frame" x="195" y="16" width="16" height="16"/>
                                                             </progressIndicator>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TG5-nT-Lq7">
-                                                                <rect key="frame" x="129" y="20" width="108" height="32"/>
+                                                                <rect key="frame" x="208" y="7" width="108" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gi8-RN-Wrm">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -1108,7 +1140,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dz-wE-hS5">
-                                                                <rect key="frame" x="128" y="196" width="108" height="32"/>
+                                                                <rect key="frame" x="207" y="40" width="108" height="32"/>
                                                                 <buttonCell key="cell" type="push" title="Calibrate" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P8b-hw-hyt">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -1117,13 +1149,71 @@
                                                                     <action selector="handleP2Calibrate:" target="ePe-Ov-yCE" id="UjH-X8-txP"/>
                                                                 </connections>
                                                             </button>
+                                                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8HP-CU-4jR">
+                                                                <rect key="frame" x="154" y="311" width="158" height="24"/>
+                                                                <segmentedCell key="cell" enabled="NO" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="tJK-KV-vpt">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <segments>
+                                                                        <segment label="1"/>
+                                                                        <segment label="2" width="32" selected="YES" tag="1"/>
+                                                                        <segment label="3" width="32"/>
+                                                                        <segment label="4"/>
+                                                                        <segment label="5"/>
+                                                                    </segments>
+                                                                </segmentedCell>
+                                                                <connections>
+                                                                    <action selector="handleP2Sensitivity:" target="ePe-Ov-yCE" id="xee-ee-2Db"/>
+                                                                </connections>
+                                                            </segmentedControl>
+                                                            <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DZc-HR-iI8">
+                                                                <rect key="frame" x="48" y="160" width="264" height="27"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="above" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Nbf-zK-hAH"/>
+                                                                <connections>
+                                                                    <action selector="handleP2OffestX:" target="ePe-Ov-yCE" id="PDr-F9-fGb"/>
+                                                                </connections>
+                                                            </slider>
+                                                            <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gOA-cl-0xY">
+                                                                <rect key="frame" x="18" y="11" width="27" height="325"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" alignment="left" minValue="-1000" maxValue="1000" doubleValue="26.315789473684163" tickMarkPosition="left" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="7pf-Z1-Jre"/>
+                                                                <connections>
+                                                                    <action selector="handleP2OffestY:" target="ePe-Ov-yCE" id="cWU-w0-waF"/>
+                                                                </connections>
+                                                            </slider>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSf-DJ-hvx">
+                                                                <rect key="frame" x="208" y="73" width="108" height="32"/>
+                                                                <buttonCell key="cell" type="push" title="Zero Wii" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zfk-jm-97c">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="resetP2Offset:" target="ePe-Ov-yCE" id="1xE-yj-9Uw"/>
+                                                                </connections>
+                                                            </button>
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hmc-KO-6EM">
+                                                                <rect key="frame" x="84" y="317" width="67" height="17"/>
+                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sensitivity" id="Ji0-Va-lC2">
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
                                                         </subviews>
                                                     </view>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-0U-yOY">
+                                                    <rect key="frame" x="805" y="10" width="162" height="32"/>
+                                                    <buttonCell key="cell" type="push" title="Reset Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fYR-I2-0YZ">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="resetOptions:" target="ePe-Ov-yCE" id="rDZ-Fb-0N1"/>
+                                                    </connections>
+                                                </button>
                                                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Duck Fast" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="1Ak-8x-pvw">
-                                                    <rect key="frame" x="675" y="61" width="297" height="107"/>
+                                                    <rect key="frame" x="675" y="75" width="297" height="107"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="295" height="91"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1178,16 +1268,6 @@
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </box>
-                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tS-0U-yOY">
-                                                    <rect key="frame" x="805" y="10" width="162" height="32"/>
-                                                    <buttonCell key="cell" type="push" title="Reset Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fYR-I2-0YZ">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="resetOptions:" target="ePe-Ov-yCE" id="rDZ-Fb-0N1"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </view>
                                     </tabViewItem>
@@ -1220,14 +1300,19 @@
                         <outlet property="p1Calibrate" destination="NZk-AV-FbV" id="DNw-g5-ozu"/>
                         <outlet property="p1Connect" destination="Cro-8L-2Ej" id="gSE-xe-wqx"/>
                         <outlet property="p1Progress" destination="jTm-rZ-lBK" id="Nv8-Xw-zSX"/>
+                        <outlet property="p1Reset" destination="YlV-87-fWx" id="l4O-eX-iLX"/>
+                        <outlet property="p1ResetButton" destination="XSf-DJ-hvx" id="Q7B-ov-wEl"/>
+                        <outlet property="p1Sensitivity" destination="WJT-vc-Jt1" id="Tch-sf-Got"/>
                         <outlet property="p1SliderX" destination="WqJ-RL-29F" id="ryl-B6-c8N"/>
                         <outlet property="p1SliderY" destination="aFw-3g-CPx" id="HRA-lv-yZe"/>
                         <outlet property="p2Battery" destination="saH-M0-CdG" id="IqX-YX-syh"/>
                         <outlet property="p2Calibrate" destination="3dz-wE-hS5" id="5o8-Y9-iUL"/>
                         <outlet property="p2Connect" destination="TG5-nT-Lq7" id="is7-LZ-6Kw"/>
                         <outlet property="p2Progress" destination="P7D-D0-Iwe" id="s0o-lX-ChV"/>
-                        <outlet property="p2SliderX" destination="UDo-EQ-QhS" id="TU3-Ux-M5u"/>
-                        <outlet property="p2SliderY" destination="a81-td-P2B" id="mIk-QP-DcK"/>
+                        <outlet property="p2Reset" destination="XSf-DJ-hvx" id="Oaj-Jj-MRG"/>
+                        <outlet property="p2Sensitivity" destination="8HP-CU-4jR" id="NaD-Rj-L5U"/>
+                        <outlet property="p2SliderX" destination="DZc-HR-iI8" id="2oa-em-z0U"/>
+                        <outlet property="p2SliderY" destination="gOA-cl-0xY" id="FXJ-DV-H1h"/>
                         <outlet property="piCalibrate" destination="NZk-AV-FbV" id="UW8-WA-6DK"/>
                         <outlet property="player2Box" destination="VsK-Nr-jpE" id="sIe-rs-M5O"/>
                         <outlet property="stopButton" destination="Y5W-Rg-Omj" id="JNy-hB-Zci"/>

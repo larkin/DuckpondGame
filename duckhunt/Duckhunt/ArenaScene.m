@@ -21,6 +21,7 @@
     DuckLat newLat;
     DuckLng newLng;
     
+    SKSpriteNode *calib;
     SKSpriteNode *cross1;
     SKSpriteNode *cross2;
 }
@@ -50,6 +51,10 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserMove:) name:@"userMove" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleArenaShot:) name:@"handleArenaShot" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHideCalibration:) name:@"hideCalibrationTarget" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowCalibration:) name:@"showCalibrationTarget" object:nil];
+        
     }
     return self;
 }
@@ -68,16 +73,42 @@
     self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
-    cross1 = [self crosshair1];
-    cross1.position = CGPointMake(300,300);
+    cross1 = [self makeCrosshair:[ApplicationModel sharedModel].player1];
+    cross1.position = CGPointMake(200, 200);
     [self addChild:cross1];
+    //[self insertChild:cross1 atIndex:75];
 
-    cross2 = [self crosshair2];
-    cross2.position = CGPointMake(300,300);
+    cross2 = [self makeCrosshair:[ApplicationModel sharedModel].player2];
+    cross2.position = CGPointMake(500, 500);
     [self addChild:cross2];
+    //[self insertChild:cross2 atIndex:75];
 
     //[self spawnDuck];
     //[self addChild: [self newHelloNode]];
+}
+
+
+-(void)handleHideCalibration:(NSNotification*)notification
+{
+    [calib removeFromParent];
+    calib = nil;
+}
+
+-(void)handleShowCalibration:(NSNotification*)notification
+{
+    if( calib != nil && calib.parent )
+    {
+        return;
+    }
+    
+    calib = [SKSpriteNode spriteNodeWithImageNamed:@"target"];
+    [calib setAnchorPoint:CGPointMake(0.5, 0.5)];
+    [calib setSize:CGSizeMake(100, 100)];
+    calib.position = CGPointMake([ApplicationModel sharedModel].screenSize/2, [ApplicationModel sharedModel].screenSize/2);
+    calib.zPosition = 49;
+    
+    [self addChild:calib];
+    //[self insertChild:calib atIndex:1];
 }
 
 -(void)handleUserMove:(NSNotification*)notification
@@ -150,7 +181,10 @@
             break;
     }
     
+    duck.zPosition = 10;
     [self addChild:duck];
+    //[self insertChild:duck atIndex:10];
+    
     [self updateFlight:duck];
     
     if( ![duck isFlying] )
@@ -170,7 +204,10 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Miss" ofType:@"sks"];
     SKEmitterNode *node = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     [node setPosition:position];
+    
+    node.zPosition = 25;
     [self addChild:node];
+    //[self insertChild:node atIndex:25];
     
     SKAction *fade = [SKAction fadeAlphaTo:0.0 duration:0.3];
     
@@ -181,11 +218,12 @@
 
 -(void)player:(PlayerController*)player hit:(Duck*)duck
 {
-    NSString *spritePath = player.index == 1 ? @"hit1" : @"hit4";
-    NSString *path = [[NSBundle mainBundle] pathForResource:spritePath ofType:@"sks"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:player.spriteBang ofType:@"sks"];
     SKEmitterNode *node = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     [node setPosition:duck.position];
+    node.zPosition = 25;
     [self addChild:node];
+    //[self insertChild:node atIndex:25];
     
     SKAction *wait = [SKAction waitForDuration:0.2];
     SKAction *fade = [SKAction fadeAlphaTo:0.0 duration:0.1];
@@ -194,7 +232,6 @@
     [node runAction:[SKAction sequence:@[wait,fade]] completion:^{
         [node removeFromParent];
     }];
-
 }
 
 /*
@@ -251,31 +288,13 @@
         [duck setLat:newLat lng:newLng];
 }
 
-- (SKSpriteNode *)crosshair1
+- (SKSpriteNode *)makeCrosshair:(PlayerController*)player
 {
-    SKSpriteNode *crosshair = [[SKSpriteNode alloc] initWithColor:[SKColor purpleColor] size:CGSizeMake(20,20)];
-    
-    SKAction *blink = [SKAction sequence:@[
-                                           [SKAction fadeOutWithDuration:0.2],
-                                           [SKAction fadeInWithDuration:0.2]]];
-    SKAction *blinkForever = [SKAction repeatActionForever:blink];
-    [crosshair runAction: blinkForever];
-    
+    SKSpriteNode *crosshair = [SKSpriteNode spriteNodeWithImageNamed:[player spriteCross]];
+    [crosshair setAnchorPoint:CGPointMake(0.5, 0.5)];
+    [crosshair setSize:CGSizeMake(50.0, 50.0)];
+    crosshair.zPosition = 75;
     return crosshair;
 }
-
-- (SKSpriteNode *)crosshair2
-{
-    SKSpriteNode *crosshair = [[SKSpriteNode alloc] initWithColor:[SKColor blackColor] size:CGSizeMake(20,20)];
-    
-    SKAction *blink = [SKAction sequence:@[
-                                           [SKAction fadeOutWithDuration:0.2],
-                                           [SKAction fadeInWithDuration:0.2]]];
-    SKAction *blinkForever = [SKAction repeatActionForever:blink];
-    [crosshair runAction: blinkForever];
-    
-    return crosshair;
-}
-
 
 @end

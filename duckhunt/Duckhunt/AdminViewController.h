@@ -22,9 +22,11 @@
 @property (weak) IBOutlet NSButton *p1Connect;
 @property (weak) IBOutlet NSButton *p1Calibrate;
 @property (weak) IBOutlet NSProgressIndicator *p1Progress;
-@property (strong) IBOutlet NSLevelIndicator *p1Battery;
+@property (weak) IBOutlet NSLevelIndicator *p1Battery;
 @property (weak) IBOutlet NSSlider *p1SliderX;
 @property (weak) IBOutlet NSSlider *p1SliderY;
+@property (weak) IBOutlet NSButton *p1Reset;
+@property (weak) IBOutlet NSSegmentedControl *p1Sensitivity;
 
 // PLayer 2
 @property (weak) IBOutlet NSButton *p2Connect;
@@ -33,7 +35,8 @@
 @property (weak) IBOutlet NSLevelIndicator *p2Battery;
 @property (weak) IBOutlet NSSlider *p2SliderX;
 @property (weak) IBOutlet NSSlider *p2SliderY;
-
+@property (weak) IBOutlet NSButton *p2Reset;
+@property (weak) IBOutlet NSSegmentedControl *p2Sensitivity;
 
 // Gmeplay
 @property (weak) IBOutlet NSSlider *gameScale;

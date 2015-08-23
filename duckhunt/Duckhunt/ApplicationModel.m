@@ -38,7 +38,7 @@
 {
     SKTextureAtlas *atlas;
     textureNames = @[@"Horiz1",@"Horiz2",@"Horiz3",@"Horiz2",@"Diag1",@"Diag2",@"Diag3",@"Diag2",@"Fall1",@"Fall2",@"Fall3",@"Fall4",@"Shot"];
-    NSMutableArray *duckTextures = [[NSMutableArray alloc] initWithCapacity:textureNames.count*1];
+    NSMutableArray *duckTextures = [[NSMutableArray alloc] initWithCapacity:textureNames.count];
     
     for( int i = 1; i < 4; i++ )
     {
@@ -50,8 +50,8 @@
     }
     
     [SKTexture preloadTextures:duckTextures withCompletionHandler:^{
-         self.duckTextures = [self parseDuckTextures:duckTextures];
-         NSLog(@"Textures Loaded");
+        self.duckTextures = [self parseDuckTextures:duckTextures];
+        NSLog(@"Textures Loaded");
     }];
 }
 
