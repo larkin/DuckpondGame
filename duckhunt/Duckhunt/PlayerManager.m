@@ -50,7 +50,10 @@
 -(void)handleTimeout:(NSTimer*)timer
 {
     [discovery stop];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"playerTimout" object:currentPlayer];
+    if( currentPlayer.adminDelegate )
+    {
+        [currentPlayer.adminDelegate playerTimeout:currentPlayer];
+    }
 }
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation

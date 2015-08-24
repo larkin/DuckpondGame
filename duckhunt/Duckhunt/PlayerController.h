@@ -13,12 +13,18 @@
 
 @class PlayerController;
 
-@protocol PlayerControllerDelegate <NSObject>
+@protocol PlayerAdminDelegate <NSObject>
 @optional
 - (void) playerBattery:(PlayerController*)player;
 - (void) playerConnect:(PlayerController*)player;
 - (void) playerDisconnect:(PlayerController*)player;
-- (void) playerShot:(PlayerController*)player;
+- (void) playerTimeout:(PlayerController*)player;
+@end
+
+@protocol PlayerGameDelegate <NSObject>
+@optional
+- (void) playerMove:(PlayerController*)player;
+- (void) playerTrigger:(PlayerController*)player;
 @end
 
 @interface PlayerController : NSObject
@@ -28,18 +34,18 @@
 
 @property (readonly) BOOL connected;
 @property (readonly) CGPoint location;
+
 @property (strong, nonatomic) WiiRemote *wiimote;
-@property (nonatomic, weak) id<PlayerControllerDelegate> delegate;
+@property (nonatomic, weak) id<PlayerAdminDelegate> adminDelegate;
+@property (nonatomic, weak) id<PlayerGameDelegate> gameDelegate;
 
 #pragma mark - Gameplay 
 
 @property (nonatomic) NSInteger ammo;
 @property (nonatomic) NSInteger kills;
+@property (nonatomic) NSString *bang;
 
 -(id)initPlayer:(NSInteger)index;
-
--(NSString*)spriteBang;
--(NSString*)spriteCross;
 
 #pragma mark - WiiRemoteDiscoveryDelegate implementation
 

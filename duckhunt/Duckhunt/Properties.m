@@ -138,9 +138,9 @@
     //[[NSNotificationCenter defaultCenter] postNotificationName:@"gameGlitchChanged" object:nil];
 }
 
--(void)setGameScale:(CGFloat)duckScale
+-(void)setGameScale:(CGFloat)scale
 {
-    _gameScale = duckScale;
+    _gameScale = scale;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"gameScaleChanged" object:nil];
 }
 

@@ -10,6 +10,7 @@
 
 @interface GameViewController : NSViewController
 
+@property (weak) IBOutlet NSImageView *lobbyImage;
 
 
 @end

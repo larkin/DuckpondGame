@@ -9,12 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "PlayerController.h"
 
-@interface AdminViewController : NSViewController<NSTabViewDelegate,PlayerControllerDelegate>
-
+@interface AdminViewController : NSViewController<NSTabViewDelegate,PlayerAdminDelegate>
 
 @property (weak) IBOutlet NSButton *addButton;
-
-
 @property (weak) IBOutlet NSButton *goButton;
 @property (weak) IBOutlet NSButton *stopButton;
 

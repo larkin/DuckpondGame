@@ -18,9 +18,7 @@
 		202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0BC1B203B4F00B543D0 /* PlayerManager.m */; };
 		204739C11B87C63400949A5E /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 204739C01B87C63400949A5E /* Properties.m */; };
 		204739C71B87FF5000949A5E /* hit1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739C61B87FF5000949A5E /* hit1.sks */; };
-		204739C91B8801A500949A5E /* hit2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739C81B8801A500949A5E /* hit2.sks */; };
-		204739CB1B8801BB00949A5E /* hit3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739CA1B8801BB00949A5E /* hit3.sks */; };
-		204739CD1B88023600949A5E /* hit4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739CC1B88023600949A5E /* hit4.sks */; };
+		204739CD1B88023600949A5E /* hit2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739CC1B88023600949A5E /* hit2.sks */; };
 		204F66821AE8B2E7008B323C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 204F66801AE8B2E7008B323C /* spark.png */; };
 		204F66861AE8B69E008B323C /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204F66851AE8B69E008B323C /* Trail.sks */; };
 		204F66881AE8B6B6008B323C /* Miss.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204F66871AE8B6B6008B323C /* Miss.sks */; };
@@ -30,14 +28,28 @@
 		206B369D1AE5CE1F009ACB9F /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B369C1AE5CE1F009ACB9F /* Dog.m */; };
 		206B369F1AE5CFBA009ACB9F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */; };
 		206B36A31AE5D2B3009ACB9F /* ArenaScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36A21AE5D2B3009ACB9F /* ArenaScene.m */; };
-		206B36AF1AE5F70E009ACB9F /* LobbyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36AE1AE5F70E009ACB9F /* LobbyScene.m */; };
+		206B36AF1AE5F70E009ACB9F /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36AE1AE5F70E009ACB9F /* Background.m */; };
 		2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2088F01B1AFB35AE00A4AFC5 /* ImageMask.m */; };
 		20D7037F1AE767A000DDD7F1 /* Duck1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D7037E1AE767A000DDD7F1 /* Duck1.atlas */; };
 		20D703821AE76B0800DDD7F1 /* Duck2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D703801AE76B0800DDD7F1 /* Duck2.atlas */; };
 		20D703831AE76B0800DDD7F1 /* Duck3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D703811AE76B0800DDD7F1 /* Duck3.atlas */; };
 		20DAC1741B898D950052AB22 /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20DAC1731B898D950052AB22 /* Clouds.atlas */; };
 		20DAC1771B8991940052AB22 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAC1761B8991940052AB22 /* GameManager.m */; };
-		20DAC17A1B89B0370052AB22 /* GameplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20DAC1791B89B0370052AB22 /* GameplayViewController.m */; };
+		20E58CC51B8A825500DEB105 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20E58CC41B8A825500DEB105 /* AVFoundation.framework */; };
+		20E58CD81B8A844100DEB105 /* dogBark.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CC71B8A844100DEB105 /* dogBark.wav */; };
+		20E58CD91B8A844100DEB105 /* dogLaugh.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CC81B8A844100DEB105 /* dogLaugh.wav */; };
+		20E58CDA1B8A844100DEB105 /* duckFall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CC91B8A844100DEB105 /* duckFall.wav */; };
+		20E58CDB1B8A844100DEB105 /* duckQuack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CCA1B8A844100DEB105 /* duckQuack.wav */; };
+		20E58CDC1B8A844100DEB105 /* duckThud.wav in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CCB1B8A844100DEB105 /* duckThud.wav */; };
+		20E58CDD1B8A844100DEB105 /* musicGameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CCC1B8A844100DEB105 /* musicGameOver.mp3 */; };
+		20E58CDE1B8A844100DEB105 /* musicGotDucks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CCD1B8A844100DEB105 /* musicGotDucks.mp3 */; };
+		20E58CDF1B8A844100DEB105 /* musicMainMenu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CCE1B8A844100DEB105 /* musicMainMenu.mp3 */; };
+		20E58CE01B8A844100DEB105 /* musicNextRound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CCF1B8A844100DEB105 /* musicNextRound.mp3 */; };
+		20E58CE11B8A844100DEB105 /* musicStartGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CD01B8A844100DEB105 /* musicStartGame.mp3 */; };
+		20E58CE81B8A844100DEB105 /* shotRifle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CD71B8A844100DEB105 /* shotRifle.mp3 */; };
+		20E58CEF1B8AF93200DEB105 /* quack1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CEC1B8AF93200DEB105 /* quack1.mp3 */; };
+		20E58CF01B8AF93200DEB105 /* quack2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CED1B8AF93200DEB105 /* quack2.mp3 */; };
+		20E58CF11B8AF93200DEB105 /* quack3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CEE1B8AF93200DEB105 /* quack3.mp3 */; };
 		20FE65911AEF3ED400094E4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FE65901AEF3ED400094E4C /* Images.xcassets */; };
 		CB46D0601FDD2D288D40FC42 /* libPods-Duckhunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */; };
 /* End PBXBuildFile section */
@@ -74,9 +86,7 @@
 		204739BF1B87C63400949A5E /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
 		204739C01B87C63400949A5E /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
 		204739C61B87FF5000949A5E /* hit1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit1.sks; sourceTree = "<group>"; };
-		204739C81B8801A500949A5E /* hit2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit2.sks; sourceTree = "<group>"; };
-		204739CA1B8801BB00949A5E /* hit3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit3.sks; sourceTree = "<group>"; };
-		204739CC1B88023600949A5E /* hit4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit4.sks; sourceTree = "<group>"; };
+		204739CC1B88023600949A5E /* hit2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit2.sks; sourceTree = "<group>"; };
 		204F66801AE8B2E7008B323C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		204F66851AE8B69E008B323C /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		204F66871AE8B6B6008B323C /* Miss.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Miss.sks; sourceTree = "<group>"; };
@@ -91,8 +101,8 @@
 		206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		206B36A11AE5D2B3009ACB9F /* ArenaScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArenaScene.h; sourceTree = "<group>"; };
 		206B36A21AE5D2B3009ACB9F /* ArenaScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArenaScene.m; sourceTree = "<group>"; };
-		206B36AD1AE5F70E009ACB9F /* LobbyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LobbyScene.h; sourceTree = "<group>"; };
-		206B36AE1AE5F70E009ACB9F /* LobbyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LobbyScene.m; sourceTree = "<group>"; };
+		206B36AD1AE5F70E009ACB9F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		206B36AE1AE5F70E009ACB9F /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
 		2088F01A1AFB35AE00A4AFC5 /* ImageMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMask.h; sourceTree = "<group>"; };
 		2088F01B1AFB35AE00A4AFC5 /* ImageMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMask.m; sourceTree = "<group>"; };
 		20D7037E1AE767A000DDD7F1 /* Duck1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck1.atlas; sourceTree = "<group>"; };
@@ -101,8 +111,21 @@
 		20DAC1731B898D950052AB22 /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
 		20DAC1751B8991940052AB22 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		20DAC1761B8991940052AB22 /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
-		20DAC1781B89B0370052AB22 /* GameplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameplayViewController.h; sourceTree = "<group>"; };
-		20DAC1791B89B0370052AB22 /* GameplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameplayViewController.m; sourceTree = "<group>"; };
+		20E58CC41B8A825500DEB105 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		20E58CC71B8A844100DEB105 /* dogBark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogBark.wav; sourceTree = "<group>"; };
+		20E58CC81B8A844100DEB105 /* dogLaugh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogLaugh.wav; sourceTree = "<group>"; };
+		20E58CC91B8A844100DEB105 /* duckFall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = duckFall.wav; sourceTree = "<group>"; };
+		20E58CCA1B8A844100DEB105 /* duckQuack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = duckQuack.wav; sourceTree = "<group>"; };
+		20E58CCB1B8A844100DEB105 /* duckThud.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = duckThud.wav; sourceTree = "<group>"; };
+		20E58CCC1B8A844100DEB105 /* musicGameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = musicGameOver.mp3; sourceTree = "<group>"; };
+		20E58CCD1B8A844100DEB105 /* musicGotDucks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = musicGotDucks.mp3; sourceTree = "<group>"; };
+		20E58CCE1B8A844100DEB105 /* musicMainMenu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = musicMainMenu.mp3; sourceTree = "<group>"; };
+		20E58CCF1B8A844100DEB105 /* musicNextRound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = musicNextRound.mp3; sourceTree = "<group>"; };
+		20E58CD01B8A844100DEB105 /* musicStartGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = musicStartGame.mp3; sourceTree = "<group>"; };
+		20E58CD71B8A844100DEB105 /* shotRifle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shotRifle.mp3; sourceTree = "<group>"; };
+		20E58CEC1B8AF93200DEB105 /* quack1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quack1.mp3; sourceTree = "<group>"; };
+		20E58CED1B8AF93200DEB105 /* quack2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quack2.mp3; sourceTree = "<group>"; };
+		20E58CEE1B8AF93200DEB105 /* quack3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quack3.mp3; sourceTree = "<group>"; };
 		20FE65901AEF3ED400094E4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3D1E8D7A4A9361F0C5377F3D /* Pods-Duckhunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Duckhunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Duckhunt/Pods-Duckhunt.release.xcconfig"; sourceTree = "<group>"; };
 		8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Duckhunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E58CC51B8A825500DEB105 /* AVFoundation.framework in Frameworks */,
 				206B369F1AE5CFBA009ACB9F /* SpriteKit.framework in Frameworks */,
 				202EF0B61B20246E00B543D0 /* WiiRemote.framework in Frameworks */,
 				CB46D0601FDD2D288D40FC42 /* libPods-Duckhunt.a in Frameworks */,
@@ -153,6 +177,7 @@
 		200C836E1AE5B1750069A828 /* Duckhunt */ = {
 			isa = PBXGroup;
 			children = (
+				20E58CC61B8A844100DEB105 /* audio */,
 				200C83711AE5B1750069A828 /* AppDelegate.h */,
 				200C83721AE5B1750069A828 /* AppDelegate.m */,
 				202EF0AB1B20080500B543D0 /* Commands */,
@@ -225,9 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				204739C61B87FF5000949A5E /* hit1.sks */,
-				204739C81B8801A500949A5E /* hit2.sks */,
-				204739CA1B8801BB00949A5E /* hit3.sks */,
-				204739CC1B88023600949A5E /* hit4.sks */,
+				204739CC1B88023600949A5E /* hit2.sks */,
 				204F66871AE8B6B6008B323C /* Miss.sks */,
 				204F66801AE8B2E7008B323C /* spark.png */,
 				204F66851AE8B69E008B323C /* Trail.sks */,
@@ -244,8 +267,6 @@
 				206B36901AE5BF8D009ACB9F /* AdminViewController.m */,
 				202EF0B71B2035EE00B543D0 /* PlayerController.h */,
 				202EF0B81B2035EE00B543D0 /* PlayerController.m */,
-				20DAC1781B89B0370052AB22 /* GameplayViewController.h */,
-				20DAC1791B89B0370052AB22 /* GameplayViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -264,6 +285,8 @@
 		206B36941AE5CD9F009ACB9F /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				206B36AD1AE5F70E009ACB9F /* Background.h */,
+				206B36AE1AE5F70E009ACB9F /* Background.m */,
 				206B36981AE5CE11009ACB9F /* Duck.h */,
 				206B36991AE5CE11009ACB9F /* Duck.m */,
 				206B369B1AE5CE1F009ACB9F /* Dog.h */,
@@ -277,8 +300,6 @@
 			children = (
 				206B36A11AE5D2B3009ACB9F /* ArenaScene.h */,
 				206B36A21AE5D2B3009ACB9F /* ArenaScene.m */,
-				206B36AD1AE5F70E009ACB9F /* LobbyScene.h */,
-				206B36AE1AE5F70E009ACB9F /* LobbyScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -299,6 +320,27 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		20E58CC61B8A844100DEB105 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				20E58CEC1B8AF93200DEB105 /* quack1.mp3 */,
+				20E58CED1B8AF93200DEB105 /* quack2.mp3 */,
+				20E58CEE1B8AF93200DEB105 /* quack3.mp3 */,
+				20E58CC71B8A844100DEB105 /* dogBark.wav */,
+				20E58CC81B8A844100DEB105 /* dogLaugh.wav */,
+				20E58CC91B8A844100DEB105 /* duckFall.wav */,
+				20E58CCA1B8A844100DEB105 /* duckQuack.wav */,
+				20E58CCB1B8A844100DEB105 /* duckThud.wav */,
+				20E58CCC1B8A844100DEB105 /* musicGameOver.mp3 */,
+				20E58CCD1B8A844100DEB105 /* musicGotDucks.mp3 */,
+				20E58CCE1B8A844100DEB105 /* musicMainMenu.mp3 */,
+				20E58CCF1B8A844100DEB105 /* musicNextRound.mp3 */,
+				20E58CD01B8A844100DEB105 /* musicStartGame.mp3 */,
+				20E58CD71B8A844100DEB105 /* shotRifle.mp3 */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		68494A1643BF1CE5FC9CA471 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +353,7 @@
 		E48C7644E1688A9463DB79F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20E58CC41B8A825500DEB105 /* AVFoundation.framework */,
 				202EF0B51B20246E00B543D0 /* WiiRemote.framework */,
 				206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */,
 				8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */,
@@ -369,6 +412,7 @@
 				TargetAttributes = {
 					200C836B1AE5B1750069A828 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 26W7GEHNHA;
 					};
 					200C83811AE5B1750069A828 = {
 						CreatedOnToolsVersion = 6.2;
@@ -400,19 +444,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				204739CD1B88023600949A5E /* hit4.sks in Resources */,
+				204739CD1B88023600949A5E /* hit2.sks in Resources */,
 				20FE65911AEF3ED400094E4C /* Images.xcassets in Resources */,
+				20E58CF11B8AF93200DEB105 /* quack3.mp3 in Resources */,
+				20E58CE01B8A844100DEB105 /* musicNextRound.mp3 in Resources */,
+				20E58CDC1B8A844100DEB105 /* duckThud.wav in Resources */,
 				204F66881AE8B6B6008B323C /* Miss.sks in Resources */,
 				20D7037F1AE767A000DDD7F1 /* Duck1.atlas in Resources */,
 				20D703831AE76B0800DDD7F1 /* Duck3.atlas in Resources */,
+				20E58CE81B8A844100DEB105 /* shotRifle.mp3 in Resources */,
+				20E58CD81B8A844100DEB105 /* dogBark.wav in Resources */,
 				204F66821AE8B2E7008B323C /* spark.png in Resources */,
+				20E58CE11B8A844100DEB105 /* musicStartGame.mp3 in Resources */,
+				20E58CDE1B8A844100DEB105 /* musicGotDucks.mp3 in Resources */,
 				204F66861AE8B69E008B323C /* Trail.sks in Resources */,
 				200C837D1AE5B1750069A828 /* Main.storyboard in Resources */,
+				20E58CDB1B8A844100DEB105 /* duckQuack.wav in Resources */,
 				20DAC1741B898D950052AB22 /* Clouds.atlas in Resources */,
+				20E58CDD1B8A844100DEB105 /* musicGameOver.mp3 in Resources */,
+				20E58CF01B8AF93200DEB105 /* quack2.mp3 in Resources */,
 				204739C71B87FF5000949A5E /* hit1.sks in Resources */,
 				20D703821AE76B0800DDD7F1 /* Duck2.atlas in Resources */,
-				204739C91B8801A500949A5E /* hit2.sks in Resources */,
-				204739CB1B8801BB00949A5E /* hit3.sks in Resources */,
+				20E58CDF1B8A844100DEB105 /* musicMainMenu.mp3 in Resources */,
+				20E58CD91B8A844100DEB105 /* dogLaugh.wav in Resources */,
+				20E58CDA1B8A844100DEB105 /* duckFall.wav in Resources */,
+				20E58CEF1B8AF93200DEB105 /* quack1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,12 +521,11 @@
 			files = (
 				206B369A1AE5CE11009ACB9F /* Duck.m in Sources */,
 				206B36911AE5BF8D009ACB9F /* AdminViewController.m in Sources */,
-				20DAC17A1B89B0370052AB22 /* GameplayViewController.m in Sources */,
 				202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */,
 				2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */,
 				204739C11B87C63400949A5E /* Properties.m in Sources */,
 				206B36971AE5CDB9009ACB9F /* ApplicationModel.m in Sources */,
-				206B36AF1AE5F70E009ACB9F /* LobbyScene.m in Sources */,
+				206B36AF1AE5F70E009ACB9F /* Background.m in Sources */,
 				20DAC1771B8991940052AB22 /* GameManager.m in Sources */,
 				202EF0AE1B20083100B543D0 /* DiscoverControllerCommand.m in Sources */,
 				200C83781AE5B1750069A828 /* GameViewController.m in Sources */,

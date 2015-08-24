@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Joe Andolina. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "Duck.h"
 #import "ApplicationModel.h"
 #import "Properties.h"
@@ -28,6 +30,8 @@
     SKAction *flap;
     SKAction *move;
     SKAction *group;
+    
+    AVAudioPlayer *audioPlayer;
 }
 
 +(BOOL)yesOrNo
@@ -84,6 +88,13 @@
     return self;
 }
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"gameScaleChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"duckSpeedChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"duckMinChanged" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"duckMaxChanged" object:nil];
+}
 
 #pragma mark - Event handlers
 
@@ -211,6 +222,11 @@
         case DuckLatSouth:  [self flyS]; break;
     }
     
+    NSString *path = [NSString stringWithFormat:@"%@/quack%u.mp3", [[NSBundle mainBundle] resourcePath], (arc4random() % 3)+1];
+    NSURL *soundUrl = [NSURL fileURLWithPath:path];
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+    [audioPlayer play];
+
     float flightTime = [Duck getDuckFlightTime:minDistance and:maxDistance];
     timer = [NSTimer scheduledTimerWithTimeInterval:flightTime target:self selector:@selector(reroute) userInfo:nil repeats:NO];
 }

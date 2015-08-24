@@ -6,24 +6,46 @@
 //  Copyright (c) 2015 Joe Andolina. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
+
 #import "ArenaScene.h"
 #import "ApplicationModel.h"
+#import "Background.h"
 #import "Duck.h"
 
 #define kBorderPad 20
-#define kGroundPad 150
+#define kGroundPad 125
 
 @implementation ArenaScene
 {
     BOOL lastMiss;
     
+    Background *background;
+    
     Duck *duckNode;
     DuckLat newLat;
     DuckLng newLng;
     
+    NSInteger duckCount;
+    GameManager *gameManager;
+    
     SKSpriteNode *calib;
     SKSpriteNode *cross1;
     SKSpriteNode *cross2;
+    
+    SKSpriteNode *shell1;
+    SKSpriteNode *shell2;
+    
+    SKLabelNode *shellLabel1;
+    SKLabelNode *shellLabel2;
+    
+    SKSpriteNode *egg1;
+    SKSpriteNode *egg2;
+    
+    SKLabelNode *eggLabel1;
+    SKLabelNode *eggLabel2;
+    
+    AVAudioPlayer *audioPlayer;
 }
 
 +(float)numberBetween:(float)lowerBound and:(float)upperBound
@@ -33,59 +55,123 @@
 }
 
 
--(id)initWithSize:(CGSize)size
-{
-    if (self = [super initWithSize:size]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(spawnDuck:) name:@"spawnDuck" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(roundTimeout) name:@"roundTimeout" object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserMove:) name:@"userMove" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShot:) name:@"handleShot" object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHideCalibration:) name:@"hideCalibrationTarget" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowCalibration:) name:@"showCalibrationTarget" object:nil];
-        
-    }
-    return self;
-}
-
 - (void)didMoveToView:(SKView *)view
 {
     if(!self.contentCreated)
     {
         self.contentCreated = YES;
-        [self createSceneContents];
+        [self createContents];
     }
+    
+    [ApplicationModel sharedModel].player1.gameDelegate = self;
+    [ApplicationModel sharedModel].player2.gameDelegate = self;
+    
+    gameManager = [[GameManager alloc] init];
+    gameManager.gameDelegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHideCalibration:) name:@"hideCalibrationTarget" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShowCalibration:) name:@"showCalibrationTarget" object:nil];
 }
 
 -(void)willMoveFromView:(SKView *)view
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"spawnDuck" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"roundTimeout" object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"userMove" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"handleShot" object:nil];
-    
+    [ApplicationModel sharedModel].player1.gameDelegate = nil;
+    [ApplicationModel sharedModel].player2.gameDelegate = nil;
+
+    gameManager.gameDelegate = nil;
+    gameManager = nil;
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"hideCalibrationTarget" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showCalibrationTarget" object:nil];
 }
 
--(void)createSceneContents
+-(void)createContents
 {
+    ApplicationModel *model = [ApplicationModel sharedModel];
     self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
-    cross1 = [self makeCrosshair:[ApplicationModel sharedModel].player1];
-    cross1.position = CGPointMake(200, 200);
+    cross1 = [self makeCrosshair:1];
     [self addChild:cross1];
-    //[self insertChild:cross1 atIndex:75];
-
-    cross2 = [self makeCrosshair:[ApplicationModel sharedModel].player2];
-    cross2.position = CGPointMake(500, 500);
+    
+    cross2 = [self makeCrosshair:2];
     [self addChild:cross2];
+    
+    egg1 = [self makeHudSprite:@"egg1"];
+    egg1.position = NSMakePoint((model.screenSize/2) - egg1.size.width, model.screenSize - egg1.size.height + 40);
+    [egg1 setScale:0.5];
+    [self addChild:egg1];
+    
+    egg2 = [self makeHudSprite:@"egg2"];
+    egg2.position = NSMakePoint((model.screenSize/2) + 15, model.screenSize - egg2.size.height + 40);
+    [egg2 setScale:0.5];
+    [self addChild:egg2];
 
-    // TODO : ADD HUD
+    shell1 = [self makeHudSprite:@"shell1"];
+    shell1.position = NSMakePoint(20, model.screenSize - 80);
+    [shell1 setScale:0.8];
+    [self addChild:shell1];
+    
+    shell2 = [self makeHudSprite:@"shell2"];
+    shell2.position = NSMakePoint(model.screenSize - shell2.size.width, model.screenSize - 80);
+    [shell2 setScale:0.8];
+    [self addChild:shell2];
+
+    eggLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+    eggLabel1.position = NSMakePoint(egg1.position.x + 25, egg1.position.y + 15);
+    eggLabel1.zPosition = 12;
+    [self addChild:eggLabel1];
+    
+    eggLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+    eggLabel2.position = NSMakePoint(egg2.position.x + 25, egg2.position.y + 15);
+    eggLabel2.zPosition = 12;
+    [self addChild:eggLabel2];
+    
+    shellLabel1 = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+    shellLabel1.position = NSMakePoint(shell1.position.x + 45, shell1.position.y + 8);
+    shellLabel1.zPosition = 12;
+    [self addChild:shellLabel1];
+
+    shellLabel2 = [SKLabelNode labelNodeWithFontNamed:@"Arial Black"];
+    shellLabel2.position = NSMakePoint(shell2.position.x + 40, shell2.position.y + 8);
+    shellLabel2.zPosition = 12;
+    [self addChild:shellLabel2];
+    
+    background = [[Background alloc] init];
+    [background setSize:self.size];
+    background.position = CGPointMake(0, 0);
+    background.zPosition = 0;
+    [self addChild:background];
 }
+
+-(void)startGame:(NSDictionary *)gameData
+{
+    [self setPaused:NO];
+    gameManager.gameSkill  = [[gameData valueForKey:@"difficulty"] integerValue];
+    gameManager.gameRounds = [[gameData valueForKey:@"roundCount"] integerValue];
+    gameManager.gameAmmo   = [[gameData valueForKey:@"roundAmmo"] integerValue];
+    
+    [eggLabel1 setText:@"0"];
+    [eggLabel2 setText:@"0"];
+    
+    [shellLabel1 setText:@""];
+    [shellLabel2 setText:@""];
+    
+    [gameManager startGame];
+}
+
+-(void)stopGame
+{
+    [self setPaused:YES];
+    
+    [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
+        duckNode = (Duck*)node;
+        [duckNode removeAllActions];
+        [duckNode removeFromParent];
+    }];
+}
+
+#pragma mark - Event Handlers
 
 
 -(void)handleHideCalibration:(NSNotification*)notification
@@ -110,10 +196,10 @@
     [self addChild:calib];
 }
 
--(void)handleUserMove:(NSNotification*)notification
+#pragma mark - PlayerGameDelegate Implementation
+
+-(void)playerMove:(PlayerController*)player
 {
-    PlayerController *player = [notification.object objectForKey:@"player"];
-    
     if( player.index == 1 )
     {
         cross1.position = player.location;
@@ -124,12 +210,22 @@
     }
 }
 
--(void)handleShot:(NSNotification*)notification
+-(void)playerTrigger:(PlayerController*)player
 {
-    //[self miss:[[notification.userInfo objectForKey:@"point"] pointValue]];
-    //NSPoint point = [[notification.userInfo objectForKey:@"point"] pointValue];
+    if( !gameManager.active || player.ammo <= 0 )
+    {
+        return;
+    }
+        
+    player.ammo--;
+    [shellLabel1 setText:[NSString stringWithFormat:@"%ld", (long)[ApplicationModel sharedModel].player1.ammo]];
+    [shellLabel2 setText:[NSString stringWithFormat:@"%ld", (long)[ApplicationModel sharedModel].player2.ammo]];
     
-    PlayerController *player = [notification.object objectForKey:@"player"];
+    NSString *path = [NSString stringWithFormat:@"%@/shotRifle.mp3", [[NSBundle mainBundle] resourcePath]];
+    NSURL *soundUrl = [NSURL fileURLWithPath:path];
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+    [audioPlayer play];
+
     NSPoint point = player.location;
     
     [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -139,32 +235,52 @@
         {
             if( [duck containsPoint:[duck convertPoint:point toNode:duck]] )
             {
-                [self player:player hit:duck];
+                [self hit:duck byPlayer:player];
                 *stop = YES;
-                return;
             }
         }
     }];
     
     [self miss:point];
+    
+    if( [ApplicationModel sharedModel].player1.ammo <= 0 && [ApplicationModel sharedModel].player2.ammo <= 0)
+    {
+        [self gameTimeout];
+        [gameManager finishRound];
+    }
 }
 
--(void)roundTimeout
+#pragma mark - GameDelegate Implementation
+
+-(void)gameTimeout
 {
+    __block BOOL audio = YES;
+    
     [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
         Duck *duck = (Duck*)node;
         
         if( !duck.isShot )
         {
+            if(audio)
+            {
+                [gameManager playFile:@"dogLaugh.wav" withCompletion:nil];
+            }
+            audio = NO;
             [duck flyAway];
         }
     }];
 }
 
-
--(void)spawnDuck:(NSNotification*)notification
+- (void) gameRoundStart
 {
-    NSInteger duckType = [notification.object integerValue];
+    duckCount = 0;
+    [shellLabel1 setText:[NSString stringWithFormat:@"%ld", (long)[ApplicationModel sharedModel].player1.ammo]];
+    [shellLabel2 setText:[NSString stringWithFormat:@"%ld", (long)[ApplicationModel sharedModel].player2.ammo]];
+}
+
+-(void)gameSpawn:(DuckType)duckType
+{
+    duckCount++;
     Duck *duck = [[Duck alloc] initWithType:duckType];
     duck.anchorPoint = CGPointMake(0.5,0.5);
     
@@ -193,7 +309,7 @@
             break;
     }
     
-    duck.zPosition = 10;
+    duck.zPosition = 15;
     [self addChild:duck];
     
     [self updateFlight:duck];
@@ -203,6 +319,8 @@
         [duck setLat:duck.lat lng:duck.lng];
     }
 }
+
+#pragma mark - Class Methods
 
 -(void)miss:(CGPoint)position
 {
@@ -220,9 +338,15 @@
     }];
 }
 
--(void)player:(PlayerController*)player hit:(Duck*)duck
+-(void)hit:(Duck*)duck byPlayer:(PlayerController*)player
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:player.spriteBang ofType:@"sks"];
+    duckCount--;
+    player.kills++;
+    
+    [eggLabel1 setText:[NSString stringWithFormat:@"%ld", (long)[ApplicationModel sharedModel].player1.kills]];
+    [eggLabel2 setText:[NSString stringWithFormat:@"%ld", (long)[ApplicationModel sharedModel].player2.kills]];
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"hit%ld",(long)player.index] ofType:@"sks"];
     SKEmitterNode *node = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     [node setPosition:duck.position];
     node.zPosition = 25;
@@ -233,8 +357,14 @@
     
     [duck shoot];
     [node runAction:[SKAction sequence:@[wait,fade]] completion:^{
+        [node removeAllActions];
         [node removeFromParent];
     }];
+    
+    if( duckCount == 0 )
+    {
+        [gameManager finishRound];
+    }
 }
 
 -(void)didSimulatePhysics
@@ -276,13 +406,22 @@
         [duck setLat:newLat lng:newLng];
 }
 
-- (SKSpriteNode *)makeCrosshair:(PlayerController*)player
+- (SKSpriteNode *)makeCrosshair:(NSInteger)index
 {
-    SKSpriteNode *crosshair = [SKSpriteNode spriteNodeWithImageNamed:[player spriteCross]];
+    SKSpriteNode *crosshair = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"cross%ld", (long)index]];
     [crosshair setAnchorPoint:CGPointMake(0.5, 0.5)];
     [crosshair setSize:CGSizeMake(50.0, 50.0)];
     crosshair.zPosition = 75;
     return crosshair;
 }
+
+- (SKSpriteNode *)makeHudSprite:(NSString*)spriteName
+{
+    SKSpriteNode *spriteNode = [SKSpriteNode spriteNodeWithImageNamed:spriteName];
+    [spriteNode setAnchorPoint:CGPointMake(0.0, 0.0)];
+    spriteNode.zPosition = 11;
+    return spriteNode;
+}
+
 
 @end

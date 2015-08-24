@@ -16,6 +16,9 @@
     ApplicationModel *model;
     
     NSTimer *roundTimer;
+    
+    void (^comp)(void);
+    AVAudioPlayer *audioPlayer;
 }
 
 + (id)sharedManager {
@@ -32,14 +35,13 @@
     if (self = [super init])
     {
         model = [ApplicationModel sharedModel];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleShot:) name:@"handleShot" object:nil];
     }
     return self;
 }
 
--(void)dealloc
+-(BOOL)active
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"handleShot" object:nil];
+    return [roundTimer isValid];
 }
 
 -(BOOL)complete
@@ -64,12 +66,19 @@
 -(void)startGame
 {
     self.currentRound = 0;
-    [self startRound];
+    model.player1.kills = 0;
+    model.player2.kills = 0;
+
+    [self playFile:@"musicStartGame.mp3" withCompletion:^{
+        [self startRound];
+    }];
 }
 
 -(void)stopGame
 {
-    
+    [self playFile:@"musicGameOver.mp3" withCompletion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"stopGame" object:nil];
+    }];
 }
 
 -(void)startRound
@@ -78,10 +87,23 @@
     model.player1.ammo = self.gameAmmo;
     model.player2.ammo = self.gameAmmo;
     
+    if( self.gameDelegate )
+    {
+        [self.gameDelegate gameRoundStart];
+    }
     
-    // Play Music
-    [self spawn];
-    [self startTimer];
+    if( self.currentRound > 1 )
+    {
+        [self playFile:@"musicNextRound.mp3" withCompletion:^{
+            [self spawn];
+            [self startTimer];
+        }];
+    }
+    else
+    {
+        [self spawn];
+        [self startTimer];
+    }
 }
 
 -(void)endRound
@@ -101,7 +123,7 @@
 
 -(void)spawn
 {
-    NSInteger randMax = MIN(self.gameSkill,2);
+    NSInteger randMax = MIN(self.gameSkill+1,2);
     NSInteger duckCount = self.gameSkill+2;
     
     if( self.currentRound / self.gameRounds > .3 && self.gameSkill > 2)
@@ -122,8 +144,10 @@
     
     for( int i = 1; i < duckCount; i++ )
     {
-        NSNumber *duckType = [NSNumber numberWithInteger:(arc4random() % randMax)+1];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"spawnDuck" object:duckType];
+        if( self.gameDelegate )
+        {
+            [self.gameDelegate gameSpawn:(arc4random() % randMax)+1];
+        }
     }
 }
 
@@ -154,19 +178,49 @@
     }
 }
 
--(void)handleShot:(NSNotification*)notification
+-(void)finishRound
 {
-    if( model.player1.ammo == 0 && model.player2.ammo == 0)
-    {
-        [self handleTimer];
-    }
+    [self stopTimer];
+    [self performSelector:@selector(endRound) withObject:nil afterDelay:4.0];
 }
 
 -(void)handleTimer
 {
     [self stopTimer];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"roundTimeout" object:nil];
     [self performSelector:@selector(endRound) withObject:nil afterDelay:4.0];
+    
+    if( self.gameDelegate )
+    {
+        [self.gameDelegate gameTimeout];
+    }
+}
+
+#pragma mark - Audio handling
+
+-(void)playFile:(NSString*)fileName withCompletion:(void (^)(void))completion
+{
+    comp = completion;
+    NSString *path = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], fileName];
+    NSURL *soundUrl = [NSURL fileURLWithPath:path];
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+    [audioPlayer setDelegate:self];
+    [audioPlayer play];
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if( comp )
+    {
+        comp();
+    }
+}
+
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+    if( comp )
+    {
+        comp();
+    }
 }
 
 @end

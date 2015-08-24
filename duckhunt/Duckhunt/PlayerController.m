@@ -36,23 +36,11 @@
     [_wiimote setMotionSensorEnabled:NO];
     [_wiimote setLEDEnabled1:_index==1 enabled2:_index==1 enabled3:_index==2 enabled4:_index==2];
 
-    if( self.delegate)
+    if( self.adminDelegate)
     {
-        [self.delegate playerConnect:self];
+        [self.adminDelegate playerConnect:self];
     }
 }
-
-#pragma mark - Sprite Handling
--(NSString*)spriteBang
-{
-    return self.index == 1 ? @"hit1" : @"hit4";
-}
-
--(NSString*)spriteCross
-{
-    return self.index == 1 ? @"cross1" : @"cross4";
-}
-
 
 #pragma mark - WiiRemote delegate
 
@@ -67,16 +55,13 @@
     sensitivity = (sensitivity+1) / 5;
     _location = NSMakePoint(((px+1)*sensitivity*model.screenSize), ((py+1)*sensitivity*model.screenSize));
     
-    if( px == -100 && py == -100 )
-    {
-        return;
-    }
-    
     NSPoint offset = self.index == 1 ? model.props.playerOffset1 : model.props.playerOffset2;
     _location = NSMakePoint(_location.x + offset.x, _location.y + offset.y);
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"userMove" object:@{@"player":self}];
-    //NSLog(@"%f : %f", _location.x, _location.y);
+    if( self.gameDelegate )
+    {
+        [self.gameDelegate playerMove:self];
+    }
 }
 
 - (void) rawIRData: (IRData[4]) irData{}
@@ -85,15 +70,9 @@
 {
     if( type == WiiRemoteBButton && isPressed )
     {
-        if( self.ammo > 0 )
+        if( self.gameDelegate )
         {
-            self.ammo--;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"handleShot" object:@{@"player":self}];
-            if( self.delegate )
-            {
-                //[self.delegate playerShot:self];
-                //[[NSNotificationCenter defaultCenter] postNotificationName:@"handleArenaShot" object:nil];
-            }
+            [self.gameDelegate playerTrigger:self];
         }
     }
 }
@@ -105,17 +84,17 @@
 - (void) batteryLevelChanged:(double) level
 {
     _level = level;
-    if( self.delegate )
+    if( self.adminDelegate )
     {
-        [self.delegate playerBattery:self];
+        [self.adminDelegate playerBattery:self];
     }
 }
 - (void) wiiRemoteDisconnected:(IOBluetoothDevice*) device
 {
     _wiimote = nil;
-    if( self.delegate )
+    if( self.adminDelegate )
     {
-        [self.delegate playerDisconnect:self];
+        [self.adminDelegate playerDisconnect:self];
     }
 }
 

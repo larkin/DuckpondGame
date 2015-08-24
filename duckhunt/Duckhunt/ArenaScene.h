@@ -7,9 +7,14 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "GameManager.h"
+#import "PlayerController.h"
 
-@interface ArenaScene : SKScene
+@interface ArenaScene : SKScene<GameDelegate, PlayerGameDelegate>
 
 @property BOOL contentCreated;
+
+-(void)startGame:(NSDictionary*)gameData;
+-(void)stopGame;
 
 @end

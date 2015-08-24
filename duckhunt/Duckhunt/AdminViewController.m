@@ -33,10 +33,9 @@
     [super viewDidLoad];
     
     model = [ApplicationModel sharedModel];
-    model.player1.delegate = self;
-    model.player2.delegate = self;
+    model.player1.adminDelegate = self;
+    model.player2.adminDelegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleTimeout:) name:@"playerTimout" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleDefaults:) name:@"defaultsLoaded" object:nil];
 }
 
@@ -74,7 +73,6 @@
 - (IBAction)handleGameSpeed:(id)sender
 {
     CGFloat value = 1.1 - [(NSSlider*)sender floatValue];
-    NSLog(@"Value %f", value);
     [model.props setGameSpeed:value];
 }
 
@@ -345,7 +343,7 @@
     }
 }
 
--(void)handleTimeout:(NSNotification*)notification
+-(void)playerTimeout:(PlayerController *)player
 {
     self.p1Connect.enabled = !model.player1.connected;
     self.p2Connect.enabled = !model.player2.connected;

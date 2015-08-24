@@ -13,16 +13,9 @@
 
 @interface ApplicationModel : NSObject
 
-typedef NS_ENUM(NSInteger, AppState) {
-    LobbyState,
-    ArenaState,
-    CalibrationState
-};
-
 @property (nonatomic) NSInteger screenOffset;
 @property (nonatomic) NSInteger screenSize;
 
-@property (nonatomic) AppState appState;
 @property (nonatomic) CGSize captureSize;
 @property (nonatomic) NSArray *duckTextures;
 @property (nonatomic) NSArray *calibrationPoints;

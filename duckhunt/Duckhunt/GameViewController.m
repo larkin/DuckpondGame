@@ -8,15 +8,12 @@
 
 #import "GameViewController.h"
 #import "ArenaScene.h"
-#import "LobbyScene.h"
 #import "ApplicationModel.h"
-#import "GameManager.h"
 
 @implementation GameViewController
 {
     SKView *spriteView;
     ArenaScene *arenaScene;
-    LobbyScene *lobbyScene;
 }
 
 - (void)viewDidLoad {
@@ -25,38 +22,41 @@
 
     spriteView = (SKView *)self.view;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startGame:) name:@"startGame" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopGame) name:@"endGame" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartGame:) name:@"startGame" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStopGame) name:@"stopGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFPS) name:@"toggleFPS" object:nil];
 }
 
 -(void)viewWillAppear
 {
-    [self showLobby];
+    arenaScene = [[ArenaScene alloc] initWithSize:self.view.frame.size];
+    arenaScene.scaleMode = SKSceneScaleModeAspectFill;
+    [spriteView presentScene:arenaScene];
+    //SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
+    //[spriteView presentScene:arenaScene transition:transition];
+    
+    [self.lobbyImage setFrame:NSMakeRect(0, 0, [ApplicationModel sharedModel].screenSize, [ApplicationModel sharedModel].screenSize)];
+    //self.lobbyImage.alphaValue = 0.0;
 }
+
+
+
 
 - (void)setRepresentedObject:(id)representedObject
 {
     [super setRepresentedObject:representedObject];
 }
 
--(void)startGame:(NSNotification*)notification
+-(void)handleStartGame:(NSNotification*)notification
 {
     [self showArena];
-    NSDictionary *gameData = notification.object;
-    GameManager *manager = [GameManager sharedManager];
-    
-    manager.gameSkill  = [[gameData valueForKey:@"difficulty"] integerValue];
-    manager.gameRounds = [[gameData valueForKey:@"roundCount"] integerValue];
-    manager.gameAmmo   = [[gameData valueForKey:@"roundAmmo"] integerValue];
-    
-    [manager startGame];
+    [arenaScene startGame:notification.object];
 }
 
--(void)stopGame
+-(void)handleStopGame
 {
-    
+    [self showLobby];
+    [arenaScene stopGame];
 }
 
 -(void)toggleFPS
@@ -68,30 +68,26 @@
 
 -(void)showArena
 {
-    [ApplicationModel sharedModel].appState = ArenaState;
-    arenaScene = [[ArenaScene alloc] initWithSize:self.view.frame.size];
-    arenaScene.scaleMode = SKSceneScaleModeAspectFill;
-    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
-    [spriteView presentScene:arenaScene transition:transition];
+    CGRect newFrame = self.lobbyImage.frame;
+    newFrame.origin.y = -newFrame.size.height;
+    
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:2.0];
+    [[NSAnimationContext currentContext] setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [[self.lobbyImage animator] setFrame:newFrame];
+    [NSAnimationContext endGrouping];
 }
 
 -(void)showLobby
 {
-    [ApplicationModel sharedModel].appState = LobbyState;
-    lobbyScene = [[LobbyScene alloc] initWithSize:self.view.frame.size];
-    lobbyScene.scaleMode = SKSceneScaleModeAspectFill;
-    SKTransition *transition = [SKTransition revealWithDirection:SKTransitionDirectionUp duration:1.0];
-    [spriteView presentScene:lobbyScene transition:transition];
+    CGRect newFrame = self.lobbyImage.frame;
+    newFrame.origin.y = 0;
     
-    if( arenaScene.parent )
-    {
-        [arenaScene setPaused:YES];
-        
-        [arenaScene removeAllActions];
-        [arenaScene removeAllChildren];
-        [arenaScene removeFromParent];
-        arenaScene = nil;
-    }
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:1.0];
+    [[NSAnimationContext currentContext] setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [[self.lobbyImage animator] setFrame:newFrame];
+    [NSAnimationContext endGrouping];
 }
 
 @end
