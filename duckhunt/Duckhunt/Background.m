@@ -7,7 +7,7 @@
 //
 
 #import "Background.h"
-#import "ApplicationModel.h"
+#import "PropertiesManager.h"
 
 @implementation Background
 {
@@ -42,7 +42,7 @@
 
 -(void)createSceneContents
 {
-    ApplicationModel *model = [ApplicationModel sharedModel];
+    PropertiesManager *props = [PropertiesManager sharedManager];
     
     cloud1 = [self createCloud:1];
     cloud2 = [self createCloud:2];
@@ -50,7 +50,7 @@
     cloud4 = [self createCloud:4];
     
     foreground = [SKSpriteNode spriteNodeWithImageNamed:@"foreground"];
-    [foreground setSize:CGSizeMake(model.screenSize, foreground.size.height*(model.screenSize/foreground.size.width))];
+    [foreground setSize:CGSizeMake(props.screenSize, foreground.size.height*(props.screenSize/foreground.size.width))];
     foreground.anchorPoint = NSMakePoint(0,0);
     foreground.position = NSMakePoint(0,0);
     foreground.zPosition = 10;
@@ -59,16 +59,17 @@
 
 -(void)animateCloud:(SKSpriteNode*)cloud
 {
-    ApplicationModel *model = [ApplicationModel sharedModel];
+    PropertiesManager *props = [PropertiesManager sharedManager];
+    
     //[cloud removeAllActions];
     
     int moveDir = (arc4random() % 30)+1;
     int cloudDir = (arc4random() % 30)+1;
     CGFloat cloudSpeed = (arc4random()%3)+2;
     
-    CGFloat startY = (model.screenSize-250.0) + (arc4random() % 200) + 1.0;
-    CGFloat startX = moveDir % 2 == 0 ?  model.screenSize + cloud.size.width : -cloud.size.width;
-    CGFloat endX = moveDir % 2 == 0 ? -cloud.size.width : model.screenSize + cloud.size.width;
+    CGFloat startY = (props.screenSize-250.0) + (arc4random() % 200) + 1.0;
+    CGFloat startX = moveDir % 2 == 0 ?  props.screenSize + cloud.size.width : -cloud.size.width;
+    CGFloat endX = moveDir % 2 == 0 ? -cloud.size.width : props.screenSize + cloud.size.width;
     
     CGFloat cloudScale = ((arc4random()%20)+40.0)/100.0;
     cloud.xScale = cloudDir % 2 == 0 ? cloudScale : -cloudScale;

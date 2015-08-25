@@ -7,9 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ApplicationModel.h"
+#import "PropertiesManager.h"
 
-//26W7GEHNHA.com.ata.*
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -24,7 +23,8 @@
 -(void)openGameWindow
 {
     NSScreen *targetScreen;
-    ApplicationModel *model = [ApplicationModel sharedModel];
+    PropertiesManager *props = [PropertiesManager sharedManager];
+    
     for(targetScreen in [NSScreen screens])
     {
         //NSLog(@"%f : %f", targetScreen.frame.size.width, targetScreen.frame.size.height);
@@ -34,19 +34,18 @@
         }
     }
     
+    
     targetScreen = [[NSScreen screens] objectAtIndex:[NSScreen screens].count-1];
-    model.screenSize = targetScreen.frame.size.height;
-    model.screenOffset = targetScreen.frame.origin.x + (targetScreen.frame.size.width - model.screenSize)/2;
+    props.screenSize = targetScreen.frame.size.height;
+    props.screenOffset = targetScreen.frame.origin.x + (targetScreen.frame.size.width - props.screenSize)/2;
     
     NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     self.gameWindow = [storyBoard instantiateControllerWithIdentifier:@"GameWindow"];
-    [self.gameWindow.window setFrame:CGRectMake(model.screenOffset, 0, model.screenSize, model.screenSize) display:YES];
+    [self.gameWindow.window setFrame:CGRectMake(props.screenOffset, 0, props.screenSize, props.screenSize) display:YES];
     [self.gameWindow showWindow:self];
    
-//#ifdef RELEASE
     [self.gameWindow.window setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
     [self.gameWindow.window toggleFullScreen:self];
-//#endif
 }
 
 @end

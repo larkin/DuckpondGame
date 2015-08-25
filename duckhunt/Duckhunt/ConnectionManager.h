@@ -10,7 +10,7 @@
 #import <WiiRemote/WiiRemote.h>
 #import "PlayerController.h"
 
-@interface PlayerManager : NSObject
+@interface ConnectionManager : NSObject
 
 + (instancetype)sharedManager;
 

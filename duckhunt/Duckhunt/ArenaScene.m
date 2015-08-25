@@ -10,6 +10,7 @@
 
 #import "ArenaScene.h"
 #import "ApplicationModel.h"
+#import "PropertiesManager.h"
 #import "Background.h"
 #import "Duck.h"
 
@@ -87,7 +88,7 @@
 
 -(void)createContents
 {
-    ApplicationModel *model = [ApplicationModel sharedModel];
+    PropertiesManager *props = [PropertiesManager sharedManager];
     self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
@@ -98,22 +99,22 @@
     [self addChild:cross2];
     
     egg1 = [self makeHudSprite:@"egg1"];
-    egg1.position = NSMakePoint((model.screenSize/2) - egg1.size.width, model.screenSize - egg1.size.height + 40);
+    egg1.position = NSMakePoint((props.screenSize/2) - egg1.size.width, props.screenSize - egg1.size.height + 40);
     [egg1 setScale:0.5];
     [self addChild:egg1];
     
     egg2 = [self makeHudSprite:@"egg2"];
-    egg2.position = NSMakePoint((model.screenSize/2) + 15, model.screenSize - egg2.size.height + 40);
+    egg2.position = NSMakePoint((props.screenSize/2) + 15, props.screenSize - egg2.size.height + 40);
     [egg2 setScale:0.5];
     [self addChild:egg2];
 
     shell1 = [self makeHudSprite:@"shell1"];
-    shell1.position = NSMakePoint(20, model.screenSize - 80);
+    shell1.position = NSMakePoint(20, props.screenSize - 80);
     [shell1 setScale:0.8];
     [self addChild:shell1];
     
     shell2 = [self makeHudSprite:@"shell2"];
-    shell2.position = NSMakePoint(model.screenSize - shell2.size.width, model.screenSize - 80);
+    shell2.position = NSMakePoint(props.screenSize - shell2.size.width, props.screenSize - 80);
     [shell2 setScale:0.8];
     [self addChild:shell2];
 
@@ -191,7 +192,7 @@
     calib = [SKSpriteNode spriteNodeWithImageNamed:@"target"];
     [calib setAnchorPoint:CGPointMake(0.5, 0.5)];
     [calib setSize:CGSizeMake(100, 100)];
-    calib.position = CGPointMake([ApplicationModel sharedModel].screenSize/2, [ApplicationModel sharedModel].screenSize/2);
+    calib.position = CGPointMake([PropertiesManager sharedManager].screenSize/2, [PropertiesManager sharedManager].screenSize/2);
     calib.zPosition = 49;
     
     [self addChild:calib];

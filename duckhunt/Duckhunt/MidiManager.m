@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Joe Andolina. All rights reserved.
 //
 
+#import <CoreMIDI/CoreMIDI.h>
 
 #import "MidiManager.h"
 #import "PGMidi.h"
+#import "ConnectionManager.h"
 
 @implementation MidiManager
 {
@@ -86,6 +88,8 @@
     int i = packet->data[2];
     NSLog( @"int %d", i);
     
+    //[[PlayerManager sharedManager] connectPlayer:model.player1];
+    
     // Note - this is not an example of MIDI parsing. I'm just dumping
     // some bytes for diagnostics.
     // See comments in PGMidiSourceDelegate for an example of how to
@@ -109,15 +113,17 @@
         NSLog(@"Packet: %@", [self stringFromPacket:packet]);
         packet = MIDIPacketNext(packet);
     }
+    
+    [self sendMidiDataInBackground];
 }
 
 -(void)sendMidiDataInBackground
 {
-    const UInt8 note      = 0x20;
-    const UInt8 noteOn[]  = { 0x90, note, 0 };
+    const UInt8 note      = 0x29;
+    const UInt8 noteOn[]  = { 0xbf, note, 0x7f };
     const UInt8 noteOff[] = { 0x80, note, 0 };
-        
-    //[midi sendBytes:noteOn size:sizeof(noteOn)];
+    
+    [midi sendBytes:noteOn size:sizeof(noteOn)];
     //[NSThread sleepForTimeInterval:0.5];
     //[midi sendBytes:noteOff size:sizeof(noteOff)];
 }

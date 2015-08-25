@@ -13,8 +13,8 @@
 		200C83891AE5B1750069A828 /* DuckhuntTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C83881AE5B1750069A828 /* DuckhuntTests.m */; };
 		202EF0B61B20246E00B543D0 /* WiiRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202EF0B51B20246E00B543D0 /* WiiRemote.framework */; };
 		202EF0B91B2035EE00B543D0 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0B81B2035EE00B543D0 /* PlayerController.m */; };
-		202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0BC1B203B4F00B543D0 /* PlayerManager.m */; };
-		204739C11B87C63400949A5E /* Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 204739C01B87C63400949A5E /* Properties.m */; };
+		202EF0BD1B203B4F00B543D0 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0BC1B203B4F00B543D0 /* ConnectionManager.m */; };
+		204739C11B87C63400949A5E /* PropertiesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 204739C01B87C63400949A5E /* PropertiesManager.m */; };
 		204739C71B87FF5000949A5E /* hit1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739C61B87FF5000949A5E /* hit1.sks */; };
 		204739CD1B88023600949A5E /* hit2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 204739CC1B88023600949A5E /* hit2.sks */; };
 		204F66821AE8B2E7008B323C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 204F66801AE8B2E7008B323C /* spark.png */; };
@@ -97,10 +97,10 @@
 		202EF0B51B20246E00B543D0 /* WiiRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WiiRemote.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Duckhunt-hkgxpndupwsyifavmbtssgsryzxs/Build/Products/Debug/WiiRemote.framework"; sourceTree = "<group>"; };
 		202EF0B71B2035EE00B543D0 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		202EF0B81B2035EE00B543D0 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
-		202EF0BB1B203B4F00B543D0 /* PlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerManager.h; sourceTree = "<group>"; };
-		202EF0BC1B203B4F00B543D0 /* PlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerManager.m; sourceTree = "<group>"; };
-		204739BF1B87C63400949A5E /* Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Properties.h; sourceTree = "<group>"; };
-		204739C01B87C63400949A5E /* Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Properties.m; sourceTree = "<group>"; };
+		202EF0BB1B203B4F00B543D0 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		202EF0BC1B203B4F00B543D0 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
+		204739BF1B87C63400949A5E /* PropertiesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertiesManager.h; sourceTree = "<group>"; };
+		204739C01B87C63400949A5E /* PropertiesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertiesManager.m; sourceTree = "<group>"; };
 		204739C61B87FF5000949A5E /* hit1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit1.sks; sourceTree = "<group>"; };
 		204739CC1B88023600949A5E /* hit2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hit2.sks; sourceTree = "<group>"; };
 		204F66801AE8B2E7008B323C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -255,12 +255,14 @@
 		202EF0BA1B203B0700B543D0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				202EF0BB1B203B4F00B543D0 /* PlayerManager.h */,
-				202EF0BC1B203B4F00B543D0 /* PlayerManager.m */,
+				202EF0BB1B203B4F00B543D0 /* ConnectionManager.h */,
+				202EF0BC1B203B4F00B543D0 /* ConnectionManager.m */,
 				20DAC1751B8991940052AB22 /* GameManager.h */,
 				20DAC1761B8991940052AB22 /* GameManager.m */,
 				205F23691B8BC338003E8E4C /* MidiManager.h */,
 				205F236A1B8BC338003E8E4C /* MidiManager.m */,
+				204739BF1B87C63400949A5E /* PropertiesManager.h */,
+				204739C01B87C63400949A5E /* PropertiesManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -309,8 +311,6 @@
 			children = (
 				206B36951AE5CDB9009ACB9F /* ApplicationModel.h */,
 				206B36961AE5CDB9009ACB9F /* ApplicationModel.m */,
-				204739BF1B87C63400949A5E /* Properties.h */,
-				204739C01B87C63400949A5E /* Properties.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -558,9 +558,9 @@
 				206B369A1AE5CE11009ACB9F /* Duck.m in Sources */,
 				205F23761B8BCEE6003E8E4C /* PGMidiAllSources.mm in Sources */,
 				206B36911AE5BF8D009ACB9F /* AdminViewController.m in Sources */,
-				202EF0BD1B203B4F00B543D0 /* PlayerManager.m in Sources */,
+				202EF0BD1B203B4F00B543D0 /* ConnectionManager.m in Sources */,
 				2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */,
-				204739C11B87C63400949A5E /* Properties.m in Sources */,
+				204739C11B87C63400949A5E /* PropertiesManager.m in Sources */,
 				206B36971AE5CDB9009ACB9F /* ApplicationModel.m in Sources */,
 				206B36AF1AE5F70E009ACB9F /* Background.m in Sources */,
 				20DAC1771B8991940052AB22 /* GameManager.m in Sources */,

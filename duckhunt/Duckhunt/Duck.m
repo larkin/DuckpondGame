@@ -10,7 +10,7 @@
 
 #import "Duck.h"
 #import "ApplicationModel.h"
-#import "Properties.h"
+#import "PropertiesManager.h"
 
 #define kDuckWidth  86.0
 #define kDuckHeight 75.0
@@ -25,7 +25,8 @@
     SKEmitterNode *trail;
     
     NSInteger direction;
-    Properties *props;
+    ApplicationModel *model;
+    PropertiesManager *props;
     
     SKAction *flap;
     SKAction *move;
@@ -51,14 +52,15 @@
 
 -(id)initWithType:(DuckType)duckType
 {
-    ApplicationModel *model = [ApplicationModel sharedModel];
     self = [super initWithColor:[NSColor clearColor] size:CGSizeMake(kDuckWidth, kDuckHeight)];
     
     if( self )
     {
         [self setName:@"duck"];
         [self setDuckType:duckType];
-        props = model.props;
+        
+        model = [ApplicationModel sharedModel];
+        props = [PropertiesManager sharedManager];
         
         switch( duckType )
         {
@@ -90,6 +92,9 @@
 
 -(void)dealloc
 {
+    model = nil;
+    props = nil;
+    
     [self removeAllActions];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"gameScaleChanged" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"duckSpeedChanged" object:nil];
@@ -101,10 +106,11 @@
 
 -(void)handleScale:(NSNotification*)notification
 {
-    [self setScale:props.gameScale];
+    self.xScale = self.xScale < 0 ? -props.gameScale : props.gameScale;
+    self.yScale = props.gameScale;
 }
 
--(void)handleSpeed:(NSNotification*)notification
+-(id)handleSpeed:(NSNotification*)notification
 {
     NSInteger value = [notification.object integerValue];
     
@@ -234,7 +240,7 @@
 
 -(void)flyN
 {
-    flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"climb"] timePerFrame:0.2];
+    flap = [SKAction animateWithTextures:[model textures:self.duckType action:@"climb"] timePerFrame:0.2];
     move = [SKAction moveBy:CGVectorMake(props.gameGlitch * direction, props.gameGlitch) duration:props.gameSpeed];
     move.timingMode = SKActionTimingLinear;
     
@@ -250,7 +256,7 @@
 
 -(void)flyE
 {
-    flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.2];
+    flap = [SKAction animateWithTextures:[model textures:self.duckType action:@"fly"] timePerFrame:0.2];
     move = [SKAction moveBy:CGVectorMake(props.gameGlitch * direction, 0) duration:props.gameSpeed];
     move.timingMode = SKActionTimingLinear;
     
@@ -267,7 +273,7 @@
 
 -(void)flyS
 {
-    flap = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fly"] timePerFrame:0.2];
+    flap = [SKAction animateWithTextures:[model textures:self.duckType action:@"fly"] timePerFrame:0.2];
     move = [SKAction moveBy:CGVectorMake(props.gameGlitch * direction, -props.gameGlitch) duration:props.gameSpeed];
     move.timingMode = SKActionTimingLinear;
     
@@ -293,9 +299,9 @@
     SKEmitterNode *node = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     [node setPosition:CGPointMake(0, self.size.height-30)];
        
-    [self setTexture:[[ApplicationModel sharedModel]texture:self.duckType action:@"shot"]];
+    [self setTexture:[model texture:self.duckType action:@"shot"]];
     SKAction *delay = [SKAction waitForDuration:0.6];
-    SKAction *spin = [SKAction animateWithTextures:[[ApplicationModel sharedModel]textures:self.duckType action:@"fall"] timePerFrame:0.1 ];
+    SKAction *spin = [SKAction animateWithTextures:[model textures:self.duckType action:@"fall"] timePerFrame:0.1 ];
     SKAction *fall = [SKAction repeatActionForever:spin];
     move = [SKAction moveToY:-25.0 duration:self.position.y/720];
     move.timingMode = SKActionTimingEaseIn;

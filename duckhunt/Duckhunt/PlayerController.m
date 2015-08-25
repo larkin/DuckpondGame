@@ -7,7 +7,8 @@
 //
 
 #import "PlayerController.h"
-#import "ApplicationModel.h"
+//#import "ApplicationModel.h"
+#import "PropertiesManager.h"
 
 @implementation PlayerController
 
@@ -49,13 +50,13 @@
 
 - (void) irPointMovedX:(float) px Y:(float) py
 {
-    ApplicationModel *model = [ApplicationModel sharedModel];
+    PropertiesManager *props = [PropertiesManager sharedManager];
     
-    CGFloat sensitivity = self.index == 1 ? model.props.playerSensitivity1 : model.props.playerSensitivity2;
+    CGFloat sensitivity = self.index == 1 ? props.playerSensitivity1 : props.playerSensitivity2;
     sensitivity = (sensitivity+1) / 5;
-    _location = NSMakePoint(((px+1)*sensitivity*model.screenSize), ((py+1)*sensitivity*model.screenSize));
+    _location = NSMakePoint(((px+1)*sensitivity*props.screenSize), ((py+1)*sensitivity*props.screenSize));
     
-    NSPoint offset = self.index == 1 ? model.props.playerOffset1 : model.props.playerOffset2;
+    NSPoint offset = self.index == 1 ? props.playerOffset1 : props.playerOffset2;
     _location = NSMakePoint(_location.x + offset.x, _location.y + offset.y);
     
     if( self.gameDelegate )

@@ -8,10 +8,12 @@
 
 #import "GameManager.h"
 #import "ApplicationModel.h"
+#import "PropertiesManager.h"
 #import "PlayerController.h"
 
 @implementation GameManager
 {
+    BOOL stopped;
     CGFloat roundTime;
     ApplicationModel *model;
     
@@ -54,7 +56,7 @@
     _gameAmmo = gameAmmo+2;
     if( gameAmmo == 4 )
     {
-        _gameAmmo = 200;
+        _gameAmmo = 99;
     }
 }
 
@@ -65,6 +67,7 @@
 
 -(void)startGame
 {
+    stopped = NO;
     self.currentRound = 0;
     model.player1.kills = 0;
     model.player2.kills = 0;
@@ -78,10 +81,16 @@
 -(void)stopGame
 {
     [self stopTimer];
+    stopped = YES;
 }
 
 -(void)startRound
 {
+    if( stopped )
+    {
+        return;
+    }
+    
     self.currentRound++;
     model.player1.ammo = self.gameAmmo;
     model.player2.ammo = self.gameAmmo;
@@ -123,6 +132,11 @@
 
 -(void)spawn
 {
+    if( stopped )
+    {
+        return;
+    }
+    
     NSInteger randMax = MIN(self.gameSkill+1,2);
     NSInteger duckCount = self.gameSkill+2;
     
@@ -153,7 +167,7 @@
 
 -(void)startTimer
 {
-    roundTime = 20 / (self.gameSkill+1);
+    roundTime = [PropertiesManager sharedManager].gameTime / (self.gameSkill+1.0);
     
     if( self.currentRound / self.gameRounds > .5 )
     {

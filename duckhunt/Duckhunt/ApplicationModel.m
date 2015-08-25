@@ -26,12 +26,11 @@
 {
     if (self = [super init])
     {
-        self.props = [[Properties alloc] init];
         [self loadTextures];
         self.player1 = [[PlayerController alloc] initPlayer:1];
         self.player2 = [[PlayerController alloc] initPlayer:2];
         
-        self.midiManager = [MidiManager sharedManager];
+        //self.midiManager = [MidiManager sharedManager];
     }
     return self;
 }

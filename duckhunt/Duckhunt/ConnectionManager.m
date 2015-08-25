@@ -7,10 +7,10 @@
 //
 #import <WiiRemote/WiiRemoteDiscovery.h>
 
-#import "PlayerManager.h"
+#import "ConnectionManager.h"
 #import "ApplicationModel.h"
 
-@implementation PlayerManager
+@implementation ConnectionManager
 {
     NSTimer *timeout;
     PlayerController *currentPlayer;
@@ -18,7 +18,7 @@
 }
 
 + (id)sharedManager {
-    static PlayerManager *sharedManager = nil;
+    static ConnectionManager *sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedManager = [[self alloc] init];

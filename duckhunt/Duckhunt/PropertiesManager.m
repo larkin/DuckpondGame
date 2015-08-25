@@ -6,11 +6,20 @@
 //  Copyright (c) 2015 Joe Andolina. All rights reserved.
 //
 
-#import "Properties.h"
+#import "PropertiesManager.h"
 
-@implementation Properties
+@implementation PropertiesManager
 {
     NSString *propsKey;
+}
+
++ (id)sharedManager {
+    static PropertiesManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[self alloc] init];
+    });
+    return sharedManager;
 }
 
 -(id)init
@@ -31,6 +40,7 @@
     self.gameGlitch = 50;
     self.gameScale = 1.0;
     self.gameSpeed = 0.4;
+    self.gameTime  = 20.0;
     
     self.duck1Speed = 0.75;
     self.duck1Min   = 1.50;
@@ -72,6 +82,7 @@
     self.gameGlitch = [[appDefaults valueForKey:@"gameGlitch"] floatValue];
     self.gameScale = [[appDefaults valueForKey:@"gameScale"] floatValue];
     self.gameSpeed = [[appDefaults valueForKey:@"gameSpeed"] floatValue];
+    self.gameTime = [[appDefaults valueForKey:@"gameTime"] floatValue];
     
     self.duck1Speed = [[appDefaults valueForKey:@"duck1Speed"] floatValue];
     self.duck1Min   = [[appDefaults valueForKey:@"duck1Min"] floatValue];
@@ -106,6 +117,7 @@
     [appDefaults setValue:[NSNumber numberWithFloat:self.gameGlitch] forKey:@"gameGlitch"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.gameScale] forKey:@"gameScale"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.gameSpeed] forKey:@"gameSpeed"];
+    [appDefaults setValue:[NSNumber numberWithFloat:self.gameTime] forKey:@"gameTime"];
     
     [appDefaults setValue:[NSNumber numberWithFloat:self.duck1Speed] forKey:@"duck1Speed"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.duck1Min] forKey:@"duck1Min"];
@@ -135,7 +147,6 @@
 -(void)duckDistance:(CGFloat)distance
 {
     _gameGlitch = distance;
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"gameGlitchChanged" object:nil];
 }
 
 -(void)setGameScale:(CGFloat)scale
@@ -148,7 +159,6 @@
 -(void)duckSpeed:(CGFloat)speed
 {
     _gameSpeed = speed;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"gameSpeedChanged" object:nil];
 }
 
 -(void)setDuck1Max:(CGFloat)max

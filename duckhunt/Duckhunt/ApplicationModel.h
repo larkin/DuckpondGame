@@ -8,27 +8,16 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <Foundation/Foundation.h>
-#import "MidiManager.h"
 #import "PlayerController.h"
-#import "Properties.h"
 
 @interface ApplicationModel : NSObject
 
-@property (nonatomic) NSInteger screenOffset;
-@property (nonatomic) NSInteger screenSize;
+@property (nonatomic) BOOL running;
 
-@property (nonatomic) CGSize captureSize;
 @property (nonatomic) NSArray *duckTextures;
-@property (nonatomic) NSArray *calibrationPoints;
-
-@property (nonatomic) MidiManager *midiManager;
-@property (nonatomic) Properties *props;
 
 @property (nonatomic) PlayerController* player1;
 @property (nonatomic) PlayerController* player2;
-
-
-@property (nonatomic) NSInteger currentRound;
 
 + (instancetype)sharedModel;
 

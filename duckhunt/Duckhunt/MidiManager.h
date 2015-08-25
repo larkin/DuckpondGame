@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreMIDI/CoreMIDI.h>
+//#import <CoreMIDI/CoreMIDI.h>
 #import "PGMidi.h"
 
 @interface MidiManager : NSObject<PGMidiDelegate, PGMidiSourceDelegate>

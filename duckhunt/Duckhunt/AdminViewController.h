@@ -9,11 +9,9 @@
 #import <Cocoa/Cocoa.h>
 #import "PlayerController.h"
 
-@interface AdminViewController : NSViewController<NSTabViewDelegate,PlayerAdminDelegate>
+@interface AdminViewController : NSViewController<PlayerAdminDelegate>
 
-@property (weak) IBOutlet NSButton *addButton;
 @property (weak) IBOutlet NSButton *goButton;
-@property (weak) IBOutlet NSButton *stopButton;
 
 // Player 1
 @property (weak) IBOutlet NSButton *p1Connect;
@@ -25,6 +23,7 @@
 @property (weak) IBOutlet NSButton *p1Reset;
 @property (weak) IBOutlet NSSegmentedControl *p1Sensitivity;
 
+
 // PLayer 2
 @property (weak) IBOutlet NSButton *p2Connect;
 @property (weak) IBOutlet NSButton *p2Calibrate;
@@ -35,10 +34,12 @@
 @property (weak) IBOutlet NSButton *p2Reset;
 @property (weak) IBOutlet NSSegmentedControl *p2Sensitivity;
 
+
 // Gmeplay
 @property (weak) IBOutlet NSSlider *gameScale;
 @property (weak) IBOutlet NSSlider *gameSpeed;
 @property (weak) IBOutlet NSSlider *gameGlitch;
+@property (weak) IBOutlet NSSlider *gameTime;
 
 @property (weak) IBOutlet NSSegmentedControl *gameSkill;
 @property (weak) IBOutlet NSSegmentedControl *gameRounds;
