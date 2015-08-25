@@ -726,6 +726,9 @@
                                             <buttonCell key="cell" type="square" title="START" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nMi-ts-gBT">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system" size="22"/>
+                                                <string key="keyEquivalent" base64-UTF8="YES">
+IA
+</string>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="handleGo:" target="ePe-Ov-yCE" id="ne6-FE-jNp"/>
@@ -737,6 +740,8 @@
                                             <buttonCell key="cell" type="square" title="Load Defaults" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Wuw-1e-iLz">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system" size="22"/>
+                                                <string key="keyEquivalent">l</string>
+                                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="resetOptions:" target="ePe-Ov-yCE" id="0oZ-Ov-EW2"/>
@@ -748,6 +753,7 @@
                                             <buttonCell key="cell" type="square" title="Player 1" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEx-rN-83Y">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system" size="22"/>
+                                                <string key="keyEquivalent">1</string>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="handleP1Search:" target="ePe-Ov-yCE" id="I83-PY-G4Y"/>
@@ -759,6 +765,7 @@
                                             <buttonCell key="cell" type="square" title="Player 2" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gi8-RN-Wrm">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system" size="22"/>
+                                                <string key="keyEquivalent">2</string>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="handleP2Search:" target="ePe-Ov-yCE" id="wz7-w2-1Ec"/>
@@ -780,11 +787,58 @@
                                             <buttonCell key="cell" type="square" title="Save Settings" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uyK-mz-SaR">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system" size="22"/>
+                                                <string key="keyEquivalent">s</string>
+                                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="saveOptions:" target="ePe-Ov-yCE" id="9hK-eE-Nbg"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="2fI-fk-8xS">
+                                            <rect key="frame" x="802" y="20" width="42" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="space" id="c8w-vb-1oC">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="EtO-zJ-bIB">
+                                            <rect key="frame" x="617" y="20" width="12" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2" id="o09-VG-74d">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8N3-8q-kF4">
+                                            <rect key="frame" x="431" y="20" width="12" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1" id="0eW-FI-i74">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="N8p-f4-2yc">
+                                            <rect key="frame" x="20" y="20" width="56" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="cmd+l" id="VT4-WC-Lfe">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="YoZ-RQ-GEm">
+                                            <rect key="frame" x="201" y="20" width="56" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="cmd+s" id="6Rq-Ff-98v">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

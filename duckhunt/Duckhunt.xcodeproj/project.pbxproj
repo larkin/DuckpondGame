@@ -34,7 +34,6 @@
 		206B369F1AE5CFBA009ACB9F /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */; };
 		206B36A31AE5D2B3009ACB9F /* ArenaScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36A21AE5D2B3009ACB9F /* ArenaScene.m */; };
 		206B36AF1AE5F70E009ACB9F /* Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36AE1AE5F70E009ACB9F /* Background.m */; };
-		2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2088F01B1AFB35AE00A4AFC5 /* ImageMask.m */; };
 		20D7037F1AE767A000DDD7F1 /* Duck1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D7037E1AE767A000DDD7F1 /* Duck1.atlas */; };
 		20D703821AE76B0800DDD7F1 /* Duck2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D703801AE76B0800DDD7F1 /* Duck2.atlas */; };
 		20D703831AE76B0800DDD7F1 /* Duck3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 20D703811AE76B0800DDD7F1 /* Duck3.atlas */; };
@@ -129,8 +128,6 @@
 		206B36A21AE5D2B3009ACB9F /* ArenaScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArenaScene.m; sourceTree = "<group>"; };
 		206B36AD1AE5F70E009ACB9F /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		206B36AE1AE5F70E009ACB9F /* Background.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Background.m; sourceTree = "<group>"; };
-		2088F01A1AFB35AE00A4AFC5 /* ImageMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMask.h; sourceTree = "<group>"; };
-		2088F01B1AFB35AE00A4AFC5 /* ImageMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMask.m; sourceTree = "<group>"; };
 		20D7037E1AE767A000DDD7F1 /* Duck1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck1.atlas; sourceTree = "<group>"; };
 		20D703801AE76B0800DDD7F1 /* Duck2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck2.atlas; sourceTree = "<group>"; };
 		20D703811AE76B0800DDD7F1 /* Duck3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Duck3.atlas; sourceTree = "<group>"; };
@@ -348,8 +345,6 @@
 			isa = PBXGroup;
 			children = (
 				205F236C1B8BCEE6003E8E4C /* PGMidi */,
-				2088F01A1AFB35AE00A4AFC5 /* ImageMask.h */,
-				2088F01B1AFB35AE00A4AFC5 /* ImageMask.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -559,7 +554,6 @@
 				205F23761B8BCEE6003E8E4C /* PGMidiAllSources.mm in Sources */,
 				206B36911AE5BF8D009ACB9F /* AdminViewController.m in Sources */,
 				202EF0BD1B203B4F00B543D0 /* ConnectionManager.m in Sources */,
-				2088F01C1AFB35AE00A4AFC5 /* ImageMask.m in Sources */,
 				204739C11B87C63400949A5E /* PropertiesManager.m in Sources */,
 				206B36971AE5CDB9009ACB9F /* ApplicationModel.m in Sources */,
 				206B36AF1AE5F70E009ACB9F /* Background.m in Sources */,

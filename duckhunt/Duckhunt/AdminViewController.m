@@ -214,6 +214,11 @@
 
 - (IBAction)handleP1Search:(id)sender
 {
+    if( searching )
+    {
+        return;
+    }
+    
     self.p1Connect.enabled = NO;
     self.p2Connect.enabled = NO;
     
@@ -224,6 +229,11 @@
 
 - (IBAction)handleP2Search:(id)sender
 {
+    if( searching )
+    {
+        return;
+    }
+    
     self.p1Connect.enabled = NO;
     self.p2Connect.enabled = NO;
     
