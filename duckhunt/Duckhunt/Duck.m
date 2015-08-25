@@ -90,6 +90,7 @@
 
 -(void)dealloc
 {
+    [self removeAllActions];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"gameScaleChanged" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"duckSpeedChanged" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"duckMinChanged" object:nil];
@@ -301,6 +302,12 @@
 
     [self runAction:delay completion:^{
         [self addChild:node];
+        
+        NSString *path = [NSString stringWithFormat:@"%@/duckFall.wav", [[NSBundle mainBundle] resourcePath]];
+        NSURL *soundUrl = [NSURL fileURLWithPath:path];
+        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+        [audioPlayer play];
+        
         [self runAction:[SKAction group:@[fall, move]] completion:^{
             [node removeFromParent];
             [self removeFromParent];

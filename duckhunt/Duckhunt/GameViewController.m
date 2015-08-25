@@ -24,6 +24,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartGame:) name:@"startGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStopGame) name:@"stopGame" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEndGame) name:@"endGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggleFPS) name:@"toggleFPS" object:nil];
 }
 
@@ -51,6 +52,11 @@
 {
     [self showArena];
     [arenaScene startGame:notification.object];
+}
+
+-(void)handleEndGame
+{
+    [self showLobby];
 }
 
 -(void)handleStopGame

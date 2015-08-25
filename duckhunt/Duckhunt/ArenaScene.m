@@ -163,6 +163,7 @@
 -(void)stopGame
 {
     [self setPaused:YES];
+    [gameManager stopGame];
     
     [self enumerateChildNodesWithName:@"duck" usingBlock:^(SKNode *node, BOOL *stop) {
         duckNode = (Duck*)node;

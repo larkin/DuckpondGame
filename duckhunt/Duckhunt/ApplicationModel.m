@@ -30,6 +30,8 @@
         [self loadTextures];
         self.player1 = [[PlayerController alloc] initPlayer:1];
         self.player2 = [[PlayerController alloc] initPlayer:2];
+        
+        self.midiManager = [MidiManager sharedManager];
     }
     return self;
 }

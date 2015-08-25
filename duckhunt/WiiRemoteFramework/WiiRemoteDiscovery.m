@@ -114,7 +114,6 @@
 	[_inquiry release];
 	_inquiry = nil;
 	
-	NSLogDebug (@"Discovery closed");
 	return ret;
 }
 

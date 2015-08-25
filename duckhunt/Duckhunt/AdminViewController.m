@@ -46,11 +46,6 @@
     [self handleDefaults:nil];
 }
 
-- (IBAction)handleAdd:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"spawnDuck" object:nil];
-}
-
 #pragma mark - Gameplay Options
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {

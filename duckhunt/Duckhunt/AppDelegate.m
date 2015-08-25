@@ -9,15 +9,7 @@
 #import "AppDelegate.h"
 #import "ApplicationModel.h"
 
-/*
- Calibrate
- Crosshair 
- Rounds optional number and length
- Shots optional per round
- Birds optional per round
- Hits and misses in color
-  */
-
+//26W7GEHNHA.com.ata.*
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification

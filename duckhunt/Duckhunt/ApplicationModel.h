@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import <Foundation/Foundation.h>
+#import "MidiManager.h"
 #import "PlayerController.h"
 #import "Properties.h"
 
@@ -20,6 +21,7 @@
 @property (nonatomic) NSArray *duckTextures;
 @property (nonatomic) NSArray *calibrationPoints;
 
+@property (nonatomic) MidiManager *midiManager;
 @property (nonatomic) Properties *props;
 
 @property (nonatomic) PlayerController* player1;

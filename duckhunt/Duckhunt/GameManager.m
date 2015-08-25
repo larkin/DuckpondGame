@@ -74,11 +74,10 @@
     }];
 }
 
+// stopGame is called when the admin stops gameplay prior to all the rounds being played.
 -(void)stopGame
 {
-    [self playFile:@"musicGameOver.mp3" withCompletion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"stopGame" object:nil];
-    }];
+    [self stopTimer];
 }
 
 -(void)startRound
@@ -112,8 +111,9 @@
     
     if( [self complete] )
     {
-        // Show Winner
-        [self stopGame];
+        [self playFile:@"musicGameOver.mp3" withCompletion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"endGame" object:nil];
+        }];
     }
     else
     {

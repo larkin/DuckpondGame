@@ -924,24 +924,13 @@
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
-                                                <button verticalHuggingPriority="750" id="pPE-72-2hV">
-                                                    <rect key="frame" x="672" y="-439" width="66" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="s18-GA-c4X">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="handleAdd:" target="ePe-Ov-yCE" id="yyP-NI-EAq"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rEN-p5-p9w">
                                                     <rect key="frame" x="17" y="-432" width="377" height="427"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="PoorDuck" id="qTX-od-e1V"/>
                                                 </imageView>
                                                 <button verticalHuggingPriority="750" id="8LZ-6w-hxb">
-                                                    <rect key="frame" x="606" y="-439" width="66" height="32"/>
+                                                    <rect key="frame" x="901" y="121" width="66" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="push" title="FPS" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0al-DB-IWc">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1226,14 +1215,6 @@
                                                                     <action selector="handleP2Sensitivity:" target="ePe-Ov-yCE" id="xee-ee-2Db"/>
                                                                 </connections>
                                                             </segmentedControl>
-                                                            <slider verticalHuggingPriority="750" id="DZc-HR-iI8">
-                                                                <rect key="frame" x="48" y="160" width="264" height="26"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" tickMarkPosition="above" numberOfTickMarks="21" sliderType="linear" id="Nbf-zK-hAH"/>
-                                                                <connections>
-                                                                    <action selector="handleP2OffestX:" target="ePe-Ov-yCE" id="PDr-F9-fGb"/>
-                                                                </connections>
-                                                            </slider>
                                                             <slider horizontalHuggingPriority="750" id="gOA-cl-0xY">
                                                                 <rect key="frame" x="18" y="11" width="26" height="325"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1262,6 +1243,14 @@
                                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                 </textFieldCell>
                                                             </textField>
+                                                            <slider verticalHuggingPriority="750" id="DZc-HR-iI8">
+                                                                <rect key="frame" x="48" y="160" width="264" height="26"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                <sliderCell key="cell" continuous="YES" enabled="NO" state="on" alignment="left" minValue="-1000" maxValue="1000" tickMarkPosition="above" numberOfTickMarks="21" sliderType="linear" id="Nbf-zK-hAH"/>
+                                                                <connections>
+                                                                    <action selector="handleP2OffestX:" target="ePe-Ov-yCE" id="PDr-F9-fGb"/>
+                                                                </connections>
+                                                            </slider>
                                                         </subviews>
                                                     </view>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -1342,10 +1331,19 @@
                                                     <color key="fillColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 </box>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="E78-qW-zuz">
-                                                    <rect key="frame" x="84" y="24" width="535" height="34"/>
+                                                    <rect key="frame" x="15" y="40" width="535" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Power OFF controllers before connecting!" id="485-vT-7r5">
-                                                        <font key="font" size="28" name="HelveticaNeue"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1) Power OFF controller before connecting." id="485-vT-7r5">
+                                                        <font key="font" size="16" name="HelveticaNeue"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="AKN-2S-S0V">
+                                                    <rect key="frame" x="15" y="11" width="535" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="2) Hold the 1 &amp; 2 buttons until connected or timeout." id="A5b-3p-9wq">
+                                                        <font key="font" size="16" name="HelveticaNeue"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1361,7 +1359,6 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="pPE-72-2hV" id="LVC-UY-Uax"/>
                         <outlet property="duck1Max" destination="CUH-6U-JSP" id="Wvw-Rd-y5t"/>
                         <outlet property="duck1Min" destination="tmZ-ga-At5" id="AT2-BL-wcl"/>
                         <outlet property="duck1Speed" destination="bRc-QN-8K2" id="6zQ-kH-hB9"/>
