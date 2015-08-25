@@ -14,7 +14,7 @@
 
 @property BOOL contentCreated;
 
--(void)startGame:(NSDictionary*)gameData;
+-(void)startGame;
 -(void)stopGame;
 
 @end

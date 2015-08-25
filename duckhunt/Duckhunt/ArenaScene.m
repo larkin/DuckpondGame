@@ -22,13 +22,13 @@
     BOOL lastMiss;
     
     Background *background;
+    GameManager *gameManager;
     
     Duck *duckNode;
     DuckLat newLat;
     DuckLng newLng;
     
     NSInteger duckCount;
-    GameManager *gameManager;
     
     SKSpriteNode *calib;
     SKSpriteNode *cross1;
@@ -145,18 +145,33 @@
     [self addChild:background];
 }
 
--(void)startGame:(NSDictionary *)gameData
+-(void)startGame
 {
     [self setPaused:NO];
-    gameManager.gameSkill  = [[gameData valueForKey:@"difficulty"] integerValue];
-    gameManager.gameRounds = [[gameData valueForKey:@"roundCount"] integerValue];
-    gameManager.gameAmmo   = [[gameData valueForKey:@"roundAmmo"] integerValue];
     
     [eggLabel1 setText:@"0"];
     [eggLabel2 setText:@"0"];
     
     [shellLabel1 setText:@""];
     [shellLabel2 setText:@""];
+    
+    if([PropertiesManager sharedManager].gameScene == 0)
+    {
+        self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
+    }
+    if([PropertiesManager sharedManager].gameScene == 1)
+    {
+        self.backgroundColor = [SKColor colorWithCalibratedRed:94.0/255.0 green:204.0/255.0 blue:236.0/255.0 alpha:1.0];
+    }
+    if([PropertiesManager sharedManager].gameScene == 2)
+    {
+        self.backgroundColor = [SKColor colorWithCalibratedRed:50.0/255.0 green:50.0/255.0 blue:100.0/255.0 alpha:1.0];
+    }
+    if([PropertiesManager sharedManager].gameScene == 3)
+    {
+        self.backgroundColor = [SKColor colorWithCalibratedRed:40.0/255.0 green:100.0/255.0 blue:170.0/255.0 alpha:1.0];
+    }
+    [background  updateScene];
     
     [gameManager startGame];
 }
@@ -424,6 +439,5 @@
     spriteNode.zPosition = 11;
     return spriteNode;
 }
-
 
 @end

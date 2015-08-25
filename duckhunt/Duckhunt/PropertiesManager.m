@@ -37,6 +37,11 @@
 
 -(void)resetDefaults
 {
+    self.gameSkill = 0;
+    self.gameRounds = 1;
+    self.gameAmmo = 1;
+    self.gameScene = 0;
+    
     self.gameGlitch = 50;
     self.gameScale = 1.0;
     self.gameSpeed = 0.4;
@@ -79,10 +84,15 @@
         appDefaults  = [[NSUserDefaults standardUserDefaults] dictionaryForKey:propsKey];
     }
     
+    self.gameSkill  = [[appDefaults valueForKey:@"gameSkill"] integerValue];
+    self.gameRounds = [[appDefaults valueForKey:@"gameRounds"] integerValue];
+    self.gameAmmo   = [[appDefaults valueForKey:@"gameAmmo"] integerValue];
+    self.gameScene  = [[appDefaults valueForKey:@"gameScene"] integerValue];
+    
     self.gameGlitch = [[appDefaults valueForKey:@"gameGlitch"] floatValue];
-    self.gameScale = [[appDefaults valueForKey:@"gameScale"] floatValue];
-    self.gameSpeed = [[appDefaults valueForKey:@"gameSpeed"] floatValue];
-    self.gameTime = [[appDefaults valueForKey:@"gameTime"] floatValue];
+    self.gameScale  = [[appDefaults valueForKey:@"gameScale"] floatValue];
+    self.gameSpeed  = [[appDefaults valueForKey:@"gameSpeed"] floatValue];
+    self.gameTime   = [[appDefaults valueForKey:@"gameTime"] floatValue];
     
     self.duck1Speed = [[appDefaults valueForKey:@"duck1Speed"] floatValue];
     self.duck1Min   = [[appDefaults valueForKey:@"duck1Min"] floatValue];
@@ -113,6 +123,11 @@
 -(void)saveDefaults
 {
     NSMutableDictionary *appDefaults = [[NSMutableDictionary alloc] init];
+    
+    [appDefaults setValue:[NSNumber numberWithInteger:self.gameSkill] forKey:@"gameSkill"];
+    [appDefaults setValue:[NSNumber numberWithInteger:self.gameRounds] forKey:@"gameRounds"];
+    [appDefaults setValue:[NSNumber numberWithInteger:self.gameAmmo] forKey:@"gameAmmo"];
+    [appDefaults setValue:[NSNumber numberWithInteger:self.gameScene] forKey:@"gameScene"];
     
     [appDefaults setValue:[NSNumber numberWithFloat:self.gameGlitch] forKey:@"gameGlitch"];
     [appDefaults setValue:[NSNumber numberWithFloat:self.gameScale] forKey:@"gameScale"];

@@ -16,7 +16,6 @@
 // Player 1
 @property (weak) IBOutlet NSButton *p1Connect;
 @property (weak) IBOutlet NSButton *p1Calibrate;
-@property (weak) IBOutlet NSProgressIndicator *p1Progress;
 @property (weak) IBOutlet NSLevelIndicator *p1Battery;
 @property (weak) IBOutlet NSSlider *p1SliderX;
 @property (weak) IBOutlet NSSlider *p1SliderY;
@@ -27,7 +26,6 @@
 // PLayer 2
 @property (weak) IBOutlet NSButton *p2Connect;
 @property (weak) IBOutlet NSButton *p2Calibrate;
-@property (weak) IBOutlet NSProgressIndicator *p2Progress;
 @property (weak) IBOutlet NSLevelIndicator *p2Battery;
 @property (weak) IBOutlet NSSlider *p2SliderX;
 @property (weak) IBOutlet NSSlider *p2SliderY;
@@ -41,6 +39,7 @@
 @property (weak) IBOutlet NSSlider *gameGlitch;
 @property (weak) IBOutlet NSSlider *gameTime;
 
+@property (weak) IBOutlet NSSegmentedControl *gameScene;
 @property (weak) IBOutlet NSSegmentedControl *gameSkill;
 @property (weak) IBOutlet NSSegmentedControl *gameRounds;
 @property (weak) IBOutlet NSSegmentedControl *gameAmmo;

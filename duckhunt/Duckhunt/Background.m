@@ -16,6 +16,8 @@
     SKSpriteNode *cloud3;
     SKSpriteNode *cloud4;
     SKSpriteNode *foreground;
+    
+    NSInteger lastScene;
 }
 
 
@@ -25,6 +27,7 @@
     
     if( self )
     {
+        lastScene = -1;
         [self createSceneContents];
     }
     
@@ -42,14 +45,30 @@
 
 -(void)createSceneContents
 {
-    PropertiesManager *props = [PropertiesManager sharedManager];
-    
     cloud1 = [self createCloud:1];
     cloud2 = [self createCloud:2];
     cloud3 = [self createCloud:3];
     cloud4 = [self createCloud:4];
+    [self updateScene];
+}
+
+-(void)updateScene
+{
+    PropertiesManager *props = [PropertiesManager sharedManager];
     
-    foreground = [SKSpriteNode spriteNodeWithImageNamed:@"foreground"];
+    if( lastScene == props.gameScene )
+    {
+        return;
+    }
+    
+    if( foreground && foreground.parent )
+    {
+        [foreground removeFromParent];
+        foreground = nil;
+    }
+    
+    lastScene = props.gameScene;
+    foreground = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"foreground%ld", lastScene+1]];
     [foreground setSize:CGSizeMake(props.screenSize, foreground.size.height*(props.screenSize/foreground.size.width))];
     foreground.anchorPoint = NSMakePoint(0,0);
     foreground.position = NSMakePoint(0,0);

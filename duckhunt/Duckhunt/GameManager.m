@@ -15,7 +15,7 @@
 {
     BOOL stopped;
     CGFloat roundTime;
-    ApplicationModel *model;
+    PropertiesManager *props;
     
     NSTimer *roundTimer;
     
@@ -36,7 +36,7 @@
 {
     if (self = [super init])
     {
-        model = [ApplicationModel sharedModel];
+        props = [PropertiesManager sharedManager];
     }
     return self;
 }
@@ -48,29 +48,20 @@
 
 -(BOOL)complete
 {
-    return self.currentRound == self.gameRounds;
+    return self.currentRound == [self numberOfRounds];
 }
 
--(void)setGameAmmo:(NSInteger)gameAmmo
+-(NSInteger)numberOfRounds
 {
-    _gameAmmo = gameAmmo+2;
-    if( gameAmmo == 4 )
-    {
-        _gameAmmo = 99;
-    }
-}
-
--(void)setGameRounds:(NSInteger)gameRounds
-{
-    _gameRounds = (gameRounds+1) * 5;
+    return (props.gameRounds+1)*5;
 }
 
 -(void)startGame
 {
     stopped = NO;
     self.currentRound = 0;
-    model.player1.kills = 0;
-    model.player2.kills = 0;
+    [ApplicationModel sharedModel].player1.kills = 0;
+    [ApplicationModel sharedModel].player2.kills = 0;
 
     [self playFile:@"musicStartGame.mp3" withCompletion:^{
         [self startRound];
@@ -92,8 +83,15 @@
     }
     
     self.currentRound++;
-    model.player1.ammo = self.gameAmmo;
-    model.player2.ammo = self.gameAmmo;
+    
+    NSInteger ammo = props.gameAmmo+2;
+    if( ammo == 4 )
+    {
+        ammo = 99;
+    }
+    
+    [ApplicationModel sharedModel].player1.ammo = ammo;
+    [ApplicationModel sharedModel].player2.ammo = ammo;
     
     if( self.gameDelegate )
     {
@@ -137,21 +135,21 @@
         return;
     }
     
-    NSInteger randMax = MIN(self.gameSkill+1,2);
-    NSInteger duckCount = self.gameSkill+2;
+    NSInteger randMax = MIN(props.gameSkill+1,2);
+    NSInteger duckCount = props.gameSkill+2;
     
-    if( self.currentRound / self.gameRounds > .3 && self.gameSkill > 2)
+    if( self.currentRound / [self numberOfRounds] > .3 && props.gameSkill > 2)
     {
         duckCount++;
     }
 
-    if( self.currentRound / self.gameRounds > .5)
+    if( self.currentRound / [self numberOfRounds] > .5)
     {
         randMax = MIN(randMax+1,2);
         duckCount++;
     }
     
-    if( self.currentRound / self.gameRounds > .75)
+    if( self.currentRound / [self numberOfRounds] > .75)
     {
         duckCount++;
     }
@@ -167,14 +165,14 @@
 
 -(void)startTimer
 {
-    roundTime = [PropertiesManager sharedManager].gameTime / (self.gameSkill+1.0);
+    roundTime = [PropertiesManager sharedManager].gameTime / (props.gameSkill+1.0);
     
-    if( self.currentRound / self.gameRounds > .5 )
+    if( self.currentRound / [self numberOfRounds] > .5 )
     {
         roundTime--;
     }
     
-    if( self.currentRound / self.gameRounds > .75 )
+    if( self.currentRound / [self numberOfRounds] > .75 )
     {
         roundTime--;
     }

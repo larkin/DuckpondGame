@@ -10,11 +10,13 @@
 #import "ConnectionManager.h"
 
 #import "ApplicationModel.h"
+#import "GameManager.h"
 #import "PropertiesManager.h"
 
 @implementation AdminViewController
 {
     BOOL gameOn;
+    BOOL searching;
     
     CGPoint p1;
     CGPoint p2;
@@ -72,6 +74,26 @@
     [props setGameTime:[(NSSlider*)sender floatValue]];
 }
 
+- (IBAction)handleScene:(id)sender
+{
+    [props setGameScene:[(NSSegmentedControl*)sender selectedSegment]];
+}
+
+- (IBAction)handleSkill:(id)sender
+{
+    [props setGameSkill:[(NSSegmentedControl*)sender selectedSegment]];
+}
+
+- (IBAction)handleAmmo:(id)sender
+{
+    [props setGameAmmo:[(NSSegmentedControl*)sender selectedSegment]];
+}
+
+- (IBAction)handleRounds:(id)sender
+{
+    [props setGameRounds:[(NSSegmentedControl*)sender selectedSegment]];
+}
+
 -(void)handleEndGame
 {
     gameOn = NO;
@@ -90,12 +112,7 @@
     {
         gameOn = YES;
         [self.goButton setTitle:@"STOP"];
-        
-        NSDictionary *gameData = @{@"difficulty":[NSNumber numberWithInteger:self.gameSkill.selectedSegment],
-                                   @"roundCount":[NSNumber numberWithInteger:self.gameRounds.selectedSegment],
-                                   @"roundAmmo":[NSNumber numberWithInteger:self.gameAmmo.selectedSegment]};
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"startGame" object:gameData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"startGame" object:nil];
     }
 }
 
@@ -200,7 +217,8 @@
     self.p1Connect.enabled = NO;
     self.p2Connect.enabled = NO;
     
-    [self.p1Progress startAnimation:self];
+    searching = YES;
+    [self playerSearchAnimation:self.p1Battery];
     [[ConnectionManager sharedManager] connectPlayer:model.player1];
 }
 
@@ -209,8 +227,20 @@
     self.p1Connect.enabled = NO;
     self.p2Connect.enabled = NO;
     
-    [self.p2Progress startAnimation:self];
+    searching = YES;
+    [self playerSearchAnimation:self.p2Battery];
     [[ConnectionManager sharedManager] connectPlayer:model.player2];
+}
+
+-(void)playerSearchAnimation:(NSLevelIndicator*)indicator
+{
+    if( !searching )
+    {
+        return;
+    }
+    
+    [indicator setDoubleValue:indicator.doubleValue == 0 ? 10.0 : 0.0];
+    [self performSelector:@selector(playerSearchAnimation:) withObject:indicator afterDelay:0.25];
 }
 
 #pragma mark - Duck Options
@@ -277,6 +307,12 @@
     [self.p2SliderY setFloatValue:props.playerOffset2.y];
 
     // Gmeplay
+    
+    [self.gameAmmo setSelected:YES forSegment:props.gameAmmo];
+    [self.gameRounds setSelected:YES forSegment:props.gameRounds];
+    [self.gameSkill setSelected:YES forSegment:props.gameSkill];
+    [self.gameScene setSelected:YES forSegment:props.gameScene];
+
     [self.gameScale setFloatValue:props.gameScale];
     [self.gameSpeed setFloatValue:props.gameSpeed];
     [self.gameGlitch setFloatValue:props.gameGlitch];
@@ -308,7 +344,6 @@
         self.p1Reset.enabled = YES;
         self.p1Calibrate.enabled = YES;
         self.p1Sensitivity.enabled = YES;
-        [self.p1Progress stopAnimation:self];
     }
     else
     {
@@ -318,7 +353,6 @@
         self.p2Reset.enabled = YES;
         self.p2Calibrate.enabled = YES;
         self.p2Sensitivity.enabled = YES;
-        [self.p2Progress stopAnimation:self];
     }
 }
 
@@ -350,15 +384,23 @@
 
 -(void)playerTimeout:(PlayerController *)player
 {
+    searching = NO;
     self.p1Connect.enabled = !model.player1.connected;
     self.p2Connect.enabled = !model.player2.connected;
     
-    [self.p1Progress stopAnimation:self];
-    [self.p2Progress stopAnimation:self];
+    if( player.index == 1 )
+    {
+        [self.p1Battery setDoubleValue:0.0];
+    }
+    else
+    {
+        [self.p2Battery setDoubleValue:0.0];
+    }
 }
 
 -(void)playerBattery:(PlayerController*)player
 {
+    searching = NO;
     if( player.index == 1 )
     {
         [self.p1Battery setDoubleValue:model.player1.level * 10.0];

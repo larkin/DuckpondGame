@@ -22,7 +22,7 @@
 
     spriteView = (SKView *)self.view;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartGame:) name:@"startGame" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartGame) name:@"startGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStopGame) name:@"stopGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEndGame) name:@"endGame" object:nil];
 }
@@ -41,10 +41,19 @@
     [super setRepresentedObject:representedObject];
 }
 
--(void)handleStartGame:(NSNotification*)notification
+-(void)handleStartGame
 {
-    [self showArena];
-    [arenaScene startGame:notification.object];
+    CGRect newFrame = self.lobbyImage.frame;
+    newFrame.origin.y = -newFrame.size.height;
+    
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:2.0];
+    [[NSAnimationContext currentContext] setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    [[self.lobbyImage animator] setFrame:newFrame];
+    [[NSAnimationContext currentContext] setCompletionHandler:^{
+        [arenaScene startGame];
+    }];
+    [NSAnimationContext endGrouping];
 }
 
 -(void)handleEndGame
@@ -56,18 +65,6 @@
 {
     [self showLobby];
     [arenaScene stopGame];
-}
-
--(void)showArena
-{
-    CGRect newFrame = self.lobbyImage.frame;
-    newFrame.origin.y = -newFrame.size.height;
-    
-    [NSAnimationContext beginGrouping];
-    [[NSAnimationContext currentContext] setDuration:2.0];
-    [[NSAnimationContext currentContext] setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    [[self.lobbyImage animator] setFrame:newFrame];
-    [NSAnimationContext endGrouping];
 }
 
 -(void)showLobby

@@ -13,6 +13,11 @@
 @property (nonatomic) NSInteger screenOffset;
 @property (nonatomic) CGFloat screenSize;
 
+@property (nonatomic) NSInteger gameSkill;
+@property (nonatomic) NSInteger gameRounds;
+@property (nonatomic) NSInteger gameAmmo;
+@property (nonatomic) NSInteger gameScene;
+
 @property (nonatomic) CGFloat gameGlitch;
 @property (nonatomic) CGFloat gameScale;
 @property (nonatomic) CGFloat gameSpeed;

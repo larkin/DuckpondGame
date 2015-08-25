@@ -27,13 +27,11 @@
     
     for(targetScreen in [NSScreen screens])
     {
-        //NSLog(@"%f : %f", targetScreen.frame.size.width, targetScreen.frame.size.height);
         if( targetScreen != [NSScreen mainScreen] )
         {
-        //    break;
+            break;
         }
     }
-    
     
     targetScreen = [[NSScreen screens] objectAtIndex:[NSScreen screens].count-1];
     props.screenSize = targetScreen.frame.size.height;

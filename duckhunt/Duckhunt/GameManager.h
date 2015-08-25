@@ -19,10 +19,6 @@
 
 @interface GameManager : NSObject<AVAudioPlayerDelegate>
 
-@property (nonatomic) NSInteger gameRounds;
-@property (nonatomic) NSInteger gameSkill;
-@property (nonatomic) NSInteger gameAmmo;
-
 @property (nonatomic) NSInteger currentRound;
 @property (nonatomic, weak) id<GameDelegate> gameDelegate;
 
