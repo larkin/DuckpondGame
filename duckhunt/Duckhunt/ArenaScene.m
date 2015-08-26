@@ -215,16 +215,14 @@
 
 #pragma mark - PlayerGameDelegate Implementation
 
--(void)playerMove:(PlayerController*)player
+-(void)player1Move:(PlayerController*)player
 {
-    if( player.index == 1 )
-    {
-        cross1.position = player.location;
-    }
-    else
-    {
-        cross2.position = player.location;
-    }
+    cross1.position = player.location;
+}
+
+-(void)player2Move:(PlayerController*)player
+{
+    cross2.position = player.location;
 }
 
 -(void)playerTrigger:(PlayerController*)player

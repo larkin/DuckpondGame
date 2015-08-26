@@ -52,6 +52,11 @@
 {
     PropertiesManager *props = [PropertiesManager sharedManager];
     
+    if( px == -100 && py == -100 )
+    {
+        return;
+    }
+    
     CGFloat sensitivity = self.index == 1 ? props.playerSensitivity1 : props.playerSensitivity2;
     sensitivity = (sensitivity+1) / 5;
     _location = NSMakePoint(((px+1)*sensitivity*props.screenSize), ((py+1)*sensitivity*props.screenSize));
@@ -59,9 +64,17 @@
     NSPoint offset = self.index == 1 ? props.playerOffset1 : props.playerOffset2;
     _location = NSMakePoint(_location.x + offset.x, _location.y + offset.y);
     
+    //NSLog(@"Point %f : %f", _location.x, _location.y);
     if( self.gameDelegate )
     {
-        [self.gameDelegate playerMove:self];
+        if( self.index == 1 )
+        {
+            [self.gameDelegate player1Move:self];
+        }
+        else
+        {
+            [self.gameDelegate player2Move:self];
+        }
     }
 }
 

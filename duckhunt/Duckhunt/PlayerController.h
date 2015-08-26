@@ -23,7 +23,8 @@
 
 @protocol PlayerGameDelegate <NSObject>
 @optional
-- (void) playerMove:(PlayerController*)player;
+- (void) player1Move:(PlayerController*)player;
+- (void) player2Move:(PlayerController*)player;
 - (void) playerTrigger:(PlayerController*)player;
 @end
 

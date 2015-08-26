@@ -85,7 +85,7 @@
     self.currentRound++;
     
     NSInteger ammo = props.gameAmmo+2;
-    if( ammo == 4 )
+    if( ammo ==  [[NSNumber numberWithInt:6] integerValue])
     {
         ammo = 99;
     }
