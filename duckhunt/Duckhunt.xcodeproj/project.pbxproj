@@ -11,7 +11,7 @@
 		200C83751AE5B1750069A828 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C83741AE5B1750069A828 /* main.m */; };
 		200C83781AE5B1750069A828 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C83771AE5B1750069A828 /* GameViewController.m */; };
 		200C83891AE5B1750069A828 /* DuckhuntTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C83881AE5B1750069A828 /* DuckhuntTests.m */; };
-		202EF0B61B20246E00B543D0 /* WiiRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202EF0B51B20246E00B543D0 /* WiiRemote.framework */; };
+		20172D801CE19AC800B5F050 /* WiiRemote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20172D7F1CE19AC800B5F050 /* WiiRemote.framework */; };
 		202EF0B91B2035EE00B543D0 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0B81B2035EE00B543D0 /* PlayerController.m */; };
 		202EF0BD1B203B4F00B543D0 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 202EF0BC1B203B4F00B543D0 /* ConnectionManager.m */; };
 		204739C11B87C63400949A5E /* PropertiesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 204739C01B87C63400949A5E /* PropertiesManager.m */; };
@@ -25,7 +25,6 @@
 		205F23751B8BCEE6003E8E4C /* PGMidi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 205F23701B8BCEE6003E8E4C /* PGMidi.mm */; };
 		205F23761B8BCEE6003E8E4C /* PGMidiAllSources.mm in Sources */ = {isa = PBXBuildFile; fileRef = 205F23721B8BCEE6003E8E4C /* PGMidiAllSources.mm */; };
 		205F23771B8BCEE6003E8E4C /* PGMidiFind.mm in Sources */ = {isa = PBXBuildFile; fileRef = 205F23741B8BCEE6003E8E4C /* PGMidiFind.mm */; };
-		205F23791B8BE690003E8E4C /* WiiRemote.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 202EF0B51B20246E00B543D0 /* WiiRemote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		205F237A1B8BE6EB003E8E4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 200C837B1AE5B1750069A828 /* Main.storyboard */; };
 		206B36911AE5BF8D009ACB9F /* AdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36901AE5BF8D009ACB9F /* AdminViewController.m */; };
 		206B36971AE5CDB9009ACB9F /* ApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 206B36961AE5CDB9009ACB9F /* ApplicationModel.m */; };
@@ -55,7 +54,6 @@
 		20E58CF01B8AF93200DEB105 /* quack2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CED1B8AF93200DEB105 /* quack2.mp3 */; };
 		20E58CF11B8AF93200DEB105 /* quack3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 20E58CEE1B8AF93200DEB105 /* quack3.mp3 */; };
 		20FE65911AEF3ED400094E4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FE65901AEF3ED400094E4C /* Images.xcassets */; };
-		CB46D0601FDD2D288D40FC42 /* libPods-Duckhunt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +73,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				205F23791B8BE690003E8E4C /* WiiRemote.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +90,7 @@
 		200C83821AE5B1750069A828 /* DuckhuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DuckhuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		200C83871AE5B1750069A828 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		200C83881AE5B1750069A828 /* DuckhuntTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DuckhuntTests.m; sourceTree = "<group>"; };
-		202EF0B51B20246E00B543D0 /* WiiRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WiiRemote.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Duckhunt-hkgxpndupwsyifavmbtssgsryzxs/Build/Products/Debug/WiiRemote.framework"; sourceTree = "<group>"; };
+		20172D7F1CE19AC800B5F050 /* WiiRemote.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WiiRemote.framework; path = WiiRemoteFramework/build/Debug/WiiRemote.framework; sourceTree = "<group>"; };
 		202EF0B71B2035EE00B543D0 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		202EF0B81B2035EE00B543D0 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
 		202EF0BB1B203B4F00B543D0 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
@@ -150,9 +147,6 @@
 		20E58CED1B8AF93200DEB105 /* quack2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quack2.mp3; sourceTree = "<group>"; };
 		20E58CEE1B8AF93200DEB105 /* quack3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = quack3.mp3; sourceTree = "<group>"; };
 		20FE65901AEF3ED400094E4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3D1E8D7A4A9361F0C5377F3D /* Pods-Duckhunt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Duckhunt.release.xcconfig"; path = "Pods/Target Support Files/Pods-Duckhunt/Pods-Duckhunt.release.xcconfig"; sourceTree = "<group>"; };
-		8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Duckhunt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD194B6B620EC57D39EBC4D6 /* Pods-Duckhunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Duckhunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Duckhunt/Pods-Duckhunt.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,11 +154,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20172D801CE19AC800B5F050 /* WiiRemote.framework in Frameworks */,
 				205F23681B8BBD30003E8E4C /* CoreMIDI.framework in Frameworks */,
 				20E58CC51B8A825500DEB105 /* AVFoundation.framework in Frameworks */,
 				206B369F1AE5CFBA009ACB9F /* SpriteKit.framework in Frameworks */,
-				202EF0B61B20246E00B543D0 /* WiiRemote.framework in Frameworks */,
-				CB46D0601FDD2D288D40FC42 /* libPods-Duckhunt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +177,6 @@
 				200C836E1AE5B1750069A828 /* Duckhunt */,
 				200C83851AE5B1750069A828 /* DuckhuntTests */,
 				200C836D1AE5B1750069A828 /* Products */,
-				68494A1643BF1CE5FC9CA471 /* Pods */,
 				E48C7644E1688A9463DB79F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -218,7 +210,6 @@
 				206B36A01AE5D289009ACB9F /* Scenes */,
 				200C836F1AE5B1750069A828 /* Supporting Files */,
 				2088F0191AFB359300A4AFC5 /* Util */,
-				2075734B1AE9B521003E6F65 /* Views */,
 			);
 			path = Duckhunt;
 			sourceTree = "<group>";
@@ -334,13 +325,6 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
-		2075734B1AE9B521003E6F65 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		2088F0191AFB359300A4AFC5 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,23 +354,13 @@
 			path = audio;
 			sourceTree = "<group>";
 		};
-		68494A1643BF1CE5FC9CA471 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DD194B6B620EC57D39EBC4D6 /* Pods-Duckhunt.debug.xcconfig */,
-				3D1E8D7A4A9361F0C5377F3D /* Pods-Duckhunt.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		E48C7644E1688A9463DB79F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20172D7F1CE19AC800B5F050 /* WiiRemote.framework */,
 				205F23671B8BBD30003E8E4C /* CoreMIDI.framework */,
 				20E58CC41B8A825500DEB105 /* AVFoundation.framework */,
-				202EF0B51B20246E00B543D0 /* WiiRemote.framework */,
 				206B369E1AE5CFBA009ACB9F /* SpriteKit.framework */,
-				8ADDEBF4C858FD5064872E91 /* libPods-Duckhunt.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -398,11 +372,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 200C838C1AE5B1750069A828 /* Build configuration list for PBXNativeTarget "Duckhunt" */;
 			buildPhases = (
-				96BD421047EC544287967142 /* Check Pods Manifest.lock */,
 				200C83681AE5B1750069A828 /* Sources */,
 				200C83691AE5B1750069A828 /* Frameworks */,
 				200C836A1AE5B1750069A828 /* Resources */,
-				C80C5FBD31FEBD2DCBD84B38 /* Copy Pods Resources */,
 				205F23781B8BE67E003E8E4C /* CopyFiles */,
 			);
 			buildRules = (
@@ -511,39 +483,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		96BD421047EC544287967142 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C80C5FBD31FEBD2DCBD84B38 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Duckhunt/Pods-Duckhunt-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		200C83681AE5B1750069A828 /* Sources */ = {
@@ -678,7 +617,6 @@
 		};
 		200C838D1AE5B1750069A828 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DD194B6B620EC57D39EBC4D6 /* Pods-Duckhunt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -686,8 +624,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Duckhunt-hkgxpndupwsyifavmbtssgsryzxs/Build/Products/Debug",
+					"$(PROJECT_DIR)/WiiRemoteFramework/build/Debug",
 				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Duckhunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -696,7 +635,6 @@
 		};
 		200C838E1AE5B1750069A828 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D1E8D7A4A9361F0C5377F3D /* Pods-Duckhunt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
@@ -704,8 +642,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Duckhunt-hkgxpndupwsyifavmbtssgsryzxs/Build/Products/Debug",
+					"$(PROJECT_DIR)/WiiRemoteFramework/build/Debug",
 				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Duckhunt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

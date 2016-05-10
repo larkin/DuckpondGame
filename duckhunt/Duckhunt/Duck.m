@@ -128,6 +128,7 @@
     {
         self.speed = props.duck3Speed;
     }
+    return self;
 }
 
 -(void)handleMax:(NSNotification*)notification

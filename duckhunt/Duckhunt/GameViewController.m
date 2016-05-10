@@ -33,7 +33,7 @@
     arenaScene.scaleMode = SKSceneScaleModeAspectFill;
     [spriteView presentScene:arenaScene];
     
-    [self.lobbyImage setFrame:NSMakeRect(0, 0, [PropertiesManager sharedManager].screenSize, [PropertiesManager sharedManager].screenSize)];
+    //[self.lobbyImage setFrame:NSMakeRect(0, 0, [PropertiesManager sharedManager].screenSize, [PropertiesManager sharedManager].screenSize)];
 }
 
 - (void)setRepresentedObject:(id)representedObject

@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A68D27E4D372B484755F94272BE180E6C2FB408A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "4b136e55-f123-0410-ba1d-ddfc878cdcfe++9049" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A68D27E4D372B484755F94272BE180E6C2FB408A" : 0,
+    "4b136e55-f123-0410-ba1d-ddfc878cdcfe++9049" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5AE08A3D-29EF-4B58-876E-F372917E295A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A68D27E4D372B484755F94272BE180E6C2FB408A" : "DuckpondGame\/",
+    "4b136e55-f123-0410-ba1d-ddfc878cdcfe++9049" : "DuckpondGame\/duckhunt\/WiiRemoteFramework\/English.lproj\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Duckhunt",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Duckhunt.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/svn.code.sf.net\/p\/darwiin-remote\/code",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4b136e55-f123-0410-ba1d-ddfc878cdcfe++9049"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Phando\/DuckpondGame.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A68D27E4D372B484755F94272BE180E6C2FB408A"
+    }
+  ]
+}
