@@ -415,7 +415,6 @@
 				TargetAttributes = {
 					200C836B1AE5B1750069A828 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 26W7GEHNHA;
 					};
 					200C83811AE5B1750069A828 = {
 						CreatedOnToolsVersion = 6.2;
@@ -619,7 +618,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -637,7 +635,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
