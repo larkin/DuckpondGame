@@ -2,8 +2,8 @@
   "images" : [
     {
       "idiom" : "mac",
-      "scale" : "1x",
-      "filename" : "lobbySm.png"
+      "filename" : "save-the-duck-splash-screen-1500x1500x72dpi.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "mac",
