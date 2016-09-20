@@ -12,7 +12,6 @@
 
 @implementation GameViewController
 {
-    SKView *spriteView;
     ArenaScene *arenaScene;
 }
 
@@ -20,20 +19,22 @@
     
     [super viewDidLoad];
 
-    spriteView = (SKView *)self.view;
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStartGame) name:@"startGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStopGame) name:@"stopGame" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEndGame) name:@"endGame" object:nil];
+    
+    self.spriteView.wantsLayer = YES;
+    self.lobbyImage.wantsLayer = YES;
 }
 
 -(void)viewWillAppear
 {
+    self.spriteView.frame = self.view.frame;
+    self.lobbyImage.frame = self.view.frame;
+
     arenaScene = [[ArenaScene alloc] initWithSize:self.view.frame.size];
     arenaScene.scaleMode = SKSceneScaleModeAspectFill;
-    [spriteView presentScene:arenaScene];
-    
-    [self.lobbyImage setFrame:NSMakeRect(0, 0, [PropertiesManager sharedManager].screenSize, [PropertiesManager sharedManager].screenSize)];
+    [self.spriteView presentScene:arenaScene];
 }
 
 - (void)setRepresentedObject:(id)representedObject
@@ -68,7 +69,7 @@
 }
 
 -(void)showLobby
-{
+{    
     CGRect newFrame = self.lobbyImage.frame;
     newFrame.origin.y = 0;
     

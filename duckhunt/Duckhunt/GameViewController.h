@@ -7,11 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <SpriteKit/SpriteKit.h>
 
 @interface GameViewController : NSViewController
 
 @property (weak) IBOutlet NSImageView *lobbyImage;
-
+@property (weak) IBOutlet SKView *spriteView;
 
 @end
 
